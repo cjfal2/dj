@@ -1,1 +1,1 @@
-Sitemap: https://cjfal.github.io/djdj/sitemap.xml
+Sitemap: https://cjfal.github.io/dj/sitemap.xml
