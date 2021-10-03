@@ -4,20 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>회귀분석 3장 연습문제 | DJ’s portfolio</title>
+<title>회귀분석 3장 연습문제1 | DJ’s portfolio</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="회귀분석 3장 연습문제" />
+<meta property="og:title" content="회귀분석 3장 연습문제1" />
 <meta name="author" content="김동준" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="3장 연습문제" />
-<meta property="og:description" content="3장 연습문제" />
-<link rel="canonical" href="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" />
-<meta property="og:url" content="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" />
+<meta name="description" content="3장 연습문제1" />
+<meta property="og:description" content="3장 연습문제1" />
+<link rel="canonical" href="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.html" />
 <meta property="og:site_name" content="DJ’s portfolio" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"datePublished":"2021-10-02T00:00:00-05:00","url":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html","@type":"BlogPosting","headline":"회귀분석 3장 연습문제","dateModified":"2021-10-02T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html"},"author":{"@type":"Person","name":"김동준"},"description":"3장 연습문제","@context":"https://schema.org"}</script>
+{"datePublished":"2021-10-02T00:00:00-05:00","url":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.html","@type":"BlogPosting","headline":"회귀분석 3장 연습문제1","dateModified":"2021-10-02T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.html"},"author":{"@type":"Person","name":"김동준"},"description":"3장 연습문제1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -88,7 +88,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">회귀분석 3장 연습문제</h1><p class="page-description">3장 연습문제</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-02T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">회귀분석 3장 연습문제1</h1><p class="page-description">3장 연습문제1</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-02T00:00:00-05:00" itemprop="datePublished">
         Oct 2, 2021
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -117,19 +117,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-9-25-회귀분석3장연습문제.ipynb" role="button" target="_blank">
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-9-25-회귀분석3장연습문제1.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-9-25-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-9-25-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-9-25-회귀분석3장연습문제.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-9-25-회귀분석3장연습문제1.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -170,7 +170,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2021-9-25-회귀분석3장연습문제.ipynb
+# file to edit: _notebooks/2021-9-25-회귀분석3장연습문제1.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -1491,7 +1491,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>표본상관계수 :$r_xy$ = $\frac{S_(xy)}{S_x S_y}$ = 157.551/(3.7075×18.07)=2.3517</p>
+<p>표본상관계수 :$r_xy = \frac{S_(xy)}{S_x S_y} = 157.551/(3.7075 * 18.07)=2.3517 $</p>
 </blockquote>
 
 </div>
@@ -1501,7 +1501,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>$S_xy$ = $\frac{1}{n-1}$ $\{ $$\sum_{}^{} xy$$ - $$\frac{\sum_{}^{} x \sum_{}^{} y}{n} \}$ =157.551</p>
+<p>$S_xy = \frac{1}{n-1} \{ \sum_{}^{} xy - \frac{\sum_{}^{} x \sum_{}^{} y}{n} \} =157.551$</p>
 </blockquote>
 
 </div>
@@ -1511,7 +1511,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>$S_x$ = $\sqrt{\frac{1}{n-1} \{ \sum_{}^{} x^2 - \frac{\sum_{}^{} x^2}{n} \}}$ = 3.7075</p>
+<p>$S_x = \sqrt{\frac{1}{n-1} \{ \sum_{}^{} x^2 - \frac{\sum_{}^{} x^2}{n} \}} = 3.7075$</p>
 </blockquote>
 
 </div>
@@ -1521,7 +1521,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>$S_y$ = $\sqrt{\frac{1}{n-1} \{ \sum_{}^{} y^2 - \frac{\sum_{}^{} y^2}{n} \}}$ = 18.07</p>
+<p>$S_y = \sqrt{\frac{1}{n-1} \{ \sum_{}^{} y^2 - \frac{\sum_{}^{} y^2}{n} \}} = 18.07$</p>
 </blockquote>
 
 </div>
@@ -1542,7 +1542,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <blockquote>
 <p>정규방정식</p>
 <blockquote>
-<p>$b_0$$n$ + $b_1 $$\sum_{}^{} x_i$ = $\sum_{}^{} y_i$</p>
+<p>$b_0n + b_1 \sum_{}^{} x_i = \sum_{}^{} y_i$</p>
 </blockquote>
 </blockquote>
 
@@ -1554,7 +1554,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
 <blockquote>
-<p>$b_0$$\sum_{}^{} x_i$ + $b_1$ $\sum_{}^{} x_i^2$ = $\sum_{}^{} x_i y_i$</p>
+<p>$b_0\sum_{}^{} x_i + b_1 \sum_{}^{} x_i^2 = \sum_{}^{} x_i y_i$</p>
 </blockquote>
 </blockquote>
 
@@ -1590,7 +1590,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>$\hat{y}$ =  $b_0$ + $b_1$$x$ $\to$ $\hat{y}$ = 55.87 + 11.46 * 3 = 90.25</p>
+<p>$\hat{y} =  b_0 + b_1x \to \hat{y} = 55.87 + 11.46 * 3 = 90.25$</p>
 </blockquote>
 
 </div>
@@ -1609,7 +1609,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>SSE= $\sum_{}^{} y_i^2$ -  $b_0 $$\sum_{}^{} y_i$ - $b_1 $$\sum_{}^{} xy$    =196000-55.87×3000-11.46×8800 = $$-72458$$</p>
+<p>$SSE= \sum_{}^{} y_i^2 -  b_0 \sum_{}^{} y_i - b_1 \sum_{}^{} xy    =196000-55.87×3000-11.46×8800 = -72458$</p>
 </blockquote>
 
 </div>
@@ -1619,7 +1619,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p>$\sigma$ = $MSE$ = $\frac{SSE}{n-2}$ = $-1510$</p>
+<p>$\sigma = MSE = \frac{SSE}{n-2} = -1510$</p>
 </blockquote>
 
 </div>
@@ -1637,7 +1637,7 @@ F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" hidden></a>
+</script><a class="u-url" href="/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
