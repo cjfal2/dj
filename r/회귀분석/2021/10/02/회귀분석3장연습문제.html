@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>회귀분석 3장 연습문제 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="회귀분석 3장 연습문제" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="3장 연습문제" />
+<meta property="og:description" content="3장 연습문제" />
+<link rel="canonical" href="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-10-02T00:00:00-05:00","url":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html","@type":"BlogPosting","headline":"회귀분석 3장 연습문제","dateModified":"2021-10-02T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html"},"author":{"@type":"Person","name":"김동준"},"description":"3장 연습문제","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">회귀분석 3장 연습문제</h1><p class="page-description">3장 연습문제</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-02T00:00:00-05:00" itemprop="datePublished">
+        Oct 2, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#R">R</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#회귀분석">회귀분석</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-9-25-회귀분석3장연습문제.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-9-25-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-9-25-회귀분석3장연습문제.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#3.3)-어느-증권회사에서의-주가x와-종합주가지수y-분석">3.3) 어느 증권회사에서의 주가x와 종합주가지수y 분석 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-표본상관계수-구하기">1) 표본상관계수 구하기 </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-단순회귀선-추정,-산점도">2) 단순회귀선 추정, 산점도 </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-MSE-계산-및-산점도와-비교">3) MSE 계산 및 산점도와 비교 </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-잔차를-구하고-합이-0이-되는-것을-확인">4) 잔차를 구하고 합이 0이 되는 것을 확인 </a></li>
+<li class="toc-entry toc-h3"><a href="#5)-잔차들의-x에-의한-가중합이-0이-됨을-보이기">5) 잔차들의 x에 의한 가중합이 0이 됨을 보이기 </a></li>
+<li class="toc-entry toc-h3"><a href="#6)-잔차들의-yhat에-의한-가중합이-0이-됨을-보이기">6) 잔차들의 yhat에 의한 가중합이 0이 됨을 보이기 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#3.5)-어떤-컴퓨터회사의-서비스-요구건수와-수리시간-분석">3.5) 어떤 컴퓨터회사의 서비스 요구건수와 수리시간 분석 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-산점도-그리기">1) 산점도 그리기 </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-1차선형회귀선을-가정하고-최소제곱추정량-b0와-b1구하기">2) 1차선형회귀선을 가정하고 최소제곱추정량 b0와 b1구하기 </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-추정치-b1의-의미를-설명하여라">3) 추정치 b1의 의미를 설명하여라 </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-서비스-수가-4일-때-수리시간-추정,-추정값의-의미">4) 서비스 수가 4일 때 수리시간 추정, 추정값의 의미 </a></li>
+<li class="toc-entry toc-h3"><a href="#5)-산정도-위에-추정된-회귀직선-도시하고-잔차표시">5) 산정도 위에 추정된 회귀직선 도시하고 잔차표시 </a></li>
+<li class="toc-entry toc-h3"><a href="#6)-상관계수-구하기">6) 상관계수 구하기 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#3.9)-어느-학급의-시험점수y와-결석일수x-사이의-관계">3.9) 어느 학급의 시험점수y와 결석일수x 사이의 관계 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-시험점수와-결석일수-사이의-표본상관계수를-구하여라">1) 시험점수와 결석일수 사이의 표본상관계수를 구하여라 </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-대체모형-회귀선에서-beta_0-과-beta_1-의-최소제곱추정량을-구해라">2) 대체모형 회귀선에서 beta_0 과 beta_1 의 최소제곱추정량을 구해라 </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-결석을-3번한-학생에-대한-평균성적의-추정량을-계산하여라.">3) 결석을 3번한 학생에 대한 평균성적의 추정량을 계산하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-오차항-$\epsilon$-의-표준편차-$\sigma$-를-구하여라">4) 오차항 $\epsilon$ 의 표준편차 $\sigma$ 를 구하여라 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-9-25-회귀분석3장연습문제.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.3)-어느-증권회사에서의-주가x와-종합주가지수y-분석">
+<a class="anchor" href="#3.3)-%EC%96%B4%EB%8A%90-%EC%A6%9D%EA%B6%8C%ED%9A%8C%EC%82%AC%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EA%B0%80x%EC%99%80-%EC%A2%85%ED%95%A9%EC%A3%BC%EA%B0%80%EC%A7%80%EC%88%98y-%EB%B6%84%EC%84%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3) 어느 증권회사에서의 주가x와 종합주가지수y 분석<a class="anchor-link" href="#3.3)-%EC%96%B4%EB%8A%90-%EC%A6%9D%EA%B6%8C%ED%9A%8C%EC%82%AC%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EA%B0%80x%EC%99%80-%EC%A2%85%ED%95%A9%EC%A3%BC%EA%B0%80%EC%A7%80%EC%88%98y-%EB%B6%84%EC%84%9D"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Base</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">650</span><span class="p">,</span> <span class="m">670</span><span class="p">,</span> <span class="m">690</span><span class="p">,</span> <span class="m">650</span><span class="p">,</span> <span class="m">660</span><span class="p">,</span> <span class="m">650</span><span class="p">,</span> <span class="m">670</span><span class="p">,</span> <span class="m">660</span><span class="p">,</span> <span class="m">690</span><span class="p">,</span> <span class="m">710</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">210</span><span class="p">,</span> <span class="m">212</span><span class="p">,</span> <span class="m">217</span><span class="p">,</span> <span class="m">215</span><span class="p">,</span> <span class="m">216</span><span class="p">,</span> <span class="m">214</span><span class="p">,</span> <span class="m">220</span><span class="p">,</span> <span class="m">218</span><span class="p">,</span> <span class="m">220</span><span class="p">,</span> <span class="m">224</span><span class="p">)</span>
+<span class="n">lm33</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-표본상관계수-구하기">
+<a class="anchor" href="#1)-%ED%91%9C%EB%B3%B8%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 표본상관계수 구하기<a class="anchor-link" href="#1)-%ED%91%9C%EB%B3%B8%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.757203385853764
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-단순회귀선-추정,-산점도">
+<a class="anchor" href="#2)-%EB%8B%A8%EC%88%9C%ED%9A%8C%EA%B7%80%EC%84%A0-%EC%B6%94%EC%A0%95,-%EC%82%B0%EC%A0%90%EB%8F%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) 단순회귀선 추정, 산점도<a class="anchor-link" href="#2)-%EB%8B%A8%EC%88%9C%ED%9A%8C%EA%B7%80%EC%84%A0-%EC%B6%94%EC%A0%95,-%EC%82%B0%EC%A0%90%EB%8F%84"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAC+lBMVEUAAAABAQECAgIDAwME%0ABAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUW%0AFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJyco%0AKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6%0AOjo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tM%0ATExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1e%0AXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29w%0AcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1/f3+AgICBgYGCgoKD%0Ag4OEhISFhYWGhoaHh4eIiIiKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSVlZWW%0AlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqanp6eo%0AqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6%0Aurq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vM%0AzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e%0A3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w%0A8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+cPKsSAAAA%0ACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO3dd3xUZbrA8UMyKZBGIJTQe5OOUgRBRbqK%0AoiDFFRvYEHev62Utd3Z1d/W6dxd7p8hakKaIheKqqKAUpakgEFApFghIIiQmzHw+l8wESMKc%0A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" width="420" height="420">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-MSE-계산-및-산점도와-비교">
+<a class="anchor" href="#3)-MSE-%EA%B3%84%EC%82%B0-%EB%B0%8F-%EC%82%B0%EC%A0%90%EB%8F%84%EC%99%80-%EB%B9%84%EA%B5%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) MSE 계산 및 산점도와 비교<a class="anchor-link" href="#3)-MSE-%EA%B3%84%EC%82%B0-%EB%B0%8F-%EC%82%B0%EC%A0%90%EB%8F%84%EC%99%80-%EB%B9%84%EA%B5%90"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm33</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">lm33</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x</th>
+<td>1</td>
+<td>88.52632</td>
+<td>88.526316</td>
+<td>10.75104</td>
+<td>0.01120658</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>8</td>
+<td>65.87368</td>
+<td> 8.234211</td>
+<td>      NA</td>
+<td>        NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.6000 -1.9026  0.6895  1.4132  3.4000 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) 114.33684   31.20166   3.664  0.00636 **
+x             0.15263    0.04655   3.279  0.01121 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.87 on 8 degrees of freedom
+Multiple R-squared:  0.5734,	Adjusted R-squared:   0.52 
+F-statistic: 10.75 on 1 and 8 DF,  p-value: 0.01121
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-잔차를-구하고-합이-0이-되는-것을-확인">
+<a class="anchor" href="#4)-%EC%9E%94%EC%B0%A8%EB%A5%BC-%EA%B5%AC%ED%95%98%EA%B3%A0-%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%98%EB%8A%94-%EA%B2%83%EC%9D%84-%ED%99%95%EC%9D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) 잔차를 구하고 합이 0이 되는 것을 확인<a class="anchor-link" href="#4)-%EC%9E%94%EC%B0%A8%EB%A5%BC-%EA%B5%AC%ED%95%98%EA%B3%A0-%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%98%EB%8A%94-%EA%B2%83%EC%9D%84-%ED%99%95%EC%9D%B8"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm33</span><span class="o">$</span><span class="n">residuals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>1</dt>
+<dd>-3.5473684210526</dd>
+<dt>2</dt>
+<dd>-4.6</dd>
+<dt>3</dt>
+<dd>-2.65263157894737</dd>
+<dt>4</dt>
+<dd>1.45263157894736</dd>
+<dt>5</dt>
+<dd>0.926315789473677</dd>
+<dt>6</dt>
+<dd>0.452631578947359</dd>
+<dt>7</dt>
+<dd>3.4</dd>
+<dt>8</dt>
+<dd>2.92631578947368</dd>
+<dt>9</dt>
+<dd>0.347368421052632</dd>
+<dt>10</dt>
+<dd>1.29473684210527</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">-3.5473684-4.6000000-2.6526316+1.4526316+0.9263158+0.4526316+3.4000000+2.9263158+0.3473684+1.2947368</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+8.88178419700125e-16
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">lm33</span><span class="o">$</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+1.55431223447522e-15
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to$ 둘다 0에 수렴하는 값</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-잔차들의-x에-의한-가중합이-0이-됨을-보이기">
+<a class="anchor" href="#5)-%EC%9E%94%EC%B0%A8%EB%93%A4%EC%9D%98-x%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B0%80%EC%A4%91%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%A8%EC%9D%84-%EB%B3%B4%EC%9D%B4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>5) 잔차들의 x에 의한 가중합이 0이 됨을 보이기<a class="anchor-link" href="#5)-%EC%9E%94%EC%B0%A8%EB%93%A4%EC%9D%98-x%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B0%80%EC%A4%91%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%A8%EC%9D%84-%EB%B3%B4%EC%9D%B4%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">res33</span> <span class="o">&lt;-</span> <span class="n">lm33</span><span class="o">$</span><span class="n">residuals</span>
+<span class="n">x</span><span class="o">*</span><span class="n">res33</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>1</dt>
+<dd>-2305.78947368419</dd>
+<dt>2</dt>
+<dd>-3082</dd>
+<dt>3</dt>
+<dd>-1830.31578947368</dd>
+<dt>4</dt>
+<dd>944.210526315783</dd>
+<dt>5</dt>
+<dd>611.368421052627</dd>
+<dt>6</dt>
+<dd>294.210526315784</dd>
+<dt>7</dt>
+<dd>2278</dd>
+<dt>8</dt>
+<dd>1931.36842105263</dd>
+<dt>9</dt>
+<dd>239.684210526316</dd>
+<dt>10</dt>
+<dd>919.26315789474</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">-2305.7895</span> <span class="m">-3082.0000</span> <span class="m">-1830.3158+944.2105+611.3684+294.2105+2278.0000</span><span class="o">+</span> <span class="m">1931.3684</span> <span class="m">+239.6842</span> <span class="o">+</span> <span class="m">919.2632</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+-9.99999995201506e-05
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">res33</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+-4.54747350886464e-13
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to$ 둘다 0에 수렴하는 값</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6)-잔차들의-yhat에-의한-가중합이-0이-됨을-보이기">
+<a class="anchor" href="#6)-%EC%9E%94%EC%B0%A8%EB%93%A4%EC%9D%98-yhat%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B0%80%EC%A4%91%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%A8%EC%9D%84-%EB%B3%B4%EC%9D%B4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>6) 잔차들의 yhat에 의한 가중합이 0이 됨을 보이기<a class="anchor-link" href="#6)-%EC%9E%94%EC%B0%A8%EB%93%A4%EC%9D%98-yhat%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B0%80%EC%A4%91%ED%95%A9%EC%9D%B4-0%EC%9D%B4-%EB%90%A8%EC%9D%84-%EB%B3%B4%EC%9D%B4%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">res33</span><span class="o">*</span><span class="m">0.15263</span><span class="o">+</span><span class="p">(</span><span class="n">res33</span><span class="o">*</span><span class="p">(</span><span class="m">114.33684</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>1</dt>
+<dd>-263637.223561155</dd>
+<dt>2</dt>
+<dd>-352386.842978</dd>
+<dt>3</dt>
+<dd>-209272.928441684</dd>
+<dt>4</dt>
+<dd>107958.269588841</dd>
+<dt>5</dt>
+<dd>69902.0747225258</dd>
+<dt>6</dt>
+<dd>33639.1709588414</dd>
+<dt>7</dt>
+<dd>260459.840462</dd>
+<dt>8</dt>
+<dd>220827.008782526</dd>
+<dt>9</dt>
+<dd>27404.7882483158</dd>
+<dt>10</dt>
+<dd>105105.84221779</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">-263637.22</span> <span class="m">-352386.84</span> <span class="m">-209272.93</span> <span class="o">+</span> <span class="m">107958.27</span> <span class="o">+</span>  <span class="m">69902.07</span> <span class="o">+</span>  <span class="m">33639.17</span>  <span class="m">+260459.84</span> <span class="o">+</span> <span class="m">220827.01</span>  <span class="o">+</span> <span class="m">27404.79</span><span class="o">+</span>  <span class="m">105105.84</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+1.16415321826935e-10
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">res33</span><span class="o">*</span><span class="m">0.15263</span><span class="o">+</span><span class="p">(</span><span class="n">res33</span><span class="o">*</span><span class="p">(</span><span class="m">114.33684</span><span class="o">*</span><span class="n">x</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+4.36557456851006e-11
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to$ 둘다 0에 수렴하는 값</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.5)-어떤-컴퓨터회사의-서비스-요구건수와-수리시간-분석">
+<a class="anchor" href="#3.5)-%EC%96%B4%EB%96%A4-%EC%BB%B4%ED%93%A8%ED%84%B0%ED%9A%8C%EC%82%AC%EC%9D%98-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%9A%94%EA%B5%AC%EA%B1%B4%EC%88%98%EC%99%80-%EC%88%98%EB%A6%AC%EC%8B%9C%EA%B0%84-%EB%B6%84%EC%84%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.5) 어떤 컴퓨터회사의 서비스 요구건수와 수리시간 분석<a class="anchor-link" href="#3.5)-%EC%96%B4%EB%96%A4-%EC%BB%B4%ED%93%A8%ED%84%B0%ED%9A%8C%EC%82%AC%EC%9D%98-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%9A%94%EA%B5%AC%EA%B1%B4%EC%88%98%EC%99%80-%EC%88%98%EB%A6%AC%EC%8B%9C%EA%B0%84-%EB%B6%84%EC%84%9D"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Base</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">109</span><span class="p">,</span><span class="m">58</span><span class="p">,</span><span class="m">138</span><span class="p">,</span><span class="m">189</span><span class="p">,</span><span class="m">37</span><span class="p">,</span><span class="m">82</span><span class="p">,</span><span class="m">103</span><span class="p">,</span><span class="m">134</span><span class="p">,</span><span class="m">68</span><span class="p">,</span><span class="m">112</span><span class="p">,</span><span class="m">154</span><span class="p">)</span>
+<span class="n">lm35</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-산점도-그리기">
+<a class="anchor" href="#1)-%EC%82%B0%EC%A0%90%EB%8F%84-%EA%B7%B8%EB%A6%AC%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 산점도 그리기<a class="anchor-link" href="#1)-%EC%82%B0%EC%A0%90%EB%8F%84-%EA%B7%B8%EB%A6%AC%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">lm35</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAC+lBMVEUAAAABAQECAgIDAwME%0ABAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUW%0AFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJyco%0AKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6%0AOjo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tM%0ATExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1e%0AXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29w%0AcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1/f3+AgICBgYGCgoKD%0Ag4OEhISFhYWGhoaHh4eIiIiKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSVlZWW%0AlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqanp6eo%0AqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6%0Aurq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vM%0AzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e%0A3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w%0A8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+cPKsSAAAA%0ACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO3dd3xUZbrA8UMyKZBGIJTQe5OOUgRBRbqK%0AoiDFFRvYEHev62Utd3Z1d/W6dxd7p8hakKaIheKqqKAUpakgEFApFghIIiQmzHw+l8wESMKc%0AM+0973vK7/sHM5k5zHk2m99uMkye0fwA4qapHgBwAkICBCAkQABCAgQgJEAAQgIEICRAAEIC%0ABCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAA%0AQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAk%0AQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIE%0AICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABC%0AAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEICRA%0AAEICBCAkQABCAgQgJEAAQgIEICRAAEICBCAkQABCAgQgJEAAQgIEkBDShnWArWyI/qvc/JDW%0AaoDNrI36y9z8kD7Rik0/ByBQsfZJ1H+HkIAqCAkQgJAAAQgJEICQAAEICRCAkAABCAkQgJAA%0AAQgJEICQAAEICRCAkAABCAkQgJAAAQgJEICQgEhtnDZ8+LSNIe8iJCBCDyb2v+uu/okPhrqP%0AkIDIzEteWHaxMHl+iDsLCQmISLc/Bi//2P3M+365iJCASBRoq4NXVlUrrHrf3m4tCQmIxD5t%0AW/DKVm1flbs2Ne6zl5CASPyW+lbwypLU3yrfszzryqM82QBE5orBvrKL44OuqHz7jKSpx3nW%0ADojQ1qzx+/3+/eOztlW81ef1POnn6W8gYus7as2aaR3XV7yteEL6ksAlIQEROr5+1qx1xyve%0Akj8gN9gVIQExy2vf8dvgNUICYvVZvYsOl18lJCBGi2pce+qJcEICYjM90Xv6A0ICYuHzJs+p%0A8CEhATE4Nib7/YofExIQvQN9m31V6QZCAqK2vfU5P1S+hZCAaK2qM+RIlZsICYjSvNRJJVVv%0AIyQgOpWe9j6JkIBolN6S8kqImwkJiELBiNofhbqdkIDI7eveclvIOwgJiNjmJr1/Cn0PIQGR%0AWpF1xVGduwgJiNDMsuUMOggJiIjP63lc/15CAiJRfHXam0Z3ExIQXv75ueuM7ickILxd7c/a%0AbXgAIQFhbWg48LDxEYQEhPNuxsTfwhxCSEAYzyZ5feGOISTAkM+bPDv8UYQEGCkam/FOBIcR%0AEmDgQL+GGyI5jpAAfTvadP4+ogMJCdC1us6QXyI7kpAAPfOr33jGcgYdhAToCLmcQQchASGV%0A3pbycuRHExIQSuHFtVZGcTghASHs69FiazTHExJwpi1Ne/8Y1V8gJOAMK2qO0lvOoIOQgKpm%0AGSxn0EFIQGXGyxl0EBJQSfE1aYtj+FuEBFRwZGj9tTH8NUICKtjTpYPxcgYdhASctrHRhYdi%0A+ouEBJyyNPOaGL/yCAk46TnP1LDLGXQQEhDk83qeifkvExIQUDQu4+3Y/zYhAWUOntfgizj+%0AOiEBJ+xs2/m7eP4+IQF+/+q6gyNczqCDkAD/guo3hNtJHAYhAdEsZ9BBSHC70ikpL8X9IIQE%0Alyu8pNaH8T8KIcHd9p/d4msBD0NIcLUtTXtFt5xBByHBzd6refmvQh6IkOBis5OjXs6gg5Dg%0AXtM9j4p6KEKCW5XclPaGsAcjJLjUkWH114h7NEKCO+3t2mq7wIcjJLjSpsbn/izy8QgJbrQ0%0Ac/QxoQ9ISHCh56PfSRwGIcF1fF7PU6Ifk5DgNkXj098S/qCEBJc52L/B5+IflZDgLjvbdYpr%0AOYMOQoKrfFp3UHzLGXQQEtxkYY3r41zOoIOQ4CICljPoICS4RuntKf8267EJCW5ReGn2B6Y9%0AOCHBJfaf01zEcgYdhAR32N665w8mPjwhwRU+yblMzHIGHYQEN3gtVfSrVKsgJLjA9MSHTD4D%0AIcHxSm5OnWv2OQgJTlcwvPbHpp+EkOBwe7u1+sb8sxASnG1T4z5ClzPoICQ42rLMK4/KOA8h%0AwcleEL6cQQchwbl8Xs+Tkk5FSHCsognpS2Sdi5DgVPkDctdLOxkhwaHy2nX8Vt7ZCAnO9Fm9%0Aiw5LPB0hwZEW1bjWnOUMOggJTmTecgYdhATn8U1LniP5lIQExzk2Jvt92eckJDjNgb7Nv5J+%0AUkKCw2xvfY6Zyxl0EBKcZVXO0CMKTktIcJR5qZNKVJyXkOAk0p/2PomQ4Bylt6S8qujUhATH%0AKBhR+yNV5yYkOMW+7i23KTs5IcEhNjfp85O6sxMSnGF51hVSljPoICQ4wkxZyxl0EBIcwOf1%0APKF2AkKC/RVfnf6m6hEICXaXf37uOtUzEBLsblf7syQuZ9BBSLC5NfUGylzOoIOQYG/vZMhd%0AzqCDkGBrzyZ5fapnKENIsDGfN/lF1TMEERLsq2hsxjuqZyhHSLCtA/0ablA9w0mEBLva0abz%0A96pnOIWQYFOr6wxRsZxBByHBnuZXv1HJcgYdhARbUracQQchwYZKb015RfUMlRES7Kfw4lor%0AVc9QBSHBdvb1aLlV9QxVERLsZkuT3hWXMxx+5JohU95Q/TohQoLNrMgaVXE5w5oGja+/+/LU%0AwQXKBgqQHZJv6+I5Ly7eGuZ/PwgJemZVXs6QX/fasq+VvNYTVA0UJDekow801AIaPWC48YWQ%0AEJrP63m80g0PtQz+EsWqajtVzHOK1JAKe2kJ3cZMmjyma4LW+1eDAwkJIRX/Lm1x5VuG/6H8%0ASsNZ0qepSGpI92gT9gav7Rmn3WtwICEhlCND61ddztD3r+VXOj8ie5pKpIbUosep726Pd29l%0AcCAhIYQ9XTrsrnrbmOuCl79lLZA9TiVSQ0r+/enrd6QYHEhIONPGRhceOuPGlzKD3+Q8n37m%0AfTJJDanOyNPXL6lncCAh4QzvZlwT4quitF+HtX5/ybOp0+VPVJHUkMYlzD55dWa18QYHEhKq%0Aes4zNeQ/mhwaU61O5+oZijuSG9KOLK3b3bMWLZp1d1et5g6DAwkJlfm8nmf07tvx2iNL1X5f%0A55f970ibe2rlem42Oo6QUEnR2Iy3Vc9gTPYrG9Y/fOPo0Tc+vN74KEJCRQfPa/iF6hnC4LV2%0AsLydbS20nEEHIcHqVtcd/IvqGcIiJFjcguo3WGEncRgKQlo5rHZ6l38YLq4gJJxkteUMOqSG%0AVG/qiT9eTgw8bTfS6DcpCAlBpbelvKR6hohIDUmb6PcfSE+4Ly9/Ya72b4MDCQkBhZfU+lD1%0ADJGRHtLTWuAFd59qg6reu3ndKTMICSfs79Hia9UzREh6SLdqXwaud61T5c4d1bQKCmM9B5xj%0AS9NeP6qeIVLSQ7pOC/5u7KikqvcW5J/yT03xb+DDAt6rebnRb39ai/SQ/qb9ELh+QY7BgU8T%0AEmYnV1rOYHFyQ0pISUnSVgSuN+tmcCAhYbrnMdUjRENqSG0D/l52db12s8GBhOR2JZPT3lA9%0AQ1RUvbJhzcOfG9xLSC53ZFj9tapniI41XyJESO62p2uHXapniBIhwXI2Nur7s+oZokVIsJql%0AmaOPqZ4haspCurOpwZ2E5GLPJ4VezmBtykKaaPQohORaPq/nKdUzxIKQYCVF49MtvpxBh9SQ%0ArqqgGSHhDAf7NzD6ZxELk/vKhkoMDiQkd9rZrtN3qmeIkdSQ0tq8ecpAQkIVn9YdZP3lDDqk%0AhtQn8/TTMfyMhCoW1rjeBssZdEgN6Tbt9HpVQkJlNlnOoENqSAt6fHD6utH7IxGS65TenmK0%0AfMDyeGUDrKDw0uwPwh9lYYQEC9h/dnO7LGfQQUhQb3urnj+oniFOhATlPs65zD7LGXQQElR7%0ALdVOyxl0EBIUm+5R+37kYhASlCq5OXWu6hlEICSoVDC89seqZxCCkKDQ3m6tvlE9gxiEBHU2%0ANT7XdssZdBASlFmWeaX9ljPoICSo8kKSA572PomQoIZdlzPoICQoUTQhfYnqGUQiJKiQPyB3%0AveoZhCIkKJDXruO3qmcQi5Ag32f1LjqsegbBCAnSLapxnX2XM+ggJMhm7+UMOggJcpVOTZ6j%0AegYTEBKkOjYm+33VM5iBkCDTgb7Nv1I9gykICaY4umrmu/vPuHV763PsvpxBByHBDDNyEprW%0ASJxUWPnWT3JG2n45gw5CggmeTfpHof/4ihaDK71l2LzUySWqJjIbIUG8I1mPBS7zasyrcKsj%0An/Y+iZAg3qLM4uCVq8efuq30lpRXFY0jAyFBvEc6l195oN/JmwpG1P5I0TRSEBLEm9Gk/Mqd%0Aw8qv7O3ecpuqaaQgJIi3TQv+jkRp2weCN2xu0ucnhfNIQEgwweWd9p34s3RKdjCf5VlXHFU7%0AkOkICSY4dG7mxAfvaFf7w8BHM5y0nEEHIcEMJS9O7H3ZAz+WXfV5PU+oHsd8hARzFV+d/qbq%0AGSQgJJgq//zcdapnkIGQYKa89k5bzqCDkGCiNfUGOm05gw5CgimO73hr/dHXa1zruOUMOggJ%0AZljcQquhpSTc5wt/qDMQEkww1zNtt+9PnqwxqgeRhpAg3q91/uovuqrmfzYnv6V6FFkICeIt%0ASTt6oF/DDX7/mGtUjyILIUG8RzvtaNPl+xNX7j9P9SiyEBLEe65BnSFHyq5MG6x6FFkICeL9%0AU7sysJzB1+U+1aPIQkgQbnpi8z6Bf4f9c9r3qmeRhZAgWOmtKa/s79Dgrhf+3rfGYtXDSENI%0AEKvg4lor/f5f/29oy3On7lA9jDyEBKH29Wi5VfUMKhASRNrcpLfDlzPoICQItML5yxl0EBLE%0AmemC5Qw6CAmi+Lyex1XPoAwhQZDi36W559nuMxASxDh0gTuWM+ggJAixp8tZu1XPoBIhQYSN%0AjS48pHoGpQgJArybcU2x6hnUIiTE7znPNNcsZ9BBSIiXz+t5RvUMyhES4lQ0NuMd1TOoR0iI%0Az8HzGn6hegYLICTEZUfbzq755T0jhIR4rK4z+BfVM1gCISEOC6rfUKJ6BmsgJMRueqJX9QhW%0AQUiIVeltKS+rnsEyCAkxKryk1oeqZ7AOQkJs9vVo4crlDDoICTHZ0rTXj6pnsBJCQizeq3m5%0AS5cz6CAkxGB2smuXM+ggJETvocTHVI9gNYSEaJVMTntD9QyWQ0iI0pGh9deqnsF6CAnR2dO1%0Awy7VM1gQISEqGxv1/Vn1DFZESIjG0swxx1TPYEmEhCg875nq9uUMOggJEfN5PU+rnsGqCAmR%0AKhqf/rbqGSyLkBChg/0bfK56BusiJERmZ9tO36mewcIICRH5tO4gljMYICREYmGN639TPYOl%0AERIiwHKGcAgJYZVOSXlJ9QxWR0gIp/DS7A9Uz2B5hIQw9p/d/GvVM1gfIcHYl816spwhPEKC%0AoY9zLvtV9Qx2QEgwMjeV5QwRISQYmO55RPUINkFI0FVyU+pc1TPYBSFBT8Gw2h+rnsE2CAk6%0A9nZr9Y3qGeyDkBDapsbnspwhcoSEkJZljmY5QxQICaG8kMTT3lEhJJzJ5/U8pXoGmyEknKFo%0AfPoS1TPYDSGhqvwBLGeIGiGhirx2Hb9VPYP9EBIq+6zeRYdVz2BDhIRKFtW4juUMMSAkVMRy%0AhhgREk4rnZo8R/UMNkVIOOXYmOz3Vc9gV4SEkw70bf6V6hlsi5BQbnvrc35QPYN9ERKCPskZ%0AyXKG2BESAl5LnVqqegY7IySU4WnvOBES/P7Sm1NfVT2DzRES/AUjan+kega7IyTs7d5qm+oZ%0AbC/ekPLFjVIBIUm0uUmfn1TPYH/xhlR94ipxw5xCSPIsz7ryqOoZHCDekFprWucnhL8nIiFJ%0AM4PlDELEG5LvvTHJWtoNa8RNVIaQJPF5PU+onsEZBDzZ8ONDLTWt+zMiv/QJyST7ly/fX+HD%0A4qtZziCIkGftfMuuSNIybt4sZKIyhGSKvEFaSoo2KO/kx/nn565XOY+TiHn6e/d9dTVNqzZW%0A1O8oE5IZvm9w0bqSknUDG+wJfpzXnuUMwggIqfSN4Qla4/v3vH2+NkHQVIRkhmt6F5ddFPea%0AGPhwTb2BLGcQJu6QvvM21KoNWlT2gkffJdmCpiIkE5SkLwhemZ9e9t/W6zWuZTmDOPGGdHGi%0AVuu/tpd/8DdRr3kgJBPs18rfU/lrbb/f/0wSr1IVKd6QtHNmnt61vv4xAROVISQT/KKtC15Z%0Aq/3i8ya/qHYap4k3pHXiRqmAkMzQ/i/By7+0P3ZV9n/UzuI4vGjVPZ5ND/x3/XHav/o1YzmD%0AYITkHr4pSeOmTx+X9Ls2XfaonsVxCMlNll7dteuE6XWGHFE9iPMQkrv4fPOqTypRPYUDEZKL%0AlD7ROyOl2nCWnJiAkNyjeHj2fSOSLs8ewT/EikdI7vH3upsurr3Sv6Pug6oncSBCcg1fk/u7%0AtyxbzjC9iepRHIiQXOOglts7sJxhg3ZQ9SzOQ0iuMV8bFFzO8KX2o+JRHIiQ3GJmUuqs4LXZ%0AtdnSIBwhuYPP63n8920Dv390uM3vVU/jQITkCsW/S3vTf+is9nN37Xq1fcdDqsdxIEJyg/wL%0Acstepn/4lgxNy7iF34s1ASG5wJ4uZ+0OXvPl5fnUzuJUhOR8GxpeyDdzZiMkx3s3Y2Kx6hmc%0Aj5Cc7tkkL9/NmY+QnM3n9TyjegZXICRHKxqb8Y7qGdyBkJzs4HkNv1A9g0sQkoPtaNv5e9Uz%0AuAUhOdfqOoOFv3MVdBCSY82vfiPLGaQhJKeanshOYolkh+TbunjOi4u3hvmXDUKKV+ltKS+r%0AnsFV5IZ09IGGWkCjBwzfAJiQ4lR4ca0PQ92+bf78bbJncQepIRX20hK6jZk0eUzXBK33rwYH%0AElJ89vVosTXEzV/20mrV0nqzrtgEUkO6R5uwN3htzzjtXoMDCSkuW5r2CvXL5Hk5I7/x+78Z%0AmZMX4k7ER2pILXqc+h3n491bGRxISPF4r+aokN84jx0QWA1Z2n+s3HlcQWpIyRV+x/mOFIMD%0ACSkOs5KnhtzJUFLjjeCV12vwtLhwUkOqM/L09UvqGRxISDHzeT06b/e2Tyv/uWmrtk/ePG4h%0ANaRxCbNPXp1ZbbzBgYQUq5LJaYt17jqifRa88pnGu1EIJzWkHVlat7tnLVo06+6uWs0dBgcS%0AUoyODK2/VvfOTuXP79zTSdI0biL335E299TK9dxsdBwhxWZP1w679e+dk7qs7GJp6r9lzeMi%0Asl/ZsP7hG0ePvvHh9cZHEVJMNja6wHA5wz2JI+6/f0TiPbLmcRNea+ccSzPHHDM+YtWt/fvf%0AukrONC5DSI7xnGcqyxmU4UWrDuHzep5WPYOb8aJVZygal/626hlcjRetOsLB/g1YzqAUL1p1%0Agp1tO32negaXs86LVg/fPvmU8wgpGp/WHcRyBsWs86LVAxNGn9KDF7FEYWH163mfctV40art%0AsZzBCnjRqs2VTkl5SfUM4EWrdld4SejlDJCMF63a2v6zm3+tegaU4UWrdvZls56hljNAPl5r%0AZ2P/qXm50T9rQyJCsq+5qaGXM0ABQrKt6Z5HVY+AU5SFdGdTgzsJKaySm2q8rnoGnKYspIlG%0Aj0JI4RQMy/lY9QyogJBsaW/XVt+ongEVSQ3pqgqaEVLsNjU+92fVM6ASqSFplRgcSEiGlmWO%0ADrOcAbJJDSmtzZunDCSkWL2QxNPeliM1pD6Zp3c18DNSjHxez1OqZ8AZpIZ0m3b6laqEFJui%0A8elvqZ4BZ5Ia0oIeH5y+zq+ax+LggAafq54BIfDKBlvJa8dyBmsiJDv5rO5Fh1XPgJAIyUYW%0A1riO5QwWRUj2wXIGCyMkuyi9PZm3Y7EuQrKJX0dmfxD+KKhCSPbwc9/mX6meAQYIyRa2t+75%0Ag+oZYISQ7OCTnMtYzmBthGQDr6VOLVU9A4wRkvXxtLcNEJLVldyc+qrqGRAWIVlcwfDaLGew%0AAUKytr3dWM5gC4RkaZua9PlJ9QyIBCFZ2fKsKw3ftBqWQUgWNoPlDLZBSJbl83qeVD0DIkVI%0AVlV8dfoS1TMgYoRkUfkDcsO8iRSshJCsKa99x29Vz4AoEJIlrak3kOUMtkJIVrSoxrUsZ7AX%0AQrIgXqVqP4RkOT5v8hzVMyBahGQ1x67Kfl/1DIgaIVnMgX7NWM5gQ4RkLdtbd9mjegbEgJAs%0AZVWdIUdUz4BYEJKVzKs+qUT1DIgJIVkIT3vbFyFZRuktKa+ongGxIiSrKBhR+yPVMyBmhGQR%0A+7q33KZ6BsSOkKxhc5PeLGewM0KyhBVZV7CcwdYIyQpmspzB7ghJPZ/X87jqGRAnQlKu+Oq0%0AN1XPgHgRkmr55+euUz0D4kZIiu1qf9Zu1TMgfoSk1oaGFx5SPQMEICSl3s2YWKx6BohASCo9%0Am+T1qZ4BQhCSOj6v59nAlV+2sTPI7ghJmaKxGe+UXc5oo2lJgzaoHgdxISRVDvRrGIjnj9Uf%0AWL9vxajUD1UPhHgQkiI72nT+vuxyVcJ7gY9vacG3d3ZGSGqsrjP4l8CVm0YEb8hPfk/hOIgX%0AISkxv/qN5csZBvy5/KYOTyibBvEjJBUqLGe48H/Kr7R5Ws0sEIKQ5Cu9LeXlUx/84bzg5Z6E%0A1WqmgRCEJF3hxbVWnv7oS8/ssouSkd34jSQ7IyTZ9vVosbXix48nTpy78ukedVlUbGuEJNmW%0Apr1/rHzLB8PrJra6ZZ+acSAIIcn1Xs1RIZYzsF7V9ghJqlnJLGdwJkKSyOf1PKZ6BpiDkOQp%0AmZS2WPUMMAkhSXNkaP21qmeAWQhJlj1dO7CcwbkISZKNjVjO4GSEJMfSzGtYzuBkhCTFc56p%0ALGdwNEKSwOf18NJuhyMk8xWNy3hb9QwwGSGZ7uB5Db5QPQPMRkhm29m203eqZ4DpCMlkq+uW%0AL2eAoxGSuRZUv4HtQG5ASKaqsJwBjkZIJiqdkvKS6hkgByGZp/CSWqxPdQtCMs3+s1t8rXoG%0AyEJIZvmyaa8fwx8FhyAkk/yn5uW/qp4B8hCSOeamspzBVQjJFNM9j6oeAVIRkglKbkp7Q/UM%0AkIuQxDsyrP4a1TNAMkISbm/XVt+ongGyEZJomxqf+7PqGSAdIQm2LHP0MdUzQD5CEuv5JJ72%0AdiVCEsnn9TylegYoQUgCFY1Pf0v1DFCDkMQ52L/B56pngCKEJMzOdixncC9CEuXTuoMOq54B%0AyhCSIAtrXM9yBhcjJDFYzuByhCRC6e3J/1Y9A5QiJAEKL83+QPUMUIuQ4vfzuc1ZzuB2hBS3%0A7a17/qB6BqhGSPH6JOcyljOAkOL0GssZ4CckXb99PveDCN70dXriQ+bPAusjpNBeydXqJSXf%0AftT4qJKbU+fKmQcWR0ghzfL89aC/+M3GFxu+82vB8Nofy5oI1kZIoRRk/1/g8pvqiwyO2tuN%0A5QwoR0ihvJFeFLwy/mr9gzY17sNyBpQjpFAe7Vx+5YF+uscsy7oyzE9QcBFCCuWFZuVX7hqq%0AewjLGVABIYXylbYpcHm8w59DH+Dzep6UOA8sj5BCGtH9pxN/Hv9j5v6QdxdPSF8idyBYHCGF%0AdODs2jc/8qeuWctD3ps/IHe95IFgcYQUWvEzo7sMvndPyPvy2nX8VvI4sDpCitpn9S5iOQOq%0AIKRoLapxLcsZUBUhRYnlDAiFkKLim5Y8R/UMsCJCisaxMdnvq54BlkRIUTjQt9lXqmeANRFS%0A5La3PoflDAiNkCK2KmfoEdUzwKoIKVLzUieVqJ4BlkVIEeJpbxghpIiU3pLyiuoZYGWEFImC%0AEbU/Uj0DLI2QIrCve8ttqmeAtRFSeJub9P5J9QywOEIKa3nWFSxnQBiEFM5MljMgPEIy5vN6%0AnlA9A2yAkAwVX532puoZYAeEZCT//Nx1qmeALRCSgV3tz2I5AyJCSPrW1BvIcgZEhpB0vZMx%0AkeUMiBAh6Xk2yWv4ni5ABYQUms+b/KLiEWAnhBRS0diMd9ROAHshpFAO9Gu4QekAsBtCCmFH%0Am87fqzw/7IeQzrS6zpAj/rUPXvunBTxrhwgR0hnmV7+x5LeJ1XpOHJzZgfeIRWQIqarAcoYp%0AuWtOXM0f3vxXZXPAVgipstJbU172+/ckLg18VNjgUUVzwGYIqZLCi2utPHExp175v8Xedqma%0AOWA3hFTRvh4ttpZdTu9SfsNf+yqZA7ZDSBVsadr7x8CVV3LKfyn2plEq5oD9ENJpK7JGlS9n%0A+Cl5QeAyP+dZBXPAhgjplFkVljPcW/OtE3/u7tupWP4csCNCKufzeh4//dHxuxKbDevm6Rf6%0A3ZiBqggpqPiatMWVbtj1wrR/sl0VkSKkgCND67OcAXEgpDJ7unTYLfWEcBpCOmFjowsPyTwf%0AnIeQ/P53M6/hyTnEh5D8z3mmspwBcXJ9SD6v5xlZ54JzuT2konEZb0s6FZzM5SEdPK/hF3LO%0ABGdzd0g727KcAUK4OqTVdQf/IuM8cD43h7Sg+g1sN4EYLg4psJwBEMK1IZXelvKS2eeAe8gO%0Aybd18ZwXF28N8y+g5odUeEmtD00+BdxEbkhHH2ioBTR6wPCNwk0Paf/ZLb429wxwF6khFfbS%0AErqNmTR5TNcErbfRxjizQ9rStNePpp4AbiM1pHu0CXuD1/aM0+41ONDkkN6reTmLHyGU1JBa%0A9Di1FOF491YGB5ob0uzk08sZACGkhpT8+9PX70gxONDUkKZ7WJ8K0aSGVGfk6euX1DM40MSQ%0ASianvWHWY8O9pIY0LmH2yaszq403ONC8kI4Mq7/WpIeGm0kNaUeW1u3uWYsWzbq7q1Zzh8GB%0ApoW0t2ur7eY8MtxN7r8jbe6pleu52eg4s0La2Ljvz6Y8MNxO9isb1j984+jRNz683vgok0Ja%0Amjn6mBmPC1jntXY7U7QKCk04w/NJLGeASawTkm/l8lOma+LX+vi8nqeEPygQZJ2QKvpEfEhF%0A49PfEv2YwEkKQnk+/2UAAAmKSURBVFo5rHZ6l3+UGB0iPqSD/Rt8LvghgdOkhlRv6ok/Xk4M%0A/BA00ujHFeEh7WzX6TuxjwhUJDUkbaLffyA94b68/IW52r8NDhQd0qd1B7GcAWaSHtLTWuAF%0Ad59qgwwOFBzSwhrXs5wBppIe0q3al4HrXesYHCg2JJYzwHTSQ7pOC/5u7KgkgwNFhlR6e4rR%0Ad5GACNJD+pv2Q+D6BTkGBwoMqfDS7A9EPRagR25ICSkpSdqKwPVm3QwOFBfS/rObs5wB5pMa%0AUtuAv5ddXa/dbHCgsJC2t+r5g5hHAoyoemXDmoeN/n1UVEif5FzGcgbI4OiXCL2WynIGyOHk%0AkKYnPiTgUYAIODekkptT5woYBYiEY0MqGF77YxGjAJFwakh7u7X6RsgoQCQcGtKmxueynAES%0AOTOkZZlXspwBMjkypBeSeNobcjkwJJ/X86S4UYBIOC+kognpSwSOAkTCcSHlD8gNszQPEM9p%0AIeW16/it0FGASDgspM/qXXRY7ChAJJwV0qIa17GcASo4KiSWM0AVB4Xkm5Y8R/woQCScE9Kx%0AMdnvi58EiIhjQjrQt/lXZowCRMIpIW1vfQ7LGaCOQ0L6JGckyxmgkDNCmpc62fDdLQCTOSIk%0AnvaGag4IqfSWlFfNGwWIhP1DKhhR+yMTRwEiYfuQ9nZvuc3MUYBI2D2kzU36/GTqKEAkbB7S%0A8qwrjpo7ChAJe4c0g+UMsAY7h+Tzep4wfRQgEjYOqfjq9DdNnwSIiH1Dyj8/d53pgwCRsVdI%0Ax9fNmrUu+FNRXvuzWM4Ay7BVSOs7as2aaR3LtgStqTeQ5QywDjuFtDVr/H6/f//4rG3+dzKu%0AZTkDLMROIY0a7Cu7OD74imeTvD7ThwAiZ6OQfkst36C62JP8oukjANGwUUj7tOCL6oqGa/NM%0AnwCIio1CKtBWl10c6FenWqHpEwBRsVFI/u53nfhjR5vON3U3fQAgOnYKaV7yQv+qOkNeSp5v%0A+gBAdOwUkv/BxA6ezuclPmj6+YEo2Sok/39Xaz182kbTTw9Ey04hld6a8orppwZiYaOQCi6u%0AtdL0MwMxsU9I+3q03Gr6iYHY2CakLU16s5wBlmWXkFZkjWI5A6zLJiHNZDkDLM0WIfm8nsdN%0APycQBzuEVPy7tMWmnxKIhw1COnRBfZYzwOKsH9KeLmftNv2EQHwsH9LGRhceMv18QJysHtK7%0AGdfE8AbngGQWD+k5zzSWM8AGLB2Sz+t5xvRzAQJYOaSisRnvmH4qQAQLh3TwvIZfmH4mQAjr%0AhrSjbefvTT8RIIY1Q1qrATazNuovc/ND8m9Yp2No/zmypNwp60x3psg605z+fP7i0n+o3lfm%0Ahui/yiWEpOvaa6WdKm2JrDMtSZN1Jj5/cRL6+SMkwez6hWCMz184hCSYXb8QjPH5C4eQBLPr%0AF4IxPn/hEJJgdv1CMMbnLxxCEsyuXwjG+PyFQ0iC2fULwRifv3AISTC7fiEY4/MXDiEJZtcv%0ABGN8/sIhJMHs+oVgjM9fOCpDmjxZ2qmyl8k607JsWWfi8xcnoZ8/lSHl50s71S5pKymP75J1%0AJj5/cRL6+VMZEuAYhAQIQEiAAIQECEBIgACEBAhASIAAhAQIQEiAAIQECEBIgACEBAhASIAA%0AhAQIQEiAAIQECKAspAVTzk3TrpJwooJXx7arntn3OQm/mlb6l6FNqmd3/fNB808VsFjT7jX/%0ALG2Db9BQz/wznbBiZN3kRpe+b/p55px644lSMQ+oLKQeWmYbKSH9S0vuPbq/R7vU/JKOafX7%0AXzm0jtZgt+mnKvNTvXQpISVMLDPV/DP5/X/SUgaMuaC2+f+pVgX+M03sqV0g6AGVhfT+dt+b%0AUkKa/+ThE39+WVd72fRT+QIBFU/QJpl+qjKX5f6PlJBSzD9HuRlanz0nLo4fkHXCYdqrgh5J%0A5c9IckIq96B2k6xTfaCdL+M0M7Ql/3JWSMX1036Qda6A3Ql1igU9lGtCelKT8r1Jmdu1OySc%0AZVfGdX45ISX97frbnpHxc9872oRjr973txU+CecKuEf7b1EP5ZaQfL215TLOc8dNY1tpnX8y%0A/0TH+zc+LCmkwM/k6eZ/Z+y/X5vauuxcfST9/1JJ/WrbRT2WW0LyaqOknCftxNfBUBlfB/+r%0ALfPLCenvy/cf3TIlIXGl6WeaoiW2fb9g0yA53xqf+PFZu0jYY7kkpMe07r/IOZNv/6tN6683%0A/TSbUm72Swop6F5tmOnnuEXzfH3iorBBDG+GHItB2jxhj+WOkP6h9ZC3TNG/Rets9il8XZoX%0A+KWGlKfVNv0c92gdA5cTtadMP9cJO6vV+03Yg7kiJK/W57CcMwXlamZnW3L6nexvMPlU5fK1%0AdNPPMVvrF7i8Q/uX6ec6YZp2t7gHc0NIf9DOL5ByonJHErUjJp/i+A0BvbWuN8wy+VTlFmld%0ATD/Hnmo5gf+LuFB73fRz+f2/1a2WJ+7RnB/S8UnakKMSznPC6g1lfx64TOsv53xSvrVbs7Hs%0Az7UNtH+Yfir/KM3rL/u6yCk0/1z+udoQgY+m7rV2EycO1JpNnHin2Sf6Xy1hXODlIOZ/ITyo%0AtRh4Zb/qWu7Xpp8qSEZID2stLxrVrZp2qbifJ3Ttbab1ue3ihCQZ/4d04v/3Fgp8NGUh3Vv+%0ALX5Ts0807eQPEyL/9ye0r+7skZOY1fPP0p7YkBHS55M61fLkDJoj5V9Jf769aVLty6U8Z/dN%0AtdwSgQ/Hr1EAAhASIAAhAQIQEiAAIQECEBIgACEBAhASIAAhAQIQEiAAIQECEBIgACEBAhAS%0AIAAhAQIQEiAAIQECEBIgACEBAhASIAAhAQIQEiAAIQECEBIgACEBAhASIAAhAQIQEiAAIQEC%0AEBIgACEBAhASIAAhAQIQEiAAIQECEBIgACEBAhCSPY3UHi27uE+7QfUkCCAkezrYJOVzv39F%0AQodfVU+CAEKyqU88rQt+rF99i+o5EERIdvWgNn6Q9pzqKVCOkOzKN0TTxqkeAicRkm09rWmf%0AqZ4BJxGSXX2Tnp3Q6ZjqKVCOkGyqqFu1pfdqN6keA+UIyaamaNP8pX21uarnQBAh2dMirVeJ%0A3/9drcydqidBACHZ0rfZWXlll69r5xSrngVlCAkQgJAAAQgJEICQAAEICRCAkAABCAkQgJAA%0AAQgJEICQAAEICRCAkAABCAkQgJAAAQgJEICQAAEICRCAkAABCAkQgJAAAQgJEICQAAEICRCA%0AkAABCAkQgJAAAQgJEICQAAEICRCAkAABCAkQ4P8BM8eUnUDFptUAAAAASUVORK5CYII=" width="420" height="420">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-1차선형회귀선을-가정하고-최소제곱추정량-b0와-b1구하기">
+<a class="anchor" href="#2)-1%EC%B0%A8%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EC%B6%94%EC%A0%95%EB%9F%89-b0%EC%99%80-b1%EA%B5%AC%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) 1차선형회귀선을 가정하고 최소제곱추정량 b0와 b1구하기<a class="anchor-link" href="#2)-1%EC%B0%A8%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EC%B6%94%EC%A0%95%EB%9F%89-b0%EC%99%80-b1%EA%B5%AC%ED%95%98%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lm35</span><span class="p">)</span> <span class="c1"># b0(절편,intercept), b1(기울기,x)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>11.46408839779</dd>
+<dt>x</dt>
+<dd>24.6022099447514</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">xbar</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ybar</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">minusx</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="o">-</span><span class="n">xbar</span>
+<span class="n">minusy</span> <span class="o">&lt;-</span> <span class="n">y</span><span class="o">-</span><span class="n">ybar</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">Sxx</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">minusx</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">Sxx</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+32.9090909090909
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">Syy</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">minusy</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">Syy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+20110.5454545455
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">Sxy</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">minusx</span><span class="o">*</span><span class="n">minusy</span><span class="p">)</span>
+<span class="n">Sxy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+809.636363636364
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">b1</span> <span class="o">&lt;-</span> <span class="n">Sxy</span><span class="o">/</span><span class="n">Sxx</span>
+<span class="n">b1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+24.6022099447514
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">b0</span> <span class="o">&lt;-</span> <span class="n">ybar</span> <span class="o">-</span> <span class="n">b1</span><span class="o">*</span><span class="n">xbar</span>
+<span class="n">b0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+11.4640883977901
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-추정치-b1의-의미를-설명하여라">
+<a class="anchor" href="#3)-%EC%B6%94%EC%A0%95%EC%B9%98-b1%EC%9D%98-%EC%9D%98%EB%AF%B8%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%98%EC%97%AC%EB%9D%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) 추정치 b1의 의미를 설명하여라<a class="anchor-link" href="#3)-%EC%B6%94%EC%A0%95%EC%B9%98-b1%EC%9D%98-%EC%9D%98%EB%AF%B8%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%98%EC%97%AC%EB%9D%BC"> </a>
+</h3>
+<blockquote>
+<p>기울기</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-서비스-수가-4일-때-수리시간-추정,-추정값의-의미">
+<a class="anchor" href="#4)-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%88%98%EA%B0%80-4%EC%9D%BC-%EB%95%8C-%EC%88%98%EB%A6%AC%EC%8B%9C%EA%B0%84-%EC%B6%94%EC%A0%95,-%EC%B6%94%EC%A0%95%EA%B0%92%EC%9D%98-%EC%9D%98%EB%AF%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) 서비스 수가 4일 때 수리시간 추정, 추정값의 의미<a class="anchor-link" href="#4)-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%88%98%EA%B0%80-4%EC%9D%BC-%EB%95%8C-%EC%88%98%EB%A6%AC%EC%8B%9C%EA%B0%84-%EC%B6%94%EC%A0%95,-%EC%B6%94%EC%A0%95%EA%B0%92%EC%9D%98-%EC%9D%98%EB%AF%B8"> </a>
+</h3>
+<blockquote>
+<p>적합된 회귀선으로 추정한 x=4 일때의 y의 예측(추정) 값</p>
+<p><em>yhat=b0+b1x</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">b0</span><span class="o">+</span><span class="n">b1</span><span class="o">*</span><span class="m">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+109.872928176796
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-산정도-위에-추정된-회귀직선-도시하고-잔차표시">
+<a class="anchor" href="#5)-%EC%82%B0%EC%A0%95%EB%8F%84-%EC%9C%84%EC%97%90-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EC%A7%81%EC%84%A0-%EB%8F%84%EC%8B%9C%ED%95%98%EA%B3%A0-%EC%9E%94%EC%B0%A8%ED%91%9C%EC%8B%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>5) 산정도 위에 추정된 회귀직선 도시하고 잔차표시<a class="anchor-link" href="#5)-%EC%82%B0%EC%A0%95%EB%8F%84-%EC%9C%84%EC%97%90-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EC%A7%81%EC%84%A0-%EB%8F%84%EC%8B%9C%ED%95%98%EA%B3%A0-%EC%9E%94%EC%B0%A8%ED%91%9C%EC%8B%9C"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">modelr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A data.frame: 11 × 2</caption>
+<thead>
+	<tr>
+<th scope="col">x</th>
+<th scope="col">y</th>
+</tr>
+	<tr>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<td>4</td>
+<td>109</td>
+</tr>
+	<tr>
+<td>2</td>
+<td> 58</td>
+</tr>
+	<tr>
+<td>5</td>
+<td>138</td>
+</tr>
+	<tr>
+<td>7</td>
+<td>189</td>
+</tr>
+	<tr>
+<td>1</td>
+<td> 37</td>
+</tr>
+	<tr>
+<td>3</td>
+<td> 82</td>
+</tr>
+	<tr>
+<td>4</td>
+<td>103</td>
+</tr>
+	<tr>
+<td>5</td>
+<td>134</td>
+</tr>
+	<tr>
+<td>2</td>
+<td> 68</td>
+</tr>
+	<tr>
+<td>4</td>
+<td>112</td>
+</tr>
+	<tr>
+<td>6</td>
+<td>154</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">103-109.86</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+-6.86
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ggplot(df, aes(x=x, y=y)) + 
+geom_point() + 
+stat_smooth(method='lm') +
+geom_text(x=1,y=37,label="0.94")+
+geom_text(x=2,y=58,label="-2.66")+
+geom_text(x=2,y=68,label="7.34")+
+geom_text(x=3,y=82,label="-3.26")+
+geom_text(x=4,y=103,label="-6.86")+
+geom_text(x=4,y=109,label="-0.86")+
+geom_text(x=4,y=112,label="2.14")+
+geom_text(x=5,y=134,label="-0.46")+
+geom_text(x=5,y=138,label="3.54")+
+geom_text(x=6,y=154,label="-5.06")+
+geom_text(x=7,y=189,label="5.34")</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6)-상관계수-구하기">
+<a class="anchor" href="#6)-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>6) 상관계수 구하기<a class="anchor-link" href="#6)-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.995222389856898
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.9)-어느-학급의-시험점수y와-결석일수x-사이의-관계">
+<a class="anchor" href="#3.9)-%EC%96%B4%EB%8A%90-%ED%95%99%EA%B8%89%EC%9D%98-%EC%8B%9C%ED%97%98%EC%A0%90%EC%88%98y%EC%99%80-%EA%B2%B0%EC%84%9D%EC%9D%BC%EC%88%98x-%EC%82%AC%EC%9D%B4%EC%9D%98-%EA%B4%80%EA%B3%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.9) 어느 학급의 시험점수y와 결석일수x 사이의 관계<a class="anchor-link" href="#3.9)-%EC%96%B4%EB%8A%90-%ED%95%99%EA%B8%89%EC%9D%98-%EC%8B%9C%ED%97%98%EC%A0%90%EC%88%98y%EC%99%80-%EA%B2%B0%EC%84%9D%EC%9D%BC%EC%88%98x-%EC%82%AC%EC%9D%B4%EC%9D%98-%EA%B4%80%EA%B3%84"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>n=50</p>
+<p>$\sum_{}^{} x_i$ = 18</p>
+<p>$\sum_{}^{} y_i$ = 3000</p>
+<p>$\sum_{}^{} xy$ = 8800</p>
+<p>$\sum_{}^{} x^2$ = 680</p>
+<p>$\sum_{}^{} y_i^2$ = 196000</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-시험점수와-결석일수-사이의-표본상관계수를-구하여라">
+<a class="anchor" href="#1)-%EC%8B%9C%ED%97%98%EC%A0%90%EC%88%98%EC%99%80-%EA%B2%B0%EC%84%9D%EC%9D%BC%EC%88%98-%EC%82%AC%EC%9D%B4%EC%9D%98-%ED%91%9C%EB%B3%B8%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 시험점수와 결석일수 사이의 표본상관계수를 구하여라<a class="anchor-link" href="#1)-%EC%8B%9C%ED%97%98%EC%A0%90%EC%88%98%EC%99%80-%EA%B2%B0%EC%84%9D%EC%9D%BC%EC%88%98-%EC%82%AC%EC%9D%B4%EC%9D%98-%ED%91%9C%EB%B3%B8%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>표본상관계수 :$r_xy$ = $\frac{S_(xy)}{S_x S_y}$ = 157.551/(3.7075×18.07)=2.3517</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$S_xy$ = $\frac{1}{n-1}$ $\{ $$\sum_{}^{} xy$$ - $$\frac{\sum_{}^{} x \sum_{}^{} y}{n} \}$ =157.551</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$S_x$ = $\sqrt{\frac{1}{n-1} \{ \sum_{}^{} x^2 - \frac{\sum_{}^{} x^2}{n} \}}$ = 3.7075</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$S_y$ = $\sqrt{\frac{1}{n-1} \{ \sum_{}^{} y^2 - \frac{\sum_{}^{} y^2}{n} \}}$ = 18.07</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-대체모형-회귀선에서-beta_0-과-beta_1-의-최소제곱추정량을-구해라">
+<a class="anchor" href="#2)-%EB%8C%80%EC%B2%B4%EB%AA%A8%ED%98%95-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%97%90%EC%84%9C-beta_0-%EA%B3%BC-beta_1-%EC%9D%98-%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EC%B6%94%EC%A0%95%EB%9F%89%EC%9D%84-%EA%B5%AC%ED%95%B4%EB%9D%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) 대체모형 회귀선에서 beta_0 과 beta_1 의 최소제곱추정량을 구해라<a class="anchor-link" href="#2)-%EB%8C%80%EC%B2%B4%EB%AA%A8%ED%98%95-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%97%90%EC%84%9C-beta_0-%EA%B3%BC-beta_1-%EC%9D%98-%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EC%B6%94%EC%A0%95%EB%9F%89%EC%9D%84-%EA%B5%AC%ED%95%B4%EB%9D%BC"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>정규방정식</p>
+<blockquote>
+<p>$b_0$$n$ + $b_1 $$\sum_{}^{} x_i$ = $\sum_{}^{} y_i$</p>
+</blockquote>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<blockquote>
+<p>$b_0$$\sum_{}^{} x_i$ + $b_1$ $\sum_{}^{} x_i^2$ = $\sum_{}^{} x_i y_i$</p>
+</blockquote>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<blockquote>
+<blockquote>
+<p>50$b_0$+18$b_1$=3000</p>
+<p>18$b_0$+680$b_1$=8800 이고, 연립방정식을 풀면</p>
+<p>$b_0$ = 55.87 , $b_1$ = 11.46 이다.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-결석을-3번한-학생에-대한-평균성적의-추정량을-계산하여라.">
+<a class="anchor" href="#3)-%EA%B2%B0%EC%84%9D%EC%9D%84-3%EB%B2%88%ED%95%9C-%ED%95%99%EC%83%9D%EC%97%90-%EB%8C%80%ED%95%9C-%ED%8F%89%EA%B7%A0%EC%84%B1%EC%A0%81%EC%9D%98-%EC%B6%94%EC%A0%95%EB%9F%89%EC%9D%84-%EA%B3%84%EC%82%B0%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>3) 결석을 3번한 학생에 대한 평균성적의 추정량을 계산하여라.<a class="anchor-link" href="#3)-%EA%B2%B0%EC%84%9D%EC%9D%84-3%EB%B2%88%ED%95%9C-%ED%95%99%EC%83%9D%EC%97%90-%EB%8C%80%ED%95%9C-%ED%8F%89%EA%B7%A0%EC%84%B1%EC%A0%81%EC%9D%98-%EC%B6%94%EC%A0%95%EB%9F%89%EC%9D%84-%EA%B3%84%EC%82%B0%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$\hat{y}$ =  $b_0$ + $b_1$$x$ $\to$ $\hat{y}$ = 55.87 + 11.46 * 3 = 90.25</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-오차항-$\epsilon$-의-표준편차-$\sigma$-를-구하여라">
+<a class="anchor" href="#4)-%EC%98%A4%EC%B0%A8%ED%95%AD-%24%5Cepsilon%24-%EC%9D%98-%ED%91%9C%EC%A4%80%ED%8E%B8%EC%B0%A8-%24%5Csigma%24-%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) 오차항 $\epsilon$ 의 표준편차 $\sigma$ 를 구하여라<a class="anchor-link" href="#4)-%EC%98%A4%EC%B0%A8%ED%95%AD-%24%5Cepsilon%24-%EC%9D%98-%ED%91%9C%EC%A4%80%ED%8E%B8%EC%B0%A8-%24%5Csigma%24-%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>SSE= $\sum_{}^{} y_i^2$ -  $b_0 $$\sum_{}^{} y_i$ - $b_1 $$\sum_{}^{} xy$    =196000-55.87×3000-11.46×8800 = $$-72458$$</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$\sigma$ = $MSE$ = $\frac{SSE}{n-2}$ = $-1510$</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/02/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D3%EC%9E%A5%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
