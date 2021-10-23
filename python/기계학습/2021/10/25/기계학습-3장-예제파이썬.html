@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>기계학습 3장 예제 파이썬 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="기계학습 3장 예제 파이썬" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="예제 파이썬" />
+<meta property="og:description" content="예제 파이썬" />
+<link rel="canonical" href="https://cjfal.github.io/dj/python/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2021/10/25/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3%EC%9E%A5-%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/python/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2021/10/25/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3%EC%9E%A5-%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-10-25T00:00:00-05:00","url":"https://cjfal.github.io/dj/python/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2021/10/25/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3%EC%9E%A5-%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.html","@type":"BlogPosting","headline":"기계학습 3장 예제 파이썬","dateModified":"2021-10-25T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/python/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2021/10/25/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3%EC%9E%A5-%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.html"},"author":{"@type":"Person","name":"김동준"},"description":"예제 파이썬","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">기계학습 3장 예제 파이썬</h1><p class="page-description">예제 파이썬</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-25T00:00:00-05:00" itemprop="datePublished">
+        Oct 25, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#기계학습">기계학습</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-10-25-기계학습 3장 예제파이썬.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-10-25-%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5+3%EC%9E%A5+%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-10-25-기계학습 3장 예제파이썬.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Advertising-data-불러오고-df로-만들기">Advertising data 불러오고 df로 만들기 </a></li>
+<li class="toc-entry toc-h1"><a href="#1.-Logistic-regression-model">1. Logistic regression model </a></li>
+<li class="toc-entry toc-h1"><a href="#linear-model-with-statsmodels">linear model with statsmodels </a></li>
+<li class="toc-entry toc-h1"><a href="#sklearn을-이용한-로지스틱-적합">sklearn을 이용한 로지스틱 적합 </a></li>
+<li class="toc-entry toc-h1"><a href="#예측성능의-평가를-위해-훈련자료와-평가자료를-적당한-비율로-나누어-계산해-보자.">예측성능의 평가를 위해 훈련자료와 평가자료를 적당한 비율로 나누어 계산해 보자. </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-25-기계학습 3장 예제파이썬.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Advertising-data-불러오고-df로-만들기">
+<a class="anchor" href="#Advertising-data-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B3%A0-df%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advertising data 불러오고 df로 만들기<a class="anchor-link" href="#Advertising-data-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B3%A0-df%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"Advertising.csv"</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># csv 파일 불러오기</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1.-Logistic-regression-model">
+<a class="anchor" href="#1.-Logistic-regression-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Logistic regression model<a class="anchor-link" href="#1.-Logistic-regression-model"> </a>
+</h1>
+<blockquote>
+<p>statmodels에 의한 로지스틱 모형 적합</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad</span><span class="p">[</span><span class="s1">'sales'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="s1">'sales'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>   <span class="c1">#sales 변수가 10을 넘으면 1(판매량 높음), 그렇지 않으면 0으로 할당하여 분류문제로 세팅</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[[</span><span class="s1">'TV'</span><span class="p">,</span><span class="s1">'radio'</span><span class="p">,</span><span class="s1">'newspaper'</span><span class="p">]]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s1">'sales'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="linear-model-with-statsmodels">
+<a class="anchor" href="#linear-model-with-statsmodels" aria-hidden="true"><span class="octicon octicon-link"></span></a>linear model with statsmodels<a class="anchor-link" href="#linear-model-with-statsmodels"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>              <span class="c1">#statsmodels 패키지 불러오기</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">"sales ~ TV + radio + newspaper"</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(),</span> <span class="n">data</span><span class="o">=</span><span class="n">ad</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>sales</td>      <th>  No. Observations:  </th>  <td>   200</td> 
+</tr>
+<tr>
+  <th>Model:</th>                  <td>GLM</td>       <th>  Df Residuals:      </th>  <td>   196</td> 
+</tr>
+<tr>
+  <th>Model Family:</th>        <td>Binomial</td>     <th>  Df Model:          </th>  <td>     3</td> 
+</tr>
+<tr>
+  <th>Link Function:</th>         <td>logit</td>      <th>  Scale:             </th> <td>  1.0000</td>
+</tr>
+<tr>
+  <th>Method:</th>                <td>IRLS</td>       <th>  Log-Likelihood:    </th> <td> -13.360</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Sat, 23 Oct 2021</td> <th>  Deviance:          </th> <td>  26.719</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>20:03:15</td>     <th>  Pearson chi2:      </th>  <td>  30.1</td> 
+</tr>
+<tr>
+  <th>No. Iterations:</th>         <td>11</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P&gt;|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>  -21.5305</td> <td>    6.269</td> <td>   -3.435</td> <td> 0.001</td> <td>  -33.817</td> <td>   -9.244</td>
+</tr>
+<tr>
+  <th>TV</th>        <td>    0.2089</td> <td>    0.060</td> <td>    3.454</td> <td> 0.001</td> <td>    0.090</td> <td>    0.328</td>
+</tr>
+<tr>
+  <th>radio</th>     <td>    0.4054</td> <td>    0.124</td> <td>    3.277</td> <td> 0.001</td> <td>    0.163</td> <td>    0.648</td>
+</tr>
+<tr>
+  <th>newspaper</th> <td>   -0.0086</td> <td>    0.026</td> <td>   -0.332</td> <td> 0.740</td> <td>   -0.059</td> <td>    0.042</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="sklearn을-이용한-로지스틱-적합">
+<a class="anchor" href="#sklearn%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%EC%A0%81%ED%95%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>sklearn을 이용한 로지스틱 적합<a class="anchor-link" href="#sklearn%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%EC%A0%81%ED%95%A9"> </a>
+</h1>
+<blockquote>
+<p>(머신러닝에 특화된 패키지 , 서머리같은건 제공 잘 안해줌)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>   <span class="c1"># model instance setup</span>
+<span class="n">model2</span> <span class="o">=</span> <span class="n">model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>      <span class="c1"># model fitting to data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-21.16756665]
+[[ 0.2054616   0.39803989 -0.00823107]]
+0.97
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="n">Y_pred</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span> <span class="c1"># confusion matrix</span>
+<span class="n">cm</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 42,   3],
+       [  3, 152]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>   <span class="c1"># 정분류율</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.97</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="예측성능의-평가를-위해-훈련자료와-평가자료를-적당한-비율로-나누어-계산해-보자.">
+<a class="anchor" href="#%EC%98%88%EC%B8%A1%EC%84%B1%EB%8A%A5%EC%9D%98-%ED%8F%89%EA%B0%80%EB%A5%BC-%EC%9C%84%ED%95%B4-%ED%9B%88%EB%A0%A8%EC%9E%90%EB%A3%8C%EC%99%80-%ED%8F%89%EA%B0%80%EC%9E%90%EB%A3%8C%EB%A5%BC-%EC%A0%81%EB%8B%B9%ED%95%9C-%EB%B9%84%EC%9C%A8%EB%A1%9C-%EB%82%98%EB%88%84%EC%96%B4-%EA%B3%84%EC%82%B0%ED%95%B4-%EB%B3%B4%EC%9E%90." aria-hidden="true"><span class="octicon octicon-link"></span></a>예측성능의 평가를 위해 훈련자료와 평가자료를 적당한 비율로 나누어 계산해 보자.<a class="anchor-link" href="#%EC%98%88%EC%B8%A1%EC%84%B1%EB%8A%A5%EC%9D%98-%ED%8F%89%EA%B0%80%EB%A5%BC-%EC%9C%84%ED%95%B4-%ED%9B%88%EB%A0%A8%EC%9E%90%EB%A3%8C%EC%99%80-%ED%8F%89%EA%B0%80%EC%9E%90%EB%A3%8C%EB%A5%BC-%EC%A0%81%EB%8B%B9%ED%95%9C-%EB%B9%84%EC%9C%A8%EB%A1%9C-%EB%82%98%EB%88%84%EC%96%B4-%EA%B3%84%EC%82%B0%ED%95%B4-%EB%B3%B4%EC%9E%90."> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">Y_train</span><span class="p">,</span><span class="n">Y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>   <span class="c1"># model instance setup</span>
+<span class="n">model2</span> <span class="o">=</span> <span class="n">model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">Y_train</span><span class="p">)</span>      <span class="c1"># model fitting to data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-21.87095867]
+[[0.20169776 0.38998892 0.02502465]]
+0.96
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model2</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>  <span class="c1"># predicted probability for 0 vs 1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[3.68362025e-01, 6.31637975e-01],
+       [9.98889402e-01, 1.11059773e-03],
+       [9.49784560e-01, 5.02154405e-02],
+       [0.00000000e+00, 1.00000000e+00],
+       [7.68983531e-08, 9.99999923e-01],
+       [9.99484252e-01, 5.15748381e-04],
+       [3.03408631e-01, 6.96591369e-01],
+       [1.36557432e-13, 1.00000000e+00],
+       [8.49772353e-01, 1.50227647e-01],
+       [1.22679644e-12, 1.00000000e+00],
+       [0.00000000e+00, 1.00000000e+00],
+       [2.75460182e-01, 7.24539818e-01],
+       [1.77948022e-05, 9.99982205e-01],
+       [2.34914310e-11, 1.00000000e+00],
+       [1.08841492e-02, 9.89115851e-01],
+       [3.33913329e-05, 9.99966609e-01],
+       [0.00000000e+00, 1.00000000e+00],
+       [9.97690690e-01, 2.30930953e-03],
+       [1.23437704e-06, 9.99998766e-01],
+       [3.13082893e-14, 1.00000000e+00],
+       [0.00000000e+00, 1.00000000e+00],
+       [6.14898732e-04, 9.99385101e-01],
+       [1.01664233e-10, 1.00000000e+00],
+       [2.94828121e-06, 9.99997052e-01],
+       [9.99942555e-01, 5.74451124e-05],
+       [5.25259866e-08, 9.99999947e-01],
+       [1.28092454e-07, 9.99999872e-01],
+       [0.00000000e+00, 1.00000000e+00],
+       [1.99917860e-11, 1.00000000e+00],
+       [9.96672041e-01, 3.32795930e-03],
+       [1.32267261e-04, 9.99867733e-01],
+       [0.00000000e+00, 1.00000000e+00],
+       [0.00000000e+00, 1.00000000e+00],
+       [0.00000000e+00, 1.00000000e+00],
+       [9.99992240e-01, 7.76014393e-06],
+       [9.99997225e-01, 2.77524737e-06],
+       [9.83558085e-01, 1.64419151e-02],
+       [1.57451874e-09, 9.99999998e-01],
+       [3.82797066e-05, 9.99961720e-01],
+       [9.99992461e-01, 7.53906740e-06],
+       [9.39035328e-02, 9.06096467e-01],
+       [9.97181415e-01, 2.81858519e-03],
+       [7.61125996e-09, 9.99999992e-01],
+       [3.41060513e-13, 1.00000000e+00],
+       [1.02140518e-14, 1.00000000e+00],
+       [2.49832425e-05, 9.99975017e-01],
+       [9.99999996e-01, 4.18250051e-09],
+       [3.06304657e-01, 6.93695343e-01],
+       [2.38279196e-09, 9.99999998e-01],
+       [9.02643249e-02, 9.09735675e-01],
+       [1.29806943e-03, 9.98701931e-01],
+       [0.00000000e+00, 1.00000000e+00],
+       [0.00000000e+00, 1.00000000e+00],
+       [3.20645732e-11, 1.00000000e+00],
+       [9.07025643e-01, 9.29743571e-02],
+       [9.80798465e-01, 1.92015346e-02],
+       [0.00000000e+00, 1.00000000e+00],
+       [9.74632153e-10, 9.99999999e-01],
+       [4.36317649e-13, 1.00000000e+00],
+       [9.99776048e-01, 2.23951730e-04]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/python/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2021/10/25/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3%EC%9E%A5-%EC%98%88%EC%A0%9C%ED%8C%8C%EC%9D%B4%EC%8D%AC.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
