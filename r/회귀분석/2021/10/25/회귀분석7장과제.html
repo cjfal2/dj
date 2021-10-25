@@ -96,7 +96,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      4 min read
     
 </span></p>
 
@@ -899,7 +899,7 @@ n &amp; \sum_{}^{}x_i \\\\
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>결정계수 구하기</p>
+<p>상관계수 구하기</p>
 
 </div>
 </div>
@@ -930,9 +930,9 @@ n &amp; \sum_{}^{}x_i \\\\
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">lmx1y</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span>
-<span class="nf">summary</span><span class="p">(</span><span class="n">lmx2y</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span> 
-<span class="nf">summary</span><span class="p">(</span><span class="n">lmx1x2</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -946,7 +946,7 @@ n &amp; \sum_{}^{}x_i \\\\
 
 
 <div class="output_html rendered_html output_subarea ">
-0.663014380165539
+0.814256949718907
 </div>
 
 </div>
@@ -955,7 +955,7 @@ n &amp; \sum_{}^{}x_i \\\\
 
 
 <div class="output_html rendered_html output_subarea ">
-0.592617908407382
+0.769816801847935
 </div>
 
 </div>
@@ -964,7 +964,7 @@ n &amp; \sum_{}^{}x_i \\\\
 
 
 <div class="output_html rendered_html output_subarea ">
-0.376797864094393
+0.613838630337317
 </div>
 
 </div>
@@ -978,9 +978,9 @@ n &amp; \sum_{}^{}x_i \\\\
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$x_1$에 대한 $y$ 의 결정계수: 0.663</p>
-<p>$x_2$에 대한 $y$ 의 결정계수: 0.593</p>
-<p>$x_1$에 대한 $x_2$ 의 결정계수: 0.377</p>
+<p>$x_1$에 대한 $y$ 의 상관계수,$r_{x_1y}: 0.8143$</p>
+<p>$x_2$에 대한 $y$ 의 상관계수,$r_{x_2y}: 0.7698$</p>
+<p>$x_1$에 대한 $x_2$ 의 상관계수,$r_{x_1x_2}: 0.6138$</p>
 
 </div>
 </div>
@@ -1334,7 +1334,7 @@ n &amp; \sum_{}^{}x_i \\\\
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>중회귀모형의 잔차제곱합이 195.43으로 가장 작다. 이것은 $x_1,x_2$이 서로 연관이 있고, 이때의 $y$가 제일 잘 적합됐다는 뜻으로 해석 할 수 있다.</p>
+<p>중회귀모형의 잔차제곱합이 $195.43$으로 가장 작다. 이것은 $x_1,x_2$이 서로 연관이 있고, 이때의 $y$가 제일 잘 적합됐다는 뜻으로 해석 할 수 있다.</p>
 
 </div>
 </div>
@@ -1656,7 +1656,7 @@ n &amp; \sum_{}^{}x_i \\\\
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">XtX</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">X</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtX</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">X</span>  <span class="c1">#[X'X]</span>
 <span class="n">XtX</span>
 </pre></div>
 
@@ -1709,7 +1709,7 @@ n &amp; \sum_{}^{}x_i \\\\
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">XtXr</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtXr</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">XtX</span><span class="p">)</span>  <span class="c1"># [X'X]의 역함수</span>
 <span class="n">XtXr</span>
 </pre></div>
 
