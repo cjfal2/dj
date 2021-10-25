@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>회귀분석 7장 연습문제R | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="회귀분석 7장 연습문제R" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="연습문제 7-1,7,10 R" />
+<meta property="og:description" content="연습문제 7-1,7,10 R" />
+<link rel="canonical" href="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/25/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/25/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-10-25T00:00:00-05:00","url":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/25/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.html","@type":"BlogPosting","headline":"회귀분석 7장 연습문제R","dateModified":"2021-10-25T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/25/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.html"},"author":{"@type":"Person","name":"김동준"},"description":"연습문제 7-1,7,10 R","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">회귀분석 7장 연습문제R</h1><p class="page-description">연습문제 7-1,7,10 R</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-25T00:00:00-05:00" itemprop="datePublished">
+        Oct 25, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#R">R</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#회귀분석">회귀분석</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-10-25-회귀분석7장과제.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-10-25-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-10-25-회귀분석7장과제.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#3.7자료-해석">3.7자료 해석 </a></li>
+<li class="toc-entry toc-h1"><a href="#7.1">7.1 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-$X'X$">1) $X&#39;X$ </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-$(X'X)^{-1}$">2) $(X&#39;X)^{-1}$ </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-$X'Y$">3) $X&#39;Y$ </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-$(X'X)^{-1}X'Y$">4) $(X&#39;X)^{-1}X&#39;Y$ </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#7.7">7.7 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-$x_1$에-대한-$y$-/-$x_2$에-대한-$y$-/-$x_1$에-대한-$x_2$-의-산점도를-그리고,-각각의-상관계수-$r_{x_1y},r_{x_2y},r_{x_1x_2}$를-구하여라.">1) $x_1$에 대한 $y$ / $x_2$에 대한 $y$ / $x_1$에 대한 $x_2$ 의 산점도를 그리고, 각각의 상관계수 $r_{x_1y},r_{x_2y},r_{x_1x_2}$를 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-$y=-\beta_0-+-\beta_1x_1+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">2) $y= \beta_0 + \beta_1x_1+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-$y=-\beta_0-+-\beta_2x_2+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">3) $y= \beta_0 + \beta_2x_2+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-$y=-\beta_0-+-\beta_1x_1+\beta_2x_2+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">4) $y= \beta_0 + \beta_1x_1+\beta_2x_2+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#5)-3개-모형의-잔차제곱합을-비교하고-그-결과에-대해-논의하여라">5) 3개 모형의 잔차제곱합을 비교하고 그 결과에 대해 논의하여라 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#7.10">7.10 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-중선형회귀모형-$y-=-\beta_0-+-\beta_1x_1+\beta_2x_2+\epsilon$을-가정하고-회귀선을-추정하여라.">1) 중선형회귀모형 $y = \beta_0 + \beta_1x_1+\beta_2x_2+\epsilon$을 가정하고 회귀선을 추정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-$\sigma^2$의-불편추정량-$MSE$를-구하고-추정된-$MSE$값을-이용하여">2) $\sigma^2$의 불편추정량 $MSE$를 구하고 추정된 $MSE$값을 이용하여 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#(1)-$Var(b_1),-Var(b_2)$를-각각-추정하여라.">(1) $Var(b_1), Var(b_2)$를 각각 추정하여라. </a></li>
+<li class="toc-entry toc-h4"><a href="#(2)-$x_1-=3,-x_2=5$일-때-$y$의-예측값의-분산을-구하여라.">(2) $x_1 =3, x_2=5$일 때 $y$의 예측값의 분산을 구하여라. </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-25-회귀분석7장과제.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.7자료-해석">
+<a class="anchor" href="#3.7%EC%9E%90%EB%A3%8C-%ED%95%B4%EC%84%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.7자료 해석<a class="anchor-link" href="#3.7%EC%9E%90%EB%A3%8C-%ED%95%B4%EC%84%9D"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">4.2</span><span class="p">,</span><span class="m">3.8</span><span class="p">,</span><span class="m">4.8</span><span class="p">,</span><span class="m">3.4</span><span class="p">,</span><span class="m">4.5</span><span class="p">,</span><span class="m">4.6</span><span class="p">,</span><span class="m">4.3</span><span class="p">,</span><span class="m">3.7</span><span class="p">,</span><span class="m">3.9</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">2.8</span><span class="p">,</span><span class="m">2.5</span><span class="p">,</span><span class="m">3.1</span><span class="p">,</span><span class="m">2.1</span><span class="p">,</span><span class="m">2.9</span><span class="p">,</span><span class="m">2.6</span><span class="p">,</span><span class="m">2.4</span><span class="p">,</span><span class="m">2.4</span><span class="p">,</span><span class="m">2.5</span><span class="p">)</span>
+<span class="n">lm37</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lm37</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>0.345994832041343</dd>
+<dt>x</dt>
+<dd>0.542635658914729</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to X = \begin{bmatrix}
+1 &amp; x_1 \\
+1 &amp; x_2 \\
+\vdots &amp; \vdots \\
+1 &amp; x_n
+\end{bmatrix} ,
+\beta = \begin{bmatrix}
+0.346 \\\\
+0.543
+\end{bmatrix}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="7.1">
+<a class="anchor" href="#7.1" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.1<a class="anchor-link" href="#7.1"> </a>
+</h1>
+<blockquote>
+<p>연습문제 3.7의 자료로부터 다음을 구하여라.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-$X'X$">
+<a class="anchor" href="#1)-%24X'X%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) $X'X$<a class="anchor-link" href="#1)-%24X'X%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$X'X$ = $ \begin{bmatrix}
+n &amp; \sum_{}^{}x_i \\\\
+\sum_{}^{}x_i &amp; \sum_{}^{}{x_i}^2
+\end{bmatrix}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>n</em> , $\sum_{}^{}x_i$ , $\sum_{}^{}{x_i}^2$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">n</span> <span class="o">&lt;-</span> <span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">sx</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">sxs</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">c</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">sx</span><span class="p">,</span><span class="n">sxs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+&lt;ol class=list-inline&gt;<li>9</li>
+<li>37.2</li>
+<li>155.48</li>&lt;/ol&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to X'X = \begin{bmatrix}
+9 &amp; 37.2 \\\\
+37.2 &amp; 155.48
+\end{bmatrix}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-$(X'X)^{-1}$">
+<a class="anchor" href="#2)-%24(X'X)%5E%7B-1%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) $(X'X)^{-1}$<a class="anchor-link" href="#2)-%24(X'X)%5E%7B-1%7D%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$(X'X)^{-1}$ = $ \frac{1}{n\sum_{}^{}{x_i}^2 - (\sum_{}^{}x_i)^2} $ $\begin{bmatrix}
+\sum_{}^{}{x_i}^2 &amp; -\sum_{}^{}x_i \\\\
+-\sum_{}^{}x_i &amp; n
+\end{bmatrix}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> $ \frac{1}{n\sum_{}^{}{x_i}^2 - (\sum_{}^{}x_i)^2} $ 계산</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">M</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">sxs</span><span class="o">-</span><span class="p">(</span><span class="n">sx</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">M</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.0645994832041333
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\sum_{}^{}{x_i}^2 , -\sum_{}^{}x_i , n$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="n">sxs</span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="m">-1</span><span class="o">*</span><span class="n">sx</span><span class="o">*</span><span class="n">M</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+&lt;ol class=list-inline&gt;<li>10.0439276485787</li>
+<li>-2.40310077519376</li>
+<li>0.5813953488372</li>&lt;/ol&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$ \to (X'X)^{-1} = \begin{bmatrix}
+10.04 &amp; -2.403 \\\\
+-2.403 &amp; 0.581
+\end{bmatrix} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-$X'Y$">
+<a class="anchor" href="#3)-%24X'Y%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) $X'Y$<a class="anchor-link" href="#3)-%24X'Y%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$X'Y$ = $\begin{bmatrix}
+\sum_{}^{}y_i \\\\
+\sum_{}^{}x_iy_i
+\end{bmatrix} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$ \sum_{}^{}y_i , \sum_{}^{}x_iy_i $</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">sy</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">sxy</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="nf">c</span><span class="p">(</span><span class="n">sy</span><span class="p">,</span><span class="n">sxy</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+&lt;ol class=list-inline&gt;<li>23.3</li>
+<li>97.24</li>&lt;/ol&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to X'Y$ = $\begin{bmatrix}
+23.3 \\\\
+97.24
+\end{bmatrix} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-$(X'X)^{-1}X'Y$">
+<a class="anchor" href="#4)-%24(X'X)%5E%7B-1%7DX'Y%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) $(X'X)^{-1}X'Y$<a class="anchor-link" href="#4)-%24(X'X)%5E%7B-1%7DX'Y%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$(X'X)^{-1}X'Y$ = $\begin{bmatrix}
+\frac{(sxs*sy -sx*sxy)}{n*sxs-sx^2}\\\\
+\frac{n*sxy - sx*sy}{n*sxs - sx^2}
+\end{bmatrix} $</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">10.04</span><span class="o">*</span><span class="m">23.3-2.403</span><span class="o">*</span><span class="m">97.24</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.264279999999985
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="m">-2.403</span><span class="o">*</span><span class="m">23.3</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="m">0.581</span><span class="o">*</span><span class="m">97.24</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.506539999999987
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">10.04</span><span class="p">,</span><span class="m">-2.403</span><span class="p">,</span><span class="m">-2.403</span><span class="p">,</span><span class="m">0.581</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>  <span class="c1">#(X'X)^-1</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">23.3</span><span class="p">,</span><span class="m">97.24</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>            <span class="c1">#X'Y</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>       [,1]   [,2]
+[1,] 10.040 -2.403
+[2,] -2.403  0.581
+      [,1]
+[1,] 23.30
+[2,] 97.24
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span> <span class="o">%*%</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 2 × 1 of type dbl</caption>
+<tbody>
+	<tr><td>0.26428</td></tr>
+	<tr><td>0.50654</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to (X'X)^{-1}X'Y$ = $\begin{bmatrix}
+0.26428 \\\\
+0.50654
+\end{bmatrix} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="7.7">
+<a class="anchor" href="#7.7" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.7<a class="anchor-link" href="#7.7"> </a>
+</h1>
+<blockquote>
+<p>어린이들의 체중($y$ :파운드)이 신장($x_1$:인치)가 연령($x_2$:살)에 다라 어떻게 영향을 받는지 파악하기 위해 12명의 어린이로부터 다음의 자료를 얻었다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th>범주</th>
+<th>값</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y$</td>
+<td>64</td>
+<td>71</td>
+<td>53</td>
+<td>67</td>
+<td>55</td>
+<td>58</td>
+<td>77</td>
+<td>57</td>
+<td>56</td>
+<td>51</td>
+<td>76</td>
+<td>68</td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>57</td>
+<td>59</td>
+<td>49</td>
+<td>62</td>
+<td>51</td>
+<td>50</td>
+<td>55</td>
+<td>48</td>
+<td>42</td>
+<td>42</td>
+<td>61</td>
+<td>57</td>
+</tr>
+<tr>
+<td>$x_2$</td>
+<td>8</td>
+<td>10</td>
+<td>6</td>
+<td>11</td>
+<td>8</td>
+<td>7</td>
+<td>10</td>
+<td>9</td>
+<td>10</td>
+<td>6</td>
+<td>12</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-$x_1$에-대한-$y$-/-$x_2$에-대한-$y$-/-$x_1$에-대한-$x_2$-의-산점도를-그리고,-각각의-상관계수-$r_{x_1y},r_{x_2y},r_{x_1x_2}$를-구하여라.">
+<a class="anchor" href="#1)-%24x_1%24%EC%97%90-%EB%8C%80%ED%95%9C-%24y%24-/-%24x_2%24%EC%97%90-%EB%8C%80%ED%95%9C-%24y%24-/-%24x_1%24%EC%97%90-%EB%8C%80%ED%95%9C-%24x_2%24-%EC%9D%98-%EC%82%B0%EC%A0%90%EB%8F%84%EB%A5%BC-%EA%B7%B8%EB%A6%AC%EA%B3%A0,-%EA%B0%81%EA%B0%81%EC%9D%98-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%24r_%7Bx_1y%7D,r_%7Bx_2y%7D,r_%7Bx_1x_2%7D%24%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>1) $x_1$에 대한 $y$ / $x_2$에 대한 $y$ / $x_1$에 대한 $x_2$ 의 산점도를 그리고, 각각의 상관계수 $r_{x_1y},r_{x_2y},r_{x_1x_2}$를 구하여라.<a class="anchor-link" href="#1)-%24x_1%24%EC%97%90-%EB%8C%80%ED%95%9C-%24y%24-/-%24x_2%24%EC%97%90-%EB%8C%80%ED%95%9C-%24y%24-/-%24x_1%24%EC%97%90-%EB%8C%80%ED%95%9C-%24x_2%24-%EC%9D%98-%EC%82%B0%EC%A0%90%EB%8F%84%EB%A5%BC-%EA%B7%B8%EB%A6%AC%EA%B3%A0,-%EA%B0%81%EA%B0%81%EC%9D%98-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98-%24r_%7Bx_1y%7D,r_%7Bx_2y%7D,r_%7Bx_1x_2%7D%24%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">64</span><span class="p">,</span><span class="m">71</span><span class="p">,</span><span class="m">53</span><span class="p">,</span><span class="m">67</span><span class="p">,</span><span class="m">55</span><span class="p">,</span><span class="m">58</span><span class="p">,</span><span class="m">77</span><span class="p">,</span><span class="m">57</span><span class="p">,</span><span class="m">56</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">76</span><span class="p">,</span><span class="m">68</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">57</span><span class="p">,</span><span class="m">59</span><span class="p">,</span><span class="m">49</span><span class="p">,</span><span class="m">62</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">55</span><span class="p">,</span><span class="m">48</span><span class="p">,</span><span class="m">42</span><span class="p">,</span><span class="m">42</span><span class="p">,</span><span class="m">61</span><span class="p">,</span><span class="m">57</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">9</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">12</span><span class="p">,</span><span class="m">9</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$x_1$에 대한 $y$ / $x_2$에 대한 $y$ / $x_1$에 대한 $x_2$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">"x1:y"</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">"x2:y"</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">"x1:x2"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAADAFBMVEUAAAABAQECAgIDAwME%0ABAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUW%0AFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJyco%0AKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6%0AOjo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tM%0ATExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1e%0AXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29w%0AcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGC%0AgoKDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OU%0AlJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWm%0Apqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4%0AuLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnK%0AysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc%0A3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u%0A7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7////i%0AsF19AAAACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO3deWBU5b3/8QMECIsQRCEsoqC0%0AxYoWW5eLWv2pWBdwqXUXqNUqt9YVK1q3a60iWrxYQUHFpchVsNVqpdWfS1VasWCLVbRaa69V%0AjAIFF/YlOXcmIZA4n2dyzszzzPKc9+uPM2GemWdOPnw/IZkhSRACyFtQ7BMAfECRAAsoEmAB%0ARQIsoEiABRQJsIAiARZQJMACigRYQJEACygSYAFFAiygSIAFFAmwgCIBFlAkwAKKBFhAkQAL%0AKBJgAUUCLKBIgAUUCbCAIgEWUCTAAooEWFCSRfroh3u1C4LfFPs0Ss6c0V+p6rTr5SuKfR4l%0AJMuoFDatkizSvCCNIn3Rt+pzCQauLPaJlI4so1LYtEqySG+PffgcipTpqFHPfzSnexBMLfaJ%0AlI4so1LYtEqnSM+0Ck4Kw58Fwfj0n67YnM7cILggPDsIFoVhbe/gS8U9xaJokkv9ZylXB8G4%0AhOeSZVR0WgVQOkUKLwmCR97qEBxUm/5Ds3QWBcH5YfhCEEwo7hkWR7Nc6v94V9JzMY+KTqsA%0ASqhI64cEPfcKun1Q/4fm6RwadFsT/iCo+LioJ1gkzXIJ3+gc9P086blkGRWZVgGUUJHCv3VI%0AfW34cMPbjenUrV27MQx/EwT3b+oZHFvMsyueprks2D6oWhgmPhfzqMi0CqCUihQeHwQ7bmp4%0A84pmX0HW7RIMfTYInijOaRXd1lye6hz0fHXrQnJzMY5KlrScKqUiPdkq9bHkmoa3v/Bh5tYg%0A+GbQZ1Pxzq2YtuYys20w8N366xKeS5ZRUWkVQAkVaVl1sOuxQZuXwnDTRx9dGAQzPlrS+Ilv%0A+HmXVDpXFPsMi2NrLlNaBds/Pm/evH8kPZcsoyLTKoASKtKIoGJBKoYBn4fvNLyUFnTdMjDh%0ABUHQqmAfXUrL1lwO3JzLaUnPJcuoyLQKoHSKdHsQXFX/5fMoVaR/tAoOLvYZFkeTXESREplL%0AllHRaRVA6RQpu5eCYFaxz6EUkUuJKI8iPbBLRbBbbbHPovSQS8kojyLdFnQ8NHlfCbSMXEpG%0AeRQJKHEUCbCAIgEWUCTAAooEWECRAAsoEmABRQIsoEiABRQJsIAiARZQJMACigRYQJEACygS%0AYAFFAiygSIAFFAmwgCIBFlAkwAKKBFhAkQALKBJgQd5F+sUJ5eikv9kIj1zIpVHeRfr2bmeX%0AoU4z8n2/yYVcmsq/SOfnu0Mx9HU/MOQi+ZoLRXKEXDRfc6FIjpCL5msuFMkRctF8zYUiOUIu%0Amq+5UCRHyEXzNReK5Ai5aL7mQpEcIRfN11wokiPkovmaC0VyhFw0X3OhSI6Qi+ZrLhTJEXLR%0AfM2FIjlCLpqvuVAkR8hF8zUXiuQIuWi+5kKRHCEXzddcKJIj5KL5mgtFciTZudTVHzcty1zx%0ANReK5EiSc/nkhI79JmwKw4ViunzNhSI5kuRczul9z6Qdj1lHkeLwNZh8JTmXXg+F4fL9h62m%0ASDEUPphPf/SVAd/9IL89PC3Sv0b1HzTu8zw2sJNLxxdTh9UHH/BiuRbp2UN67zOjrskVPhZp%0A0ze/NGX60J0+yWsTP4u0fIdv3nPbzofW5r6DnVz2nJQ+rj1shzIt0lMVYx74ccdJTa7xsUhP%0AdqpJ/SXt8rO8NvGzSOO/sj4M32//XO472Mll/J71F+uOKtMi7XtR6nB3lyYfkHws0s17pY9n%0AjM5rEz+LdOrZ6eMek1q6nZndXOrWbn17fLDZAJuP4EbnJ1KH94J/br3GxyI92HNj6njglXlt%0A4meRxh2aOqzv/kjuO9jNZc3CrW8vebpB991sPoIbX7ktdXiubZMPAz4W6d+9Rn+w/L8qX8tr%0AEz+L9Jd21694/9S+eXz5aDcX9axd7z1sPoIb1283Z9XLg05tco2PRQr/9JUgqM7jo26an0UK%0AZ/cIgq++kscGdnJZudlLZVqkTRdWBMEJnza5xssihZve/uv6PLfwtEjh+lf/vimf+9vJJdgi%0Ac60cihSGK+Z/1OzPfhbJAl+LlC87uXSZMLfevWVbpC+iSAYUSbOTy8E/bbgs16+RMlEkA4qk%0A2cnl0ZkNlyvEbhTJIMkDkw25aBTJgIHRyEWjSAYMjEYuGkUyYGA0ctEokgEDo5GLRpEMGBiN%0AXDSKZMDAaOSiUSQDBkYjF40iGTAwGrloFMmAgdHIRaNIBgyMRi4aRTJgYDRy0SiSAQOjkYtG%0AkQzKY2BWv978+68pUnO1775b/zNzKJJGkerVXtYuaDWy6Q9OpEjNvDAwCAamf6ojRdIoUr2b%0Atn106fMDRze5hiI19UG3Me+9d063DyiSCUWqt2v6J7093Xbd1msoUlOTv5L6vK72y7dRJBOK%0AVK/TnNThX/F+4F++yiGXRj86Kn0cfglFMqFI9fb+Uepw3zaxfgRtvsohl0b3Vqe+fvy8+j6K%0AZEKR6j1RccEjP+l8U5NrKFJTq3fda8aMvXZdTZFMKFKDOf/RbY+74v2ajnyVRS6Nas7o2/eM%0AmpAimVAkA4qkUSSNIhlQJI0iaRTJgCJpFEmjSAYUSaNIGkUyoEgaRdIokgFF0iiSRpEMKJJG%0A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" width="420" height="420">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>결정계수 구하기</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lmx1y</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">lmx2y</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">lmx1x2</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">x2</span><span class="o">~</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">lmx1y</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">lmx2y</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span> 
+<span class="nf">summary</span><span class="p">(</span><span class="n">lmx1x2</span><span class="p">)</span><span class="o">$</span><span class="n">r.squared</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.663014380165539
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.592617908407382
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.376797864094393
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$x_1$에 대한 $y$ 의 결정계수: 0.663</p>
+<p>$x_2$에 대한 $y$ 의 결정계수: 0.593</p>
+<p>$x_1$에 대한 $x_2$ 의 결정계수: 0.377</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-$y=-\beta_0-+-\beta_1x_1+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">
+<a class="anchor" href="#2)-%24y=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>2) $y= \beta_0 + \beta_1x_1+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라.<a class="anchor-link" href="#2)-%24y=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>회귀계수</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lmx1y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>6.18984870668621</dd>
+<dt>x1</dt>
+<dd>1.07223035627135</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to \beta_0 = 6.19 , \beta_1 = 1.072 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>잔차제곱합</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="p">(</span><span class="m">6.19</span> <span class="o">+</span> <span class="m">1.072</span><span class="o">*</span><span class="n">x1</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+299.329232
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-$y=-\beta_0-+-\beta_2x_2+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">
+<a class="anchor" href="#3)-%24y=-%5Cbeta_0-+-%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>3) $y= \beta_0 + \beta_2x_2+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라.<a class="anchor-link" href="#3)-%24y=-%5Cbeta_0-+-%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>회귀계수</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lmx2y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>30.5714285714286</dd>
+<dt>x2</dt>
+<dd>3.64285714285714</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to \beta_0 = 30.57 , \beta_2 = 3.643 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>잔차제곱합</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="p">(</span><span class="m">30.57</span> <span class="o">+</span> <span class="m">3.643</span><span class="o">*</span><span class="n">x2</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+361.857144
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-$y=-\beta_0-+-\beta_1x_1+\beta_2x_2+\epsilon$을-가정하고-회귀계수와-잔차제곱합을-구하여라.">
+<a class="anchor" href="#4)-%24y=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>4) $y= \beta_0 + \beta_1x_1+\beta_2x_2+\epsilon$을 가정하고 회귀계수와 잔차제곱합을 구하여라.<a class="anchor-link" href="#4)-%24y=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EC%99%80-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lmyx1x2</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>회귀계수</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lmyx1x2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>6.55304825080945</dd>
+<dt>x1</dt>
+<dd>0.722037958356366</dd>
+<dt>x2</dt>
+<dd>2.05012635236516</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\to \beta_0 = 6.553 , \beta_1 = 0.722, \beta_2 = 2.05 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>잔차제곱합</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="p">(</span><span class="m">6.553</span> <span class="o">+</span> <span class="m">0.722</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="m">2.05</span><span class="o">*</span><span class="n">x2</span> <span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+195.427516
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-3개-모형의-잔차제곱합을-비교하고-그-결과에-대해-논의하여라">
+<a class="anchor" href="#5)-3%EA%B0%9C-%EB%AA%A8%ED%98%95%EC%9D%98-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EB%B9%84%EA%B5%90%ED%95%98%EA%B3%A0-%EA%B7%B8-%EA%B2%B0%EA%B3%BC%EC%97%90-%EB%8C%80%ED%95%B4-%EB%85%BC%EC%9D%98%ED%95%98%EC%97%AC%EB%9D%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>5) 3개 모형의 잔차제곱합을 비교하고 그 결과에 대해 논의하여라<a class="anchor-link" href="#5)-3%EA%B0%9C-%EB%AA%A8%ED%98%95%EC%9D%98-%EC%9E%94%EC%B0%A8%EC%A0%9C%EA%B3%B1%ED%95%A9%EC%9D%84-%EB%B9%84%EA%B5%90%ED%95%98%EA%B3%A0-%EA%B7%B8-%EA%B2%B0%EA%B3%BC%EC%97%90-%EB%8C%80%ED%95%B4-%EB%85%BC%EC%9D%98%ED%95%98%EC%97%AC%EB%9D%BC"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>중회귀모형의 잔차제곱합이 195.43으로 가장 작다. 이것은 $x_1,x_2$이 서로 연관이 있고, 이때의 $y$가 제일 잘 적합됐다는 뜻으로 해석 할 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="7.10">
+<a class="anchor" href="#7.10" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.10<a class="anchor-link" href="#7.10"> </a>
+</h1>
+<blockquote>
+<p>다음 주어진 자료에 대하여</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th>범주</th>
+<th>값</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y$</td>
+<td>6</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>-4</td>
+<td>10</td>
+<td>-3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>1</td>
+<td>4</td>
+<td>9</td>
+<td>11</td>
+<td>3</td>
+<td>8</td>
+<td>5</td>
+<td>10</td>
+<td>2</td>
+<td>7</td>
+<td>6</td>
+</tr>
+<tr>
+<td>$x_2$</td>
+<td>8</td>
+<td>2</td>
+<td>-8</td>
+<td>-10</td>
+<td>6</td>
+<td>-6</td>
+<td>0</td>
+<td>-12</td>
+<td>4</td>
+<td>-2</td>
+<td>-4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-중선형회귀모형-$y-=-\beta_0-+-\beta_1x_1+\beta_2x_2+\epsilon$을-가정하고-회귀선을-추정하여라.">
+<a class="anchor" href="#1)-%EC%A4%91%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y-=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 중선형회귀모형 $y = \beta_0 + \beta_1x_1+\beta_2x_2+\epsilon$을 가정하고 회귀선을 추정하여라.<a class="anchor-link" href="#1)-%EC%A4%91%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y-=-%5Cbeta_0-+-%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EC%9D%84-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">-4</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">-3</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">9</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">-8</span><span class="p">,</span><span class="m">-10</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">-6</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">-12</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">-4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm710</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lm710</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>14</dd>
+<dt>x1</dt>
+<dd>-2</dd>
+<dt>x2</dt>
+<dd>-0.500000000000001</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\beta_0 = 14 , \beta_1 = -2 , \beta_2 = -0.5 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-$\sigma^2$의-불편추정량-$MSE$를-구하고-추정된-$MSE$값을-이용하여">
+<a class="anchor" href="#2)-%24%5Csigma%5E2%24%EC%9D%98-%EB%B6%88%ED%8E%B8%EC%B6%94%EC%A0%95%EB%9F%89-%24MSE%24%EB%A5%BC-%EA%B5%AC%ED%95%98%EA%B3%A0-%EC%B6%94%EC%A0%95%EB%90%9C-%24MSE%24%EA%B0%92%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) $\sigma^2$의 불편추정량 $MSE$를 구하고 추정된 $MSE$값을 이용하여<a class="anchor-link" href="#2)-%24%5Csigma%5E2%24%EC%9D%98-%EB%B6%88%ED%8E%B8%EC%B6%94%EC%A0%95%EB%9F%89-%24MSE%24%EB%A5%BC-%EA%B5%AC%ED%95%98%EA%B3%A0-%EC%B6%94%EC%A0%95%EB%90%9C-%24MSE%24%EA%B0%92%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm710</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 3 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1</th>
+<td>1</td>
+<td>116.081818</td>
+<td>116.081818</td>
+<td>13.6566845</td>
+<td>0.006081901</td>
+</tr>
+	<tr>
+<th scope="row">x2</th>
+<td>1</td>
+<td>  5.918182</td>
+<td>  5.918182</td>
+<td> 0.6962567</td>
+<td>0.428255902</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>8</td>
+<td> 68.000000</td>
+<td>  8.500000</td>
+<td>        NA</td>
+<td>         NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$MSE = 8.5$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="(1)-$Var(b_1),-Var(b_2)$를-각각-추정하여라.">
+<a class="anchor" href="#(1)-%24Var(b_1),-Var(b_2)%24%EB%A5%BC-%EA%B0%81%EA%B0%81-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>(1) $Var(b_1), Var(b_2)$를 각각 추정하여라.<a class="anchor-link" href="#(1)-%24Var(b_1),-Var(b_2)%24%EB%A5%BC-%EA%B0%81%EA%B0%81-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">X</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="nf">array</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span><span class="nf">array</span><span class="p">(</span><span class="n">x2</span><span class="p">)),</span><span class="m">11</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">-0.5</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtX</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">X</span>
+<span class="n">XtX</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<tbody>
+	<tr>
+<td> 11</td>
+<td>  66</td>
+<td> -22</td>
+</tr>
+	<tr>
+<td> 66</td>
+<td> 506</td>
+<td>-346</td>
+</tr>
+	<tr>
+<td>-22</td>
+<td>-346</td>
+<td> 484</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtXr</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<span class="n">XtXr</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<tbody>
+	<tr>
+<td> 4.3704790</td>
+<td>-0.84946237</td>
+<td>-0.40860215</td>
+</tr>
+	<tr>
+<td>-0.8494624</td>
+<td> 0.16897081</td>
+<td> 0.08218126</td>
+</tr>
+	<tr>
+<td>-0.4086022</td>
+<td> 0.08218126</td>
+<td> 0.04224270</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span><span class="n">XtXr</span><span class="p">)</span><span class="o">*</span> <span class="p">(</span><span class="m">8.5</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>  <span class="c1"># [(X'X)^-1]*(MSE^2) = Var(b)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<tbody>
+	<tr>
+<td>315.76711</td>
+<td>-61.373656</td>
+<td>-29.521505</td>
+</tr>
+	<tr>
+<td>-61.37366</td>
+<td> 12.208141</td>
+<td>  5.937596</td>
+</tr>
+	<tr>
+<td>-29.52151</td>
+<td>  5.937596</td>
+<td>  3.052035</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$Var(b_1) : [(X'X)^{-1}]*(MSE^2)$ 의 대각 2번째 원소</p>
+<blockquote>
+<p>12.21</p>
+</blockquote>
+<p>$Var(b_2) :[(X'X)^{-1}]*(MSE^2)$ 의 대각 3번째 원소&gt;3.05</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="(2)-$x_1-=3,-x_2=5$일-때-$y$의-예측값의-분산을-구하여라.">
+<a class="anchor" href="#(2)-%24x_1-=3,-x_2=5%24%EC%9D%BC-%EB%95%8C-%24y%24%EC%9D%98-%EC%98%88%EC%B8%A1%EA%B0%92%EC%9D%98-%EB%B6%84%EC%82%B0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>(2) $x_1 =3, x_2=5$일 때 $y$의 예측값의 분산을 구하여라.<a class="anchor-link" href="#(2)-%24x_1-=3,-x_2=5%24%EC%9D%BC-%EB%95%8C-%24y%24%EC%9D%98-%EC%98%88%EC%B8%A1%EA%B0%92%EC%9D%98-%EB%B6%84%EC%82%B0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">14-2</span><span class="o">*</span><span class="m">3-0.5</span><span class="o">*</span><span class="m">5</span>  <span class="c1">#y의 예측값</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+5.5
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">((</span><span class="m">5.5</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="m">14-2</span><span class="o">*</span><span class="n">x1</span><span class="m">-0.5</span><span class="o">*</span><span class="n">x2</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+6.25
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$𝑦$ 의 예측값의 분산 : 6.25</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/10/25/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D7%EC%9E%A5%EA%B3%BC%EC%A0%9C.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
