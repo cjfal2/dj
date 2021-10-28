@@ -1,0 +1,4609 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>데이터시각화 10/27 강의 정리 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="데이터시각화 10/27 강의 정리" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="DV 1027 강의 정리" />
+<meta property="og:description" content="DV 1027 강의 정리" />
+<link rel="canonical" href="https://cjfal.github.io/dj/python/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94/2021/10/28/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-1027-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/python/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94/2021/10/28/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-1027-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-10-28T00:00:00-05:00","url":"https://cjfal.github.io/dj/python/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94/2021/10/28/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-1027-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC.html","@type":"BlogPosting","headline":"데이터시각화 10/27 강의 정리","dateModified":"2021-10-28T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/python/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94/2021/10/28/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-1027-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC.html"},"author":{"@type":"Person","name":"김동준"},"description":"DV 1027 강의 정리","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">데이터시각화 10/27 강의 정리</h1><p class="page-description">DV 1027 강의 정리</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-28T00:00:00-05:00" itemprop="datePublished">
+        Oct 28, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      11 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#데이터시각화">데이터시각화</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-10-28-데이터시각화 1027 강의 정리.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-10-28-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94+1027+%EA%B0%95%EC%9D%98+%EC%A0%95%EB%A6%AC.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-10-28-데이터시각화 1027 강의 정리.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#groupby">groupby </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#AIRLINE을-기준으로-데이터프레임을-나누고-$\to$-ARR_DELAY에-mean함수를-적용:-(AIRLINE-$\to$-{ARR_DELAY:-mean})">AIRLINE을 기준으로 데이터프레임을 나누고 $\to$ ARR_DELAY에 mean함수를 적용: (AIRLINE $\to$ {ARR_DELAY: mean}) </a></li>
+<li class="toc-entry toc-h3"><a href="#입력이-여러개인-사용자-정의-함수의-사용">입력이 여러개인 사용자 정의 함수의 사용 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#활용">활용 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#AIRLINE,WEEKDAY--$\to$--{CANCELLED:-sum}">AIRLINE,WEEKDAY  $\to$  {CANCELLED: sum} </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#AIRLINE,WEEKDAY--$\to$-{CANCELLED:-sum,-mean}-,-{DIVERTED:-sum,-mean}">AIRLINE,WEEKDAY  $\to$ {CANCELLED: sum, mean} , {DIVERTED: sum, mean} </a></li>
+<li class="toc-entry toc-h4"><a href="#AIRLINE,WEEKDAY--$\to$-{CANCELLED:-sum,-mean,-size}-,-{AIR_TIME:-mean,var}">AIRLINE,WEEKDAY  $\to$ {CANCELLED: sum, mean, size} , {AIR_TIME: mean,var} </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#grouping-by-continuous-variable--연속형변수-그룹화">grouping by continuous variable  연속형변수 그룹화 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#숙제">숙제 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#데이터시각화-10/27수업-과제-201514142-김동준">데이터시각화 10/27수업 과제 201514142 김동준 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-28-데이터시각화 1027 강의 정리.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/flights.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>df #항공 정보</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>df.columns #열이름 나열</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><a href="https://github.com/PacktPublishing/Pandas-Cookbook/blob/master/data/descriptions/flights_description.csv">https://github.com/PacktPublishing/Pandas-Cookbook/blob/master/data/descriptions/flights_description.csv</a></li>
+</ul>
+<blockquote>
+<p>칼럼 설명</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="groupby">
+<a class="anchor" href="#groupby" aria-hidden="true"><span class="octicon octicon-link"></span></a>groupby<a class="anchor-link" href="#groupby"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 데이터프레임을 여러개의 서브데이터프레임으로 나누는 기능</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 단독으로 쓸 이유는 별로 없다. $\to$ 그룹을 나누고 어떠한 "연산"을 하기 위함</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f3368772fa0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>데이터프레임을 각 항공사 별로 나눔</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 확인</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grouped_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/flights.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>grouped_df.groups</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>너무 보기 힘듬 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 보기좋은 형태로 확인</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">grouped_df</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>  <span class="c1">#항공사안 카테고리의 리스트 출력</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['AA',
+ 'AS',
+ 'B6',
+ 'DL',
+ 'EV',
+ 'F9',
+ 'HA',
+ 'MQ',
+ 'NK',
+ 'OO',
+ 'UA',
+ 'US',
+ 'VX',
+ 'WN']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grouped_df</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s1">'AA'</span><span class="p">)</span> <span class="c1">#항공사별로 나눈 것의 특정 카테고리를 df로 보기</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MONTH</th>
+      <th>DAY</th>
+      <th>WEEKDAY</th>
+      <th>AIRLINE</th>
+      <th>ORG_AIR</th>
+      <th>DEST_AIR</th>
+      <th>SCHED_DEP</th>
+      <th>DEP_DELAY</th>
+      <th>AIR_TIME</th>
+      <th>DIST</th>
+      <th>SCHED_ARR</th>
+      <th>ARR_DELAY</th>
+      <th>DIVERTED</th>
+      <th>CANCELLED</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>DCA</td>
+      <td>1555</td>
+      <td>7.0</td>
+      <td>126.0</td>
+      <td>1192</td>
+      <td>1935</td>
+      <td>-7.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>MSY</td>
+      <td>1250</td>
+      <td>84.0</td>
+      <td>64.0</td>
+      <td>447</td>
+      <td>1410</td>
+      <td>83.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>ORD</td>
+      <td>STL</td>
+      <td>1845</td>
+      <td>-5.0</td>
+      <td>44.0</td>
+      <td>258</td>
+      <td>1950</td>
+      <td>-5.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DEN</td>
+      <td>DFW</td>
+      <td>1445</td>
+      <td>-6.0</td>
+      <td>93.0</td>
+      <td>641</td>
+      <td>1745</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>LAX</td>
+      <td>AUS</td>
+      <td>1430</td>
+      <td>33.0</td>
+      <td>157.0</td>
+      <td>1242</td>
+      <td>1925</td>
+      <td>41.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58470</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>FAT</td>
+      <td>1020</td>
+      <td>-3.0</td>
+      <td>196.0</td>
+      <td>1313</td>
+      <td>1156</td>
+      <td>-2.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58475</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>IAH</td>
+      <td>CLT</td>
+      <td>710</td>
+      <td>1.0</td>
+      <td>113.0</td>
+      <td>912</td>
+      <td>1037</td>
+      <td>-12.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58476</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>TPA</td>
+      <td>1020</td>
+      <td>-3.0</td>
+      <td>121.0</td>
+      <td>929</td>
+      <td>1340</td>
+      <td>-6.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58479</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>ELP</td>
+      <td>1200</td>
+      <td>3.0</td>
+      <td>94.0</td>
+      <td>551</td>
+      <td>1250</td>
+      <td>13.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58487</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>SFO</td>
+      <td>DFW</td>
+      <td>515</td>
+      <td>5.0</td>
+      <td>166.0</td>
+      <td>1464</td>
+      <td>1045</td>
+      <td>-19.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>8900 rows × 14 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>for g in grouped_df.groups:</p>
+
+<pre><code>print(g)
+
+display(grouped_df.get_group(g))  
+
+$\to$ 리스트 카테고리들 전부를 확인</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="AIRLINE을-기준으로-데이터프레임을-나누고-$\to$-ARR_DELAY에-mean함수를-적용:-(AIRLINE-$\to$-{ARR_DELAY:-mean})">
+<a class="anchor" href="#AIRLINE%EC%9D%84-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%84-%EB%82%98%EB%88%84%EA%B3%A0-%24%5Cto%24-ARR_DELAY%EC%97%90-mean%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%81%EC%9A%A9:-(AIRLINE-%24%5Cto%24-%7BARR_DELAY:-mean%7D)" aria-hidden="true"><span class="octicon octicon-link"></span></a>AIRLINE을 기준으로 데이터프레임을 나누고 $\to$ ARR_DELAY에 mean함수를 적용: (AIRLINE $\to$ {ARR_DELAY: mean})<a class="anchor-link" href="#AIRLINE%EC%9D%84-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%84-%EB%82%98%EB%88%84%EA%B3%A0-%24%5Cto%24-ARR_DELAY%EC%97%90-mean%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%81%EC%9A%A9:-(AIRLINE-%24%5Cto%24-%7BARR_DELAY:-mean%7D)"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법1 (기본, agg와 딕셔너리 이용)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'ARR_DELAY'</span><span class="p">:</span><span class="s1">'mean'</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ARR_DELAY</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>5.542661</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>-0.833333</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>8.692593</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>0.339691</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>7.034580</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>13.630651</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>4.972973</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>6.860591</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>18.436070</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>7.593463</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>7.765755</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>1.681105</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>5.348884</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>6.397353</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법2 ($\star\star\star$)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'ARR_DELAY'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ARR_DELAY</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>5.542661</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>-0.833333</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>8.692593</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>0.339691</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>7.034580</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>13.630651</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>4.972973</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>6.860591</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>18.436070</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>7.593463</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>7.765755</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>1.681105</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>5.348884</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>6.397353</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법3 , 나눠진 df에서 ARR_DELAY 뽑고, 평균함수적용</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)[</span><span class="s1">'ARR_DELAY'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'mean'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE
+AA     5.542661
+AS    -0.833333
+B6     8.692593
+DL     0.339691
+EV     7.034580
+F9    13.630651
+HA     4.972973
+MQ     6.860591
+NK    18.436070
+OO     7.593463
+UA     7.765755
+US     1.681105
+VX     5.348884
+WN     6.397353
+Name: ARR_DELAY, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법4 ($\star$)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)[</span><span class="s1">'ARR_DELAY'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE
+AA     5.542661
+AS    -0.833333
+B6     8.692593
+DL     0.339691
+EV     7.034580
+F9    13.630651
+HA     4.972973
+MQ     6.860591
+NK    18.436070
+OO     7.593463
+UA     7.765755
+US     1.681105
+VX     5.348884
+WN     6.397353
+Name: ARR_DELAY, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법5</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)[</span><span class="s1">'ARR_DELAY'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE
+AA     5.542661
+AS    -0.833333
+B6     8.692593
+DL     0.339691
+EV     7.034580
+F9    13.630651
+HA     4.972973
+MQ     6.860591
+NK    18.436070
+OO     7.593463
+UA     7.765755
+US     1.681105
+VX     5.348884
+WN     6.397353
+Name: ARR_DELAY, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법2와 방법4는 사용자정의 함수를 쓸 수 있다는 장점이 있음</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법6</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1">#사용자정의함수 지정</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'ARR_DELAY'</span><span class="p">:</span><span class="n">f</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ARR_DELAY</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>-5.542661</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>-8.692593</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>-0.339691</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>-7.034580</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>-13.630651</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>-4.972973</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>-6.860591</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>-18.436070</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>-7.593463</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>-7.765755</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>-1.681105</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>-5.348884</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>-6.397353</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법7</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'ARR_DELAY'</span><span class="p">:</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ARR_DELAY</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>-5.542661</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>-8.692593</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>-0.339691</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>-7.034580</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>-13.630651</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>-4.972973</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>-6.860591</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>-18.436070</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>-7.593463</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>-7.765755</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>-1.681105</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>-5.348884</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>-6.397353</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법8</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)[</span><span class="s1">'ARR_DELAY'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE
+AA    -5.542661
+AS     0.833333
+B6    -8.692593
+DL    -0.339691
+EV    -7.034580
+F9   -13.630651
+HA    -4.972973
+MQ    -6.860591
+NK   -18.436070
+OO    -7.593463
+UA    -7.765755
+US    -1.681105
+VX    -5.348884
+WN    -6.397353
+Name: ARR_DELAY, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="입력이-여러개인-사용자-정의-함수의-사용">
+<a class="anchor" href="#%EC%9E%85%EB%A0%A5%EC%9D%B4-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%ED%95%A8%EC%88%98%EC%9D%98-%EC%82%AC%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>입력이 여러개인 사용자 정의 함수의 사용<a class="anchor-link" href="#%EC%9E%85%EB%A0%A5%EC%9D%B4-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%B8-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%ED%95%A8%EC%88%98%EC%9D%98-%EC%82%AC%EC%9A%A9"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="n">y</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법1</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)[</span><span class="s1">'ARR_DELAY'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE
+AA     30.721086
+AS      0.694444
+B6     75.561166
+DL      0.115390
+EV     49.485310
+F9    185.794656
+HA     24.730460
+MQ     47.067715
+NK    339.888677
+OO     57.660681
+UA     60.306954
+US      2.826113
+VX     28.610564
+WN     40.926120
+Name: ARR_DELAY, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법2</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'AIRLINE'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'ARR_DELAY'</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ARR_DELAY</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>30.721086</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0.694444</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>75.561166</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>0.115390</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>49.485310</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>185.794656</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>24.730460</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>47.067715</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>339.888677</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>57.660681</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>60.306954</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>2.826113</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>28.610564</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>40.926120</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="활용">
+<a class="anchor" href="#%ED%99%9C%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>활용<a class="anchor-link" href="#%ED%99%9C%EC%9A%A9"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="AIRLINE,WEEKDAY--$\to$--{CANCELLED:-sum}">
+<a class="anchor" href="#AIRLINE,WEEKDAY--%24%5Cto%24--%7BCANCELLED:-sum%7D" aria-hidden="true"><span class="octicon octicon-link"></span></a>AIRLINE,WEEKDAY  $\to$  {CANCELLED: sum}<a class="anchor-link" href="#AIRLINE,WEEKDAY--%24%5Cto%24--%7BCANCELLED:-sum%7D"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법1~5</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:</span><span class="s1">'sum'</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>CANCELLED</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 1 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>CANCELLED</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 1 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])[</span><span class="s1">'CANCELLED'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'sum'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE  WEEKDAY
+AA       1          41
+         2           9
+         3          16
+         4          20
+         5          18
+                    ..
+WN       3          18
+         4          10
+         5           7
+         6          10
+         7           7
+Name: CANCELLED, Length: 98, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])[</span><span class="s1">'CANCELLED'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE  WEEKDAY
+AA       1          41
+         2           9
+         3          16
+         4          20
+         5          18
+                    ..
+WN       3          18
+         4          10
+         5           7
+         6          10
+         7           7
+Name: CANCELLED, Length: 98, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])[</span><span class="s1">'CANCELLED'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>AIRLINE  WEEKDAY
+AA       1          41
+         2           9
+         3          16
+         4          20
+         5          18
+                    ..
+WN       3          18
+         4          10
+         5           7
+         6          10
+         7           7
+Name: CANCELLED, Length: 98, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="AIRLINE,WEEKDAY--$\to$-{CANCELLED:-sum,-mean}-,-{DIVERTED:-sum,-mean}">
+<a class="anchor" href="#AIRLINE,WEEKDAY--%24%5Cto%24-%7BCANCELLED:-sum,-mean%7D-,-%7BDIVERTED:-sum,-mean%7D" aria-hidden="true"><span class="octicon octicon-link"></span></a>AIRLINE,WEEKDAY  $\to$ {CANCELLED: sum, mean} , {DIVERTED: sum, mean}<a class="anchor-link" href="#AIRLINE,WEEKDAY--%24%5Cto%24-%7BCANCELLED:-sum,-mean%7D-,-%7BDIVERTED:-sum,-mean%7D"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 방법 1~4 (5번은 쓸 수 없다)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:[</span><span class="s1">'sum'</span><span class="p">,</span><span class="s1">'mean'</span><span class="p">],</span><span class="s1">'DIVERTED'</span><span class="p">:[</span><span class="s1">'sum'</span><span class="p">,</span><span class="s1">'mean'</span><span class="p">]})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">DIVERTED</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>sum</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>6</td>
+      <td>0.004699</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>2</td>
+      <td>0.001631</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>2</td>
+      <td>0.001494</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>5</td>
+      <td>0.003751</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1</td>
+      <td>0.000786</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>2</td>
+      <td>0.001569</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>4</td>
+      <td>0.003165</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>3</td>
+      <td>0.003040</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>3</td>
+      <td>0.002600</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">],</span><span class="s1">'DIVERTED'</span><span class="p">:[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">]})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">DIVERTED</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>sum</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>6</td>
+      <td>0.004699</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>2</td>
+      <td>0.001631</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>2</td>
+      <td>0.001494</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>5</td>
+      <td>0.003751</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1</td>
+      <td>0.000786</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>2</td>
+      <td>0.001569</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>4</td>
+      <td>0.003165</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>3</td>
+      <td>0.003040</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>3</td>
+      <td>0.002600</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])[[</span><span class="s1">'CANCELLED'</span><span class="p">,</span><span class="s1">'DIVERTED'</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'sum'</span><span class="p">,</span><span class="s1">'mean'</span><span class="p">])</span> <span class="c1">#컬럼을 리스트로 전달</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">DIVERTED</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>sum</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>6</td>
+      <td>0.004699</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>2</td>
+      <td>0.001631</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>2</td>
+      <td>0.001494</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>5</td>
+      <td>0.003751</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1</td>
+      <td>0.000786</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>2</td>
+      <td>0.001569</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>4</td>
+      <td>0.003165</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>3</td>
+      <td>0.003040</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>3</td>
+      <td>0.002600</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])[[</span><span class="s1">'CANCELLED'</span><span class="p">,</span><span class="s1">'DIVERTED'</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">DIVERTED</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>sum</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>6</td>
+      <td>0.004699</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>2</td>
+      <td>0.001631</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>2</td>
+      <td>0.001494</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>5</td>
+      <td>0.003751</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1</td>
+      <td>0.000786</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>2</td>
+      <td>0.001569</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>4</td>
+      <td>0.003165</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>3</td>
+      <td>0.003040</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>3</td>
+      <td>0.002600</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="AIRLINE,WEEKDAY--$\to$-{CANCELLED:-sum,-mean,-size}-,-{AIR_TIME:-mean,var}">
+<a class="anchor" href="#AIRLINE,WEEKDAY--%24%5Cto%24-%7BCANCELLED:-sum,-mean,-size%7D-,-%7BAIR_TIME:-mean,var%7D" aria-hidden="true"><span class="octicon octicon-link"></span></a>AIRLINE,WEEKDAY  $\to$ {CANCELLED: sum, mean, size} , {AIR_TIME: mean,var}<a class="anchor-link" href="#AIRLINE,WEEKDAY--%24%5Cto%24-%7BCANCELLED:-sum,-mean,-size%7D-,-%7BAIR_TIME:-mean,var%7D"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:[</span><span class="s1">'sum'</span><span class="p">,</span><span class="s1">'mean'</span><span class="p">,</span><span class="s1">'size'</span><span class="p">],</span><span class="s1">'AIR_TIME'</span><span class="p">:[</span><span class="s1">'mean'</span><span class="p">,</span><span class="s1">'var'</span><span class="p">]})</span>
+<span class="c1">#딕셔너리 활용</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="3" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">AIR_TIME</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>size</th>
+      <th>mean</th>
+      <th>var</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>1277</td>
+      <td>147.610569</td>
+      <td>5393.806723</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>1226</td>
+      <td>143.851852</td>
+      <td>5359.890719</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>1339</td>
+      <td>144.514005</td>
+      <td>5378.854539</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>1333</td>
+      <td>141.124618</td>
+      <td>4791.524627</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1272</td>
+      <td>145.430966</td>
+      <td>5884.592076</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>1275</td>
+      <td>104.219920</td>
+      <td>2901.873447</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>1264</td>
+      <td>107.200800</td>
+      <td>2966.568935</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>1201</td>
+      <td>107.893635</td>
+      <td>3268.717093</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>987</td>
+      <td>109.247433</td>
+      <td>3152.753719</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>1154</td>
+      <td>107.602273</td>
+      <td>3183.126889</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 5 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'AIRLINE'</span><span class="p">,</span><span class="s1">'WEEKDAY'</span><span class="p">])</span>\
+<span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'CANCELLED'</span><span class="p">:[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span><span class="nb">len</span><span class="p">],</span><span class="s1">'AIR_TIME'</span><span class="p">:[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">]})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="3" halign="left">CANCELLED</th>
+      <th colspan="2" halign="left">AIR_TIME</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>len</th>
+      <th>mean</th>
+      <th>&lt;lambda_0&gt;</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th>WEEKDAY</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">AA</th>
+      <th>1</th>
+      <td>41</td>
+      <td>0.032106</td>
+      <td>1277</td>
+      <td>147.610569</td>
+      <td>5393.806723</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>0.007341</td>
+      <td>1226</td>
+      <td>143.851852</td>
+      <td>5359.890719</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16</td>
+      <td>0.011949</td>
+      <td>1339</td>
+      <td>144.514005</td>
+      <td>5378.854539</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>0.015004</td>
+      <td>1333</td>
+      <td>141.124618</td>
+      <td>4791.524627</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>18</td>
+      <td>0.014151</td>
+      <td>1272</td>
+      <td>145.430966</td>
+      <td>5884.592076</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">WN</th>
+      <th>3</th>
+      <td>18</td>
+      <td>0.014118</td>
+      <td>1275</td>
+      <td>104.219920</td>
+      <td>2901.873447</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>0.007911</td>
+      <td>1264</td>
+      <td>107.200800</td>
+      <td>2966.568935</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>0.005828</td>
+      <td>1201</td>
+      <td>107.893635</td>
+      <td>3268.717093</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>10</td>
+      <td>0.010132</td>
+      <td>987</td>
+      <td>109.247433</td>
+      <td>3152.753719</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.006066</td>
+      <td>1154</td>
+      <td>107.602273</td>
+      <td>3183.126889</td>
+    </tr>
+  </tbody>
+</table>
+<p>98 rows × 5 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="grouping-by-continuous-variable--연속형변수-그룹화">
+<a class="anchor" href="#grouping-by-continuous-variable--%EC%97%B0%EC%86%8D%ED%98%95%EB%B3%80%EC%88%98-%EA%B7%B8%EB%A3%B9%ED%99%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>grouping by continuous variable  연속형변수 그룹화<a class="anchor-link" href="#grouping-by-continuous-variable--%EC%97%B0%EC%86%8D%ED%98%95%EB%B3%80%EC%88%98-%EA%B7%B8%EB%A3%B9%ED%99%94"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MONTH</th>
+      <th>DAY</th>
+      <th>WEEKDAY</th>
+      <th>AIRLINE</th>
+      <th>ORG_AIR</th>
+      <th>DEST_AIR</th>
+      <th>SCHED_DEP</th>
+      <th>DEP_DELAY</th>
+      <th>AIR_TIME</th>
+      <th>DIST</th>
+      <th>SCHED_ARR</th>
+      <th>ARR_DELAY</th>
+      <th>DIVERTED</th>
+      <th>CANCELLED</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>WN</td>
+      <td>LAX</td>
+      <td>SLC</td>
+      <td>1625</td>
+      <td>58.0</td>
+      <td>94.0</td>
+      <td>590</td>
+      <td>1905</td>
+      <td>65.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>UA</td>
+      <td>DEN</td>
+      <td>IAD</td>
+      <td>823</td>
+      <td>7.0</td>
+      <td>154.0</td>
+      <td>1452</td>
+      <td>1333</td>
+      <td>-13.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>MQ</td>
+      <td>DFW</td>
+      <td>VPS</td>
+      <td>1305</td>
+      <td>36.0</td>
+      <td>85.0</td>
+      <td>641</td>
+      <td>1453</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>DFW</td>
+      <td>DCA</td>
+      <td>1555</td>
+      <td>7.0</td>
+      <td>126.0</td>
+      <td>1192</td>
+      <td>1935</td>
+      <td>-7.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>WN</td>
+      <td>LAX</td>
+      <td>MCI</td>
+      <td>1720</td>
+      <td>48.0</td>
+      <td>166.0</td>
+      <td>1363</td>
+      <td>2225</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58487</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>AA</td>
+      <td>SFO</td>
+      <td>DFW</td>
+      <td>515</td>
+      <td>5.0</td>
+      <td>166.0</td>
+      <td>1464</td>
+      <td>1045</td>
+      <td>-19.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58488</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>F9</td>
+      <td>LAS</td>
+      <td>SFO</td>
+      <td>1910</td>
+      <td>13.0</td>
+      <td>71.0</td>
+      <td>414</td>
+      <td>2050</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58489</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>OO</td>
+      <td>SFO</td>
+      <td>SBA</td>
+      <td>1846</td>
+      <td>-6.0</td>
+      <td>46.0</td>
+      <td>262</td>
+      <td>1956</td>
+      <td>-5.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58490</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>WN</td>
+      <td>MSP</td>
+      <td>ATL</td>
+      <td>525</td>
+      <td>39.0</td>
+      <td>124.0</td>
+      <td>907</td>
+      <td>855</td>
+      <td>34.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>58491</th>
+      <td>12</td>
+      <td>31</td>
+      <td>4</td>
+      <td>OO</td>
+      <td>SFO</td>
+      <td>BOI</td>
+      <td>859</td>
+      <td>5.0</td>
+      <td>73.0</td>
+      <td>522</td>
+      <td>1146</td>
+      <td>-1.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>58492 rows × 14 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 목표: DIST를 적당한 구간으로 나누어 카테고리화 하고 그것을 바탕으로 groupby를 수행하자.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">DIST</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span> <span class="c1">#앞쪽에 몰려있음</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">DIST</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1">#대략적 통계값 산출</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    58492.000000
+mean       872.900072
+std        624.996805
+min         67.000000
+25%        391.000000
+50%        690.000000
+75%       1199.000000
+max       4502.000000
+Name: DIST, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 구간을 아래와 같이 설정한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>   <span class="c1">#  -무한대 ~400 ~700 ~1200 ~무한대</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> pd.cut()을 이용하여 각 구간의 observation을 카테고리화(mapping) 하자.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cuts</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">DIST</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>   <span class="c1">#(적용할 칼럼, bins=구간)</span>
+<span class="n">cuts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0         (400.0, 700.0]
+1          (1200.0, inf]
+2         (400.0, 700.0]
+3        (700.0, 1200.0]
+4          (1200.0, inf]
+              ...       
+58487      (1200.0, inf]
+58488     (400.0, 700.0]
+58489      (-inf, 400.0]
+58490    (700.0, 1200.0]
+58491     (400.0, 700.0]
+Name: DIST, Length: 58492, dtype: category
+Categories (4, interval[float64]): [(-inf, 400.0] &lt; (400.0, 700.0] &lt; (700.0, 1200.0] &lt; (1200.0, inf]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> cuts, AIRLINE $\to$ {DIVERTED: sum}</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">cuts</span><span class="p">,</span><span class="s1">'AIRLINE'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'DIVERTED'</span><span class="p">:</span><span class="nb">sum</span><span class="p">})</span>  <span class="c1">#구분별 항공사 diverted합 산출</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>DIVERTED</th>
+    </tr>
+    <tr>
+      <th>DIST</th>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="14" valign="top">(-inf, 400.0]</th>
+      <th>AA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">(400.0, 700.0]</th>
+      <th>AA</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">(700.0, 1200.0]</th>
+      <th>AA</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">(1200.0, inf]</th>
+      <th>AA</th>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 아래와 비교해보자.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'AIRLINE'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'DIVERTED'</span><span class="p">:</span><span class="nb">sum</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DIVERTED</th>
+    </tr>
+    <tr>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AA</th>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> cuts을 이용하여 추가그룹핑을 하면 조금 다른 특징들을 데이터에서 발견할 수 있다.</p>
+<ul>
+<li>AA항공사와 DL항공사는 모두 비슷한 우회횟수를 가지고 있음. </li>
+<li>AA항공사는 700회이상의 구간에서 우회를 많이하고 DL항공사는 400~700사이에서 우회를 많이 한다. (패턴이 다름) 상세한 패턴 확인 가능</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 구간이름에 label을 붙이는 방법  labels=[] 이용</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bins</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[-inf, 400, 700, 1200, inf]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cuts2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">DIST</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Q1'</span><span class="p">,</span><span class="s1">'Q2'</span><span class="p">,</span><span class="s1">'Q3'</span><span class="p">,</span><span class="s1">'Q4'</span><span class="p">])</span>
+<span class="n">cuts2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        Q2
+1        Q4
+2        Q2
+3        Q3
+4        Q4
+         ..
+58487    Q4
+58488    Q2
+58489    Q1
+58490    Q3
+58491    Q2
+Name: DIST, Length: 58492, dtype: category
+Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">cuts2</span><span class="p">,</span><span class="s1">'AIRLINE'</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'DIVERTED'</span><span class="p">:</span><span class="nb">sum</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>DIVERTED</th>
+    </tr>
+    <tr>
+      <th>DIST</th>
+      <th>AIRLINE</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="14" valign="top">Q1</th>
+      <th>AA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">Q2</th>
+      <th>AA</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">Q3</th>
+      <th>AA</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th rowspan="14" valign="top">Q4</th>
+      <th>AA</th>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>B6</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>DL</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>EV</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>F9</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>HA</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>MQ</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NK</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>OO</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>UA</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>VX</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>WN</th>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">cuts2</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'DIVERTED'</span><span class="p">:</span><span class="nb">len</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DIVERTED</th>
+    </tr>
+    <tr>
+      <th>DIST</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Q1</th>
+      <td>15027</td>
+    </tr>
+    <tr>
+      <th>Q2</th>
+      <td>14697</td>
+    </tr>
+    <tr>
+      <th>Q3</th>
+      <td>14417</td>
+    </tr>
+    <tr>
+      <th>Q4</th>
+      <td>14351</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="숙제">
+<a class="anchor" href="#%EC%88%99%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>숙제<a class="anchor-link" href="#%EC%88%99%EC%A0%9C"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>구간을</p>
+
+<pre><code>bins=[-np.inf, 400, 700, 1200, np.inf]</code></pre>
+<p>이 아니라</p>
+
+<pre><code>bins=[-np.inf, 400, 600, 800, 1000, 1200, np.inf]</code></pre>
+<p>와 같이 나누고 적당한 각구간별로 해당하는 관측치의 수를 구하라.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="데이터시각화-10/27수업-과제-201514142-김동준">
+<a class="anchor" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-10/27%EC%88%98%EC%97%85-%EA%B3%BC%EC%A0%9C-201514142-%EA%B9%80%EB%8F%99%EC%A4%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>데이터시각화 10/27수업 과제 201514142 김동준<a class="anchor-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-10/27%EC%88%98%EC%97%85-%EA%B3%BC%EC%A0%9C-201514142-%EA%B9%80%EB%8F%99%EC%A4%80"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cuts3</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">DIST</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Q1'</span><span class="p">,</span><span class="s1">'Q2'</span><span class="p">,</span><span class="s1">'Q3'</span><span class="p">,</span><span class="s1">'Q4'</span><span class="p">,</span><span class="s1">'Q5'</span><span class="p">,</span><span class="s1">'Q6'</span><span class="p">])</span>
+<span class="n">cuts3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        Q2
+1        Q6
+2        Q3
+3        Q5
+4        Q6
+         ..
+58487    Q6
+58488    Q2
+58489    Q1
+58490    Q4
+58491    Q2
+Name: DIST, Length: 58492, dtype: category
+Categories (6, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4' &lt; 'Q5' &lt; 'Q6']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">cuts3</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">'DIVERTED'</span><span class="p">:</span><span class="nb">len</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DIVERTED</th>
+    </tr>
+    <tr>
+      <th>DIST</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Q1</th>
+      <td>15027</td>
+    </tr>
+    <tr>
+      <th>Q2</th>
+      <td>9130</td>
+    </tr>
+    <tr>
+      <th>Q3</th>
+      <td>8553</td>
+    </tr>
+    <tr>
+      <th>Q4</th>
+      <td>7542</td>
+    </tr>
+    <tr>
+      <th>Q5</th>
+      <td>3889</td>
+    </tr>
+    <tr>
+      <th>Q6</th>
+      <td>14351</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/python/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94/2021/10/28/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%8B%9C%EA%B0%81%ED%99%94-1027-%EA%B0%95%EC%9D%98-%EC%A0%95%EB%A6%AC.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
