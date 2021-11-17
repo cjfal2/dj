@@ -1,0 +1,2848 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>11주차 회귀분석 연습문제 8장 R 풀이 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="11주차 회귀분석 연습문제 8장 R 풀이" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="11주차 회귀분석 연습문제 8장 R 풀이" />
+<meta property="og:description" content="11주차 회귀분석 연습문제 8장 R 풀이" />
+<link rel="canonical" href="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/11/17/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/11/17/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-17T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-11-17T00:00:00-06:00","url":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/11/17/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.html","@type":"BlogPosting","headline":"11주차 회귀분석 연습문제 8장 R 풀이","dateModified":"2021-11-17T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/11/17/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.html"},"author":{"@type":"Person","name":"김동준"},"description":"11주차 회귀분석 연습문제 8장 R 풀이","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">11주차 회귀분석 연습문제 8장 R 풀이</h1><p class="page-description">11주차 회귀분석 연습문제 8장 R 풀이</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-11-17T00:00:00-06:00" itemprop="datePublished">
+        Nov 17, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#R">R</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#회귀분석">회귀분석</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2021-11-17-회귀분석8장풀이.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2021-11-17-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2021-11-17-회귀분석8장풀이.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#8.1)">8.1) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)선형회귀모형-$y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$-이-성립한다고-가정하고-회귀모형을-추정하여라.">1)선형회귀모형 $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$ 이 성립한다고 가정하고 회귀모형을 추정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-추정된-회귀계수들에-대하여-$Var(b_0),Var(b_1),Var(b_2)$-를-구하여라.">2) 추정된 회귀계수들에 대하여 $Var(b_0),Var(b_1),Var(b_2)$ 를 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-추정된-회귀계수-$b_1$과-$b_2$의-의미는-무엇인가?">3) 추정된 회귀계수 $b_1$과 $b_2$의 의미는 무엇인가? </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-회귀계수-$\beta_1$-과-$\beta_2$의--95%-신뢰구간을-구하여라.">4) 회귀계수 $\beta_1$ 과 $\beta_2$의  95% 신뢰구간을 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#5)-분산분석표를-작성하고-$H_0-:-\beta_1-=-\beta_2-=-0-$-을-유의수준--0.05로-검정하여라.">5) 분산분석표를 작성하고 $H_0 : \beta_1 = \beta_2 = 0 $ 을 유의수준  0.05로 검정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#6)-$x_1-=-200,-x_2-=-20-$-에서-$E(y)$-의-95%-예측구간을-구하여라.">6) $x_1 = 200, x_2 = 20 $ 에서 $E(y)$ 의 95% 예측구간을 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#7)-귀무가설-$H_0-:-\beta_1-=-\beta_2$,-대립가설-$H_1-:-\beta_1-\neq-\beta_2$-를-유의수준-5%로-검정하여라.">7) 귀무가설 $H_0 : \beta_1 = \beta_2$, 대립가설 $H_1 : \beta_1 \neq \beta_2$ 를 유의수준 5%로 검정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#8)-$x_1-=240-,-x_2-=30-$-에서-y의-95%-예측구간을-구하여라.">8) $x_1 =240 , x_2 =30 $ 에서 y의 95% 예측구간을 구하여라. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#8.10)">8.10) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-중회귀모형-$y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$를-가정하고-회귀선을-추정하여라.">1) 중회귀모형 $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$를 가정하고 회귀선을 추정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-독립변수-$x_1$만을-고려한-회귀모형-$y=\beta_0+\beta_1x_1+\epsilon$를-가정하고-회귀선을-구하여-분산분석표를-작성하여라.">2) 독립변수 $x_1$만을 고려한 회귀모형 $y=\beta_0+\beta_1x_1+\epsilon$를 가정하고 회귀선을 구하여 분산분석표를 작성하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#3)-독립변수-$x_2$만을-고려한-회귀모형-$y=\beta_0+\beta_2x_2+\epsilon$를-가정하고-회귀선을-구하여-분산분석표를-작성하여라.">3) 독립변수 $x_2$만을 고려한 회귀모형 $y=\beta_0+\beta_2x_2+\epsilon$를 가정하고 회귀선을 구하여 분산분석표를 작성하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#4)-단위길이법에-의하여-표준화된-회귀계수를-구하여-회귀선을-추정하여라.">4) 단위길이법에 의하여 표준화된 회귀계수를 구하여 회귀선을 추정하여라. </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#5)-표준화된-회귀모형에-의하여-분산분석표를-작성하여라.">5) 표준화된 회귀모형에 의하여 분산분석표를 작성하여라. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#6)-4)에서-계산된-회귀계수들의-상관행렬을-계산하고-상관이-존재하는지를-설명하여라.">6) 4)에서 계산된 회귀계수들의 상관행렬을 계산하고 상관이 존재하는지를 설명하여라. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#8.15)">8.15) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-분산분석표를-작성하고-$H_0-:-\beta_1-=-\beta_2-=-0-$-을-$\alpha-=-0.05-$로-검정하여라.">1) 분산분석표를 작성하고 $H_0 : \beta_1 = \beta_2 = 0 $ 을 $\alpha = 0.05 $로 검정하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#2)-$R(\beta_0),-R(\beta_1,\beta_2|\beta_0),R(\beta_1|\beta_0),R(\beta_2|\beta_0)$-을-각각-구하여라.">2) $R(\beta_0), R(\beta_1,\beta_2|\beta_0),R(\beta_1|\beta_0),R(\beta_2|\beta_0)$ 을 각각 구하여라. </a></li>
+<li class="toc-entry toc-h3"><a href="#3)--$H_0-:-\beta_1-=-0-$-을-부분-F검정으로-가설검정하여라.--$\alpha-=-0.05-$">3)  $H_0 : \beta_1 = 0 $ 을 부분 F검정으로 가설검정하여라.  $\alpha = 0.05 $ </a></li>
+<li class="toc-entry toc-h3"><a href="#4)--$H_0-:-\beta_2-=-0-$-을-부분-F검정으로-가설검정하여라.--$\alpha-=-0.05,\alpha-=-0.01-$">4)  $H_0 : \beta_2 = 0 $ 을 부분 F검정으로 가설검정하여라.  $\alpha = 0.05,\alpha = 0.01 $ </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#8.16)">8.16) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-$Q_1-=-y'[I-X(X'X)^{-1}X']y$-의-분포는?">1) $Q_1 = y&#39;[I-X(X&#39;X)^{-1}X&#39;]y$ 의 분포는? </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#2)-$Q_2-=-y'X(X'X)^{-1}X'y$-의-분포는?">2) $Q_2 = y&#39;X(X&#39;X)^{-1}X&#39;y$ 의 분포는? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#3)-$Q_1$과$Q_2$가-서로-독립임을-보여라.">3) $Q_1$과$Q_2$가 서로 독립임을 보여라. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#4)-$\beta-=-0-$-이라-할-때">4) $\beta = 0 $ 이라 할 때 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+<li class="toc-entry toc-h2"><a href="#-">- </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-11-17-회귀분석8장풀이.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="8.1)">
+<a class="anchor" href="#8.1)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.1)<a class="anchor-link" href="#8.1)"> </a>
+</h1>
+<blockquote>
+<p>어떤 철 제품을 생산하는 공장에서 제품의 인장강도 ($kg/cm^2$)가 온도와 시간에 어떤영향을 받는가를 분석하기 위하여 다음과 같은 자료를 얻었다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">공정온도:$x_1$</th>
+<th style="text-align:center">시간(분):$x_2$</th>
+<th style="text-align:center">인장강도:y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">175</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">120.4</td>
+</tr>
+<tr>
+<td style="text-align:center">210</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">112.5</td>
+</tr>
+<tr>
+<td style="text-align:center">192</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">95.4</td>
+</tr>
+<tr>
+<td style="text-align:center">250</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">162.3</td>
+</tr>
+<tr>
+<td style="text-align:center">245</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">160.2</td>
+</tr>
+<tr>
+<td style="text-align:center">226</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">131.5</td>
+</tr>
+<tr>
+<td style="text-align:center">260</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">157.6</td>
+</tr>
+<tr>
+<td style="text-align:center">230</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">158.4</td>
+</tr>
+<tr>
+<td style="text-align:center">205</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">149.6</td>
+</tr>
+<tr>
+<td style="text-align:center">185</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">130.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)선형회귀모형-$y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$-이-성립한다고-가정하고-회귀모형을-추정하여라.">
+<a class="anchor" href="#1)%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24-%EC%9D%B4-%EC%84%B1%EB%A6%BD%ED%95%9C%EB%8B%A4%EA%B3%A0-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>1)선형회귀모형 $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$ 이 성립한다고 가정하고 회귀모형을 추정하여라.<a class="anchor-link" href="#1)%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24-%EC%9D%B4-%EC%84%B1%EB%A6%BD%ED%95%9C%EB%8B%A4%EA%B3%A0-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">fac</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">"8-1csv.csv"</span><span class="p">)</span>
+<span class="n">fac</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A data.frame: 10 × 3</caption>
+<thead>
+	<tr>
+<th scope="col">x1</th>
+<th scope="col">x2</th>
+<th scope="col">y_</th>
+</tr>
+	<tr>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<td>175</td>
+<td>15</td>
+<td>120.4</td>
+</tr>
+	<tr>
+<td>210</td>
+<td>18</td>
+<td>112.5</td>
+</tr>
+	<tr>
+<td>192</td>
+<td>20</td>
+<td> 95.4</td>
+</tr>
+	<tr>
+<td>250</td>
+<td>28</td>
+<td>162.3</td>
+</tr>
+	<tr>
+<td>245</td>
+<td>25</td>
+<td>160.2</td>
+</tr>
+	<tr>
+<td>226</td>
+<td>21</td>
+<td>131.5</td>
+</tr>
+	<tr>
+<td>260</td>
+<td>32</td>
+<td>157.6</td>
+</tr>
+	<tr>
+<td>230</td>
+<td>25</td>
+<td>158.4</td>
+</tr>
+	<tr>
+<td>205</td>
+<td>24</td>
+<td>149.6</td>
+</tr>
+	<tr>
+<td>185</td>
+<td>19</td>
+<td>130.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">attach</span><span class="p">(</span><span class="n">fac</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm81</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y_</span><span class="o">~</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">fac</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lm81</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>35.3358543470464</dd>
+<dt>x1</dt>
+<dd>0.204751085230047</dd>
+<dt>x2</dt>
+<dd>2.55063256783478</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>추정된 y는 $y=35.3359+ 0.2048x_1 + 2.5506x_2 $ 이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-추정된-회귀계수들에-대하여-$Var(b_0),Var(b_1),Var(b_2)$-를-구하여라.">
+<a class="anchor" href="#2)-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%93%A4%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%24Var(b_0),Var(b_1),Var(b_2)%24-%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>2) 추정된 회귀계수들에 대하여 $Var(b_0),Var(b_1),Var(b_2)$ 를 구하여라.<a class="anchor-link" href="#2)-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%93%A4%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%24Var(b_0),Var(b_1),Var(b_2)%24-%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">X</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="nf">array</span><span class="p">(</span><span class="n">fac</span><span class="o">$</span><span class="n">x1</span><span class="p">),</span><span class="nf">array</span><span class="p">(</span><span class="n">fac</span><span class="o">$</span><span class="n">x2</span><span class="p">)),</span><span class="m">10</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">35.3359</span><span class="p">,</span><span class="m">0.2048</span><span class="p">,</span><span class="m">2.5506</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtX</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">X</span>  <span class="c1">#[X'X]</span>
+<span class="n">XtX</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<tbody>
+	<tr>
+<td>  10</td>
+<td>  2178</td>
+<td>  227</td>
+</tr>
+	<tr>
+<td>2178</td>
+<td>481940</td>
+<td>50621</td>
+</tr>
+	<tr>
+<td> 227</td>
+<td> 50621</td>
+<td> 5385</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">XtXr</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">XtX</span><span class="p">)</span>  <span class="c1"># [X'X]의 역함수</span>
+<span class="n">XtXr</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<tbody>
+	<tr>
+<td> 8.99974754</td>
+<td>-0.065260222</td>
+<td> 0.234093777</td>
+</tr>
+	<tr>
+<td>-0.06526022</td>
+<td> 0.000637595</td>
+<td>-0.003242642</td>
+</tr>
+	<tr>
+<td> 0.23409378</td>
+<td>-0.003242642</td>
+<td> 0.020799716</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$Var(b_0)$ : XtXr 의 대각 1번째 원소 $\times$  $\sigma^2$</p>
+<blockquote>
+<p>$8.9997 \sigma^2$</p>
+</blockquote>
+<p>$Var(b_1)$ :XtXr 의 대각 2번째 원소 $\times$  $\sigma^2$&gt; $0.00064 \sigma^2$</p>
+<p>$Var(b_2)$ :XtXr 의 대각 3번째 원소 $\times$  $\sigma^2$&gt; $0.0208 \sigma^2$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-추정된-회귀계수-$b_1$과-$b_2$의-의미는-무엇인가?">
+<a class="anchor" href="#3)-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98-%24b_1%24%EA%B3%BC-%24b_2%24%EC%9D%98-%EC%9D%98%EB%AF%B8%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80?" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) 추정된 회귀계수 $b_1$과 $b_2$의 의미는 무엇인가?<a class="anchor-link" href="#3)-%EC%B6%94%EC%A0%95%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98-%24b_1%24%EA%B3%BC-%24b_2%24%EC%9D%98-%EC%9D%98%EB%AF%B8%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80?"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$b_1$ : $1^\circ C$ 온도 증가에 따른 인장강도의 변화</p>
+<p>$b_2$ : $1$분 시간 흐름에 따른 인장강도의 변화</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-회귀계수-$\beta_1$-과-$\beta_2$의--95%-신뢰구간을-구하여라.">
+<a class="anchor" href="#4)-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98-%24%5Cbeta_1%24-%EA%B3%BC-%24%5Cbeta_2%24%EC%9D%98--95%-%EC%8B%A0%EB%A2%B0%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>4) 회귀계수 $\beta_1$ 과 $\beta_2$의  95% 신뢰구간을 구하여라.<a class="anchor-link" href="#4)-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98-%24%5Cbeta_1%24-%EA%B3%BC-%24%5Cbeta_2%24%EC%9D%98--95%-%EC%8B%A0%EB%A2%B0%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">confint</span><span class="p">(</span><span class="n">lm81</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">2.5 %</th>
+<th scope="col">97.5 %</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">(Intercept)</th>
+<td>-79.4362406</td>
+<td>150.107949</td>
+</tr>
+	<tr>
+<th scope="row">x1</th>
+<td> -0.7612855</td>
+<td>  1.170788</td>
+</tr>
+	<tr>
+<th scope="row">x2</th>
+<td> -2.9669628</td>
+<td>  8.068228</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$ -0.7612855 &lt; \beta_1 &lt; 1.170788 $</p>
+<p>$ -2.9669628 &lt; \beta_2 &lt; 8.068228 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-분산분석표를-작성하고-$H_0-:-\beta_1-=-\beta_2-=-0-$-을-유의수준--0.05로-검정하여라.">
+<a class="anchor" href="#5)-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B3%A0-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2-=-0-%24-%EC%9D%84-%EC%9C%A0%EC%9D%98%EC%88%98%EC%A4%80--0.05%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>5) 분산분석표를 작성하고 $H_0 : \beta_1 = \beta_2 = 0 $ 을 유의수준  0.05로 검정하여라.<a class="anchor-link" href="#5)-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B3%A0-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2-=-0-%24-%EC%9D%84-%EC%9C%A0%EC%9D%98%EC%88%98%EC%A4%80--0.05%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm81</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 3 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1</th>
+<td>1</td>
+<td>2747.5393</td>
+<td>2747.5393</td>
+<td>10.496050</td>
+<td>0.01425777</td>
+</tr>
+	<tr>
+<th scope="row">x2</th>
+<td>1</td>
+<td> 312.7796</td>
+<td> 312.7796</td>
+<td> 1.194869</td>
+<td>0.31053404</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>7</td>
+<td>1832.3821</td>
+<td> 261.7689</td>
+<td>       NA</td>
+<td>        NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>분산분석표</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">자유도</th>
+<th style="text-align:center">제곱합</th>
+<th style="text-align:center">제곱평균</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">model</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3060</td>
+<td style="text-align:center">1530</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">error</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">1832</td>
+<td style="text-align:center">262</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">total</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">4892</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>유의수준 0.05 에서 F의 값보다 분산분석에서의 Fvalue(6)가 크므로 영가설을 기각하여</p>
+<p>$\beta_1$ 과 $\beta_2$ 가 다르다는 것을 알 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6)-$x_1-=-200,-x_2-=-20-$-에서-$E(y)$-의-95%-예측구간을-구하여라.">
+<a class="anchor" href="#6)-%24x_1-=-200,-x_2-=-20-%24-%EC%97%90%EC%84%9C-%24E(y)%24-%EC%9D%98-95%-%EC%98%88%EC%B8%A1%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>6) $x_1 = 200, x_2 = 20 $ 에서 $E(y)$ 의 95% 예측구간을 구하여라.<a class="anchor-link" href="#6)-%24x_1-=-200,-x_2-=-20-%24-%EC%97%90%EC%84%9C-%24E(y)%24-%EC%9D%98-95%-%EC%98%88%EC%B8%A1%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">q11</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span> <span class="o">=</span> <span class="m">200</span> <span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">predict</span><span class="p">(</span><span class="n">lm81</span><span class="p">,</span> <span class="n">q11</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="m">0.95</span> <span class="p">,</span><span class="n">interval</span> <span class="o">=</span> <span class="s">"predic"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">fit</th>
+<th scope="col">lwr</th>
+<th scope="col">upr</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">1</th>
+<td>127.2987</td>
+<td>86.41531</td>
+<td>168.1821</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\hat{y} \pm t \times \sqrt{x'(X'X)^{-1}x \bullet MSE} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\hat{y} = 127.3 , t = 2.365 , MSE = 262 , $</p>
+<p>$ x'(X'X)^{-1}x : x = c(1, 200, 20) $ 으로 계산 $\to 0.142$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x_</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">200</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="n">xt_</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="n">x_</span><span class="p">)</span>
+<span class="n">c_</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">xt_</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">XtXr</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">x_</span><span class="p">)</span>
+<span class="n">c_</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<tbody>
+	<tr><td>0.1419628</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">127.3</span> <span class="o">+</span> <span class="m">2.365</span><span class="o">*</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">0.142</span><span class="o">*</span><span class="m">262</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+141.725336838355
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">127.3</span> <span class="o">-</span> <span class="m">2.365</span><span class="o">*</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">0.142</span><span class="o">*</span><span class="m">262</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+112.874663161645
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>따라서 예측구간은 112.9 ~ 141.7 이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="7)-귀무가설-$H_0-:-\beta_1-=-\beta_2$,-대립가설-$H_1-:-\beta_1-\neq-\beta_2$-를-유의수준-5%로-검정하여라.">
+<a class="anchor" href="#7)-%EA%B7%80%EB%AC%B4%EA%B0%80%EC%84%A4-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2%24,-%EB%8C%80%EB%A6%BD%EA%B0%80%EC%84%A4-%24H_1-:-%5Cbeta_1-%5Cneq-%5Cbeta_2%24-%EB%A5%BC-%EC%9C%A0%EC%9D%98%EC%88%98%EC%A4%80-5%%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>7) 귀무가설 $H_0 : \beta_1 = \beta_2$, 대립가설 $H_1 : \beta_1 \neq \beta_2$ 를 유의수준 5%로 검정하여라.<a class="anchor-link" href="#7)-%EA%B7%80%EB%AC%B4%EA%B0%80%EC%84%A4-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2%24,-%EB%8C%80%EB%A6%BD%EA%B0%80%EC%84%A4-%24H_1-:-%5Cbeta_1-%5Cneq-%5Cbeta_2%24-%EB%A5%BC-%EC%9C%A0%EC%9D%98%EC%88%98%EC%A4%80-5%%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-1</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">35.3359</span><span class="p">,</span><span class="m">0.2048</span><span class="p">,</span><span class="m">2.5506</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="n">qb</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">b</span>
+<span class="n">qb</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<tbody>
+	<tr><td>-2.3458</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">qb</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">XtXr</span> <span class="o">%*%</span> <span class="n">q</span> <span class="o">*</span><span class="m">262</span><span class="p">)</span> <span class="c1">#검정 t통계량</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<tbody>
+	<tr><td>-0.8672862</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>0.87 은 2.365보다 작으므로 영가설을 기각할 수 없다. 즉 $\beta_1 = \beta_2 $ 가 성립한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8)-$x_1-=240-,-x_2-=30-$-에서-y의-95%-예측구간을-구하여라.">
+<a class="anchor" href="#8)-%24x_1-=240-,-x_2-=30-%24-%EC%97%90%EC%84%9C-y%EC%9D%98-95%-%EC%98%88%EC%B8%A1%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>8) $x_1 =240 , x_2 =30 $ 에서 y의 95% 예측구간을 구하여라.<a class="anchor-link" href="#8)-%24x_1-=240-,-x_2-=30-%24-%EC%97%90%EC%84%9C-y%EC%9D%98-95%-%EC%98%88%EC%B8%A1%EA%B5%AC%EA%B0%84%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">q10</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span> <span class="o">=</span> <span class="m">240</span> <span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="m">30</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">predict</span><span class="p">(</span><span class="n">lm81</span><span class="p">,</span> <span class="n">q10</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="m">0.95</span> <span class="p">,</span><span class="n">interval</span> <span class="o">=</span> <span class="s">"predic"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">fit</th>
+<th scope="col">lwr</th>
+<th scope="col">upr</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">1</th>
+<td>160.9951</td>
+<td>114.5839</td>
+<td>207.4063</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>예측구간 : (114.5839 , 207.4063)의 사이에 y가 존재할 확률이 95%라는 뜻이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="8.10)">
+<a class="anchor" href="#8.10)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.10)<a class="anchor-link" href="#8.10)"> </a>
+</h1>
+<blockquote>
+<p>다음의 자료에 대하여</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th>$y$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>42</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>51</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>48</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>53</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td>49</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td>61</td>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>60</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-중회귀모형-$y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$를-가정하고-회귀선을-추정하여라.">
+<a class="anchor" href="#1)-%EC%A4%91%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 중회귀모형 $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$를 가정하고 회귀선을 추정하여라.<a class="anchor-link" href="#1)-%EC%A4%91%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cbeta_2x_2+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">Q810</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">"810.csv"</span><span class="p">,</span><span class="n">head</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">Q810</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A data.frame: 8 × 3</caption>
+<thead>
+	<tr>
+<th scope="col">y_10</th>
+<th scope="col">x1_10</th>
+<th scope="col">x2_10</th>
+</tr>
+	<tr>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;int&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<td>39</td>
+<td>2</td>
+<td>4</td>
+</tr>
+	<tr>
+<td>42</td>
+<td>2</td>
+<td>4</td>
+</tr>
+	<tr>
+<td>51</td>
+<td>3</td>
+<td>4</td>
+</tr>
+	<tr>
+<td>48</td>
+<td>3</td>
+<td>4</td>
+</tr>
+	<tr>
+<td>53</td>
+<td>2</td>
+<td>6</td>
+</tr>
+	<tr>
+<td>49</td>
+<td>2</td>
+<td>6</td>
+</tr>
+	<tr>
+<td>61</td>
+<td>3</td>
+<td>6</td>
+</tr>
+	<tr>
+<td>60</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">attach</span><span class="p">(</span><span class="n">Q810</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm810</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y_10</span><span class="o">~</span><span class="n">x1_10</span><span class="o">+</span><span class="n">x2_10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">lm810</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>0.375000000000071</dd>
+<dt>x1_10</dt>
+<dd>9.24999999999999</dd>
+<dt>x2_10</dt>
+<dd>5.37499999999999</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\hat{y} = 0.375 + 9.25x_1 +5.375x_2 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-독립변수-$x_1$만을-고려한-회귀모형-$y=\beta_0+\beta_1x_1+\epsilon$를-가정하고-회귀선을-구하여-분산분석표를-작성하여라.">
+<a class="anchor" href="#2)-%EB%8F%85%EB%A6%BD%EB%B3%80%EC%88%98-%24x_1%24%EB%A7%8C%EC%9D%84-%EA%B3%A0%EB%A0%A4%ED%95%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>2) 독립변수 $x_1$만을 고려한 회귀모형 $y=\beta_0+\beta_1x_1+\epsilon$를 가정하고 회귀선을 구하여 분산분석표를 작성하여라.<a class="anchor-link" href="#2)-%EB%8F%85%EB%A6%BD%EB%B3%80%EC%88%98-%24x_1%24%EB%A7%8C%EC%9D%84-%EA%B3%A0%EB%A0%A4%ED%95%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_1x_1+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm810_1</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y_10</span> <span class="o">~</span> <span class="n">x1_10</span><span class="p">)</span>
+<span class="nf">coef</span><span class="p">(</span><span class="n">lm810_1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>27.25</dd>
+<dt>x1_10</dt>
+<dd>9.25</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\hat{y} = 27.25 + 9.25x_1 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ANOVA</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm810_1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1_10</th>
+<td>1</td>
+<td>171.125</td>
+<td>171.12500</td>
+<td>4.127638</td>
+<td>0.08846031</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>6</td>
+<td>248.750</td>
+<td> 41.45833</td>
+<td>      NA</td>
+<td>        NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-독립변수-$x_2$만을-고려한-회귀모형-$y=\beta_0+\beta_2x_2+\epsilon$를-가정하고-회귀선을-구하여-분산분석표를-작성하여라.">
+<a class="anchor" href="#3)-%EB%8F%85%EB%A6%BD%EB%B3%80%EC%88%98-%24x_2%24%EB%A7%8C%EC%9D%84-%EA%B3%A0%EB%A0%A4%ED%95%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_2x_2+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>3) 독립변수 $x_2$만을 고려한 회귀모형 $y=\beta_0+\beta_2x_2+\epsilon$를 가정하고 회귀선을 구하여 분산분석표를 작성하여라.<a class="anchor-link" href="#3)-%EB%8F%85%EB%A6%BD%EB%B3%80%EC%88%98-%24x_2%24%EB%A7%8C%EC%9D%84-%EA%B3%A0%EB%A0%A4%ED%95%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95-%24y=%5Cbeta_0+%5Cbeta_2x_2+%5Cepsilon%24%EB%A5%BC-%EA%B0%80%EC%A0%95%ED%95%98%EA%B3%A0-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EA%B5%AC%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm810_2</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y_10</span> <span class="o">~</span> <span class="n">x2_10</span><span class="p">)</span>
+<span class="nf">coef</span><span class="p">(</span><span class="n">lm810_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>23.5</dd>
+<dt>x2_10</dt>
+<dd>5.375</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\hat{y} = 23.5 +5.375x_2 $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ANOVA</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm810_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x2_10</th>
+<td>1</td>
+<td>231.125</td>
+<td>231.12500</td>
+<td>7.34702</td>
+<td>0.03508095</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>6</td>
+<td>188.750</td>
+<td> 31.45833</td>
+<td>     NA</td>
+<td>        NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-단위길이법에-의하여-표준화된-회귀계수를-구하여-회귀선을-추정하여라.">
+<a class="anchor" href="#4)-%EB%8B%A8%EC%9C%84%EA%B8%B8%EC%9D%B4%EB%B2%95%EC%97%90-%EC%9D%98%ED%95%98%EC%97%AC-%ED%91%9C%EC%A4%80%ED%99%94%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>4) 단위길이법에 의하여 표준화된 회귀계수를 구하여 회귀선을 추정하여라.<a class="anchor-link" href="#4)-%EB%8B%A8%EC%9C%84%EA%B8%B8%EC%9D%B4%EB%B2%95%EC%97%90-%EC%9D%98%ED%95%98%EC%97%AC-%ED%91%9C%EC%A4%80%ED%99%94%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%A5%BC-%EA%B5%AC%ED%95%98%EC%97%AC-%ED%9A%8C%EA%B7%80%EC%84%A0%EC%9D%84-%EC%B6%94%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$y=0.6384x_1 + 0.7419x_2$ 을 추정할 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-표준화된-회귀모형에-의하여-분산분석표를-작성하여라.">
+<a class="anchor" href="#5)-%ED%91%9C%EC%A4%80%ED%99%94%EB%90%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%97%90-%EC%9D%98%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>5) 표준화된 회귀모형에 의하여 분산분석표를 작성하여라.<a class="anchor-link" href="#5)-%ED%91%9C%EC%A4%80%ED%99%94%EB%90%9C-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%97%90-%EC%9D%98%ED%95%98%EC%97%AC-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6)-4)에서-계산된-회귀계수들의-상관행렬을-계산하고-상관이-존재하는지를-설명하여라.">
+<a class="anchor" href="#6)-4)%EC%97%90%EC%84%9C-%EA%B3%84%EC%82%B0%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%93%A4%EC%9D%98-%EC%83%81%EA%B4%80%ED%96%89%EB%A0%AC%EC%9D%84-%EA%B3%84%EC%82%B0%ED%95%98%EA%B3%A0-%EC%83%81%EA%B4%80%EC%9D%B4-%EC%A1%B4%EC%9E%AC%ED%95%98%EB%8A%94%EC%A7%80%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>6) 4)에서 계산된 회귀계수들의 상관행렬을 계산하고 상관이 존재하는지를 설명하여라.<a class="anchor-link" href="#6)-4)%EC%97%90%EC%84%9C-%EA%B3%84%EC%82%B0%EB%90%9C-%ED%9A%8C%EA%B7%80%EA%B3%84%EC%88%98%EB%93%A4%EC%9D%98-%EC%83%81%EA%B4%80%ED%96%89%EB%A0%AC%EC%9D%84-%EA%B3%84%EC%82%B0%ED%95%98%EA%B3%A0-%EC%83%81%EA%B4%80%EC%9D%B4-%EC%A1%B4%EC%9E%AC%ED%95%98%EB%8A%94%EC%A7%80%EB%A5%BC-%EC%84%A4%EB%AA%85%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="8.15)">
+<a class="anchor" href="#8.15)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.15)<a class="anchor-link" href="#8.15)"> </a>
+</h1>
+<blockquote>
+<p>다음과 같은 자료에 대하여 중회귀모형 $y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon$를 가정하고 아래의 질문에 답하여라.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th>$y$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>-5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-분산분석표를-작성하고-$H_0-:-\beta_1-=-\beta_2-=-0-$-을-$\alpha-=-0.05-$로-검정하여라.">
+<a class="anchor" href="#1)-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B3%A0-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2-=-0-%24-%EC%9D%84-%24%5Calpha-=-0.05-%24%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>1) 분산분석표를 작성하고 $H_0 : \beta_1 = \beta_2 = 0 $ 을 $\alpha = 0.05 $로 검정하여라.<a class="anchor-link" href="#1)-%EB%B6%84%EC%82%B0%EB%B6%84%EC%84%9D%ED%91%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B3%A0-%24H_0-:-%5Cbeta_1-=-%5Cbeta_2-=-0-%24-%EC%9D%84-%24%5Calpha-=-0.05-%24%EB%A1%9C-%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">y15</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">11</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="n">x1_15</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">x2_15</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-3</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">-3</span><span class="p">)</span>
+<span class="n">lm815</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y15</span> <span class="o">~</span> <span class="n">x1_15</span><span class="o">+</span><span class="n">x2_15</span><span class="p">)</span>
+<span class="nf">coef</span><span class="p">(</span><span class="n">lm815</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style>&lt;dl class=dl-inline&gt;<dt>(Intercept)</dt>
+<dd>6.43310529293761</dd>
+<dt>x1_15</dt>
+<dd>0.121032868679595</dd>
+<dt>x2_15</dt>
+<dd>1.07700221182038</dd>&lt;/dl&gt;
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$y=6.43310529293761 + 0.121032868679595x_1 + 1.07700221182038x_2$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm815</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 3 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1_15</th>
+<td>1</td>
+<td>15.879334</td>
+<td>15.8793343</td>
+<td>20.48100</td>
+<td>0.010612931</td>
+</tr>
+	<tr>
+<th scope="row">x2_15</th>
+<td>1</td>
+<td>54.733671</td>
+<td>54.7336707</td>
+<td>70.59492</td>
+<td>0.001098159</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>4</td>
+<td> 3.101281</td>
+<td> 0.7753202</td>
+<td>      NA</td>
+<td>         NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fvalue 가 6.94 보다 크므로 영가설을 기각하여 $\beta_1$ 과 $\beta_2$ 가 다르다는 것을 알 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-$R(\beta_0),-R(\beta_1,\beta_2|\beta_0),R(\beta_1|\beta_0),R(\beta_2|\beta_0)$-을-각각-구하여라.">
+<a class="anchor" href="#2)-%24R(%5Cbeta_0),-R(%5Cbeta_1,%5Cbeta_2%7C%5Cbeta_0),R(%5Cbeta_1%7C%5Cbeta_0),R(%5Cbeta_2%7C%5Cbeta_0)%24-%EC%9D%84-%EA%B0%81%EA%B0%81-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>2) $R(\beta_0), R(\beta_1,\beta_2|\beta_0),R(\beta_1|\beta_0),R(\beta_2|\beta_0)$ 을 각각 구하여라.<a class="anchor-link" href="#2)-%24R(%5Cbeta_0),-R(%5Cbeta_1,%5Cbeta_2%7C%5Cbeta_0),R(%5Cbeta_1%7C%5Cbeta_0),R(%5Cbeta_2%7C%5Cbeta_0)%24-%EC%9D%84-%EA%B0%81%EA%B0%81-%EA%B5%AC%ED%95%98%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$R(\beta_1,\beta_2|\beta_0)$ = 15.879334</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm815</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 3 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1_15</th>
+<td>1</td>
+<td>15.879334</td>
+<td>15.8793343</td>
+<td>20.48100</td>
+<td>0.010612931</td>
+</tr>
+	<tr>
+<th scope="row">x2_15</th>
+<td>1</td>
+<td>54.733671</td>
+<td>54.7336707</td>
+<td>70.59492</td>
+<td>0.001098159</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>4</td>
+<td> 3.101281</td>
+<td> 0.7753202</td>
+<td>      NA</td>
+<td>         NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$R(\beta_1|\beta_0) $=15.87933</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm815a</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y15</span><span class="o">~</span><span class="n">x1_15</span><span class="p">)</span>
+<span class="nf">anova</span><span class="p">(</span><span class="n">lm815a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x1_15</th>
+<td>1</td>
+<td>15.87933</td>
+<td>15.87933</td>
+<td>1.372815</td>
+<td>0.2941169</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>5</td>
+<td>57.83495</td>
+<td>11.56699</td>
+<td>      NA</td>
+<td>       NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$R(\beta_2|\beta_0)$ =70.01471</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lm815b</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y15</span><span class="o">~</span><span class="n">x2_15</span><span class="p">)</span>
+<span class="nf">anova</span><span class="p">(</span><span class="n">lm815b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 5</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Df</th>
+<th scope="col">Sum Sq</th>
+<th scope="col">Mean Sq</th>
+<th scope="col">F value</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;int&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">x2_15</th>
+<td>1</td>
+<td>70.01471</td>
+<td>70.014706</td>
+<td>94.62521</td>
+<td>0.0001951318</td>
+</tr>
+	<tr>
+<th scope="row">Residuals</th>
+<td>5</td>
+<td> 3.69958</td>
+<td> 0.739916</td>
+<td>      NA</td>
+<td>          NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$R(\beta_0)$ = $ n(\bar{y})^2$ =302.285714285714</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="m">7</span><span class="o">*</span><span class="nf">mean</span><span class="p">(</span><span class="n">y15</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+302.285714285714
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)--$H_0-:-\beta_1-=-0-$-을-부분-F검정으로-가설검정하여라.--$\alpha-=-0.05-$">
+<a class="anchor" href="#3)--%24H_0-:-%5Cbeta_1-=-0-%24-%EC%9D%84-%EB%B6%80%EB%B6%84-F%EA%B2%80%EC%A0%95%EC%9C%BC%EB%A1%9C-%EA%B0%80%EC%84%A4%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC.--%24%5Calpha-=-0.05-%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>3)  $H_0 : \beta_1 = 0 $ 을 부분 F검정으로 가설검정하여라.  $\alpha = 0.05 $<a class="anchor-link" href="#3)--%24H_0-:-%5Cbeta_1-=-0-%24-%EC%9D%84-%EB%B6%80%EB%B6%84-F%EA%B2%80%EC%A0%95%EC%9C%BC%EB%A1%9C-%EA%B0%80%EC%84%A4%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC.--%24%5Calpha-=-0.05-%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm815b</span><span class="p">,</span><span class="n">lm815</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 6</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Res.Df</th>
+<th scope="col">RSS</th>
+<th scope="col">Df</th>
+<th scope="col">Sum of Sq</th>
+<th scope="col">F</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">1</th>
+<td>5</td>
+<td>3.699580</td>
+<td>NA</td>
+<td>      NA</td>
+<td>       NA</td>
+<td>       NA</td>
+</tr>
+	<tr>
+<th scope="row">2</th>
+<td>4</td>
+<td>3.101281</td>
+<td> 1</td>
+<td>0.598299</td>
+<td>0.7716799</td>
+<td>0.4292997</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fvalue 는 0.7717 이고, 7.71 보다 작으므로 영가설을 기각하지 않는다. 즉, $\beta_1 = 0$ 이 성립한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)--$H_0-:-\beta_2-=-0-$-을-부분-F검정으로-가설검정하여라.--$\alpha-=-0.05,\alpha-=-0.01-$">
+<a class="anchor" href="#4)--%24H_0-:-%5Cbeta_2-=-0-%24-%EC%9D%84-%EB%B6%80%EB%B6%84-F%EA%B2%80%EC%A0%95%EC%9C%BC%EB%A1%9C-%EA%B0%80%EC%84%A4%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC.--%24%5Calpha-=-0.05,%5Calpha-=-0.01-%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>4)  $H_0 : \beta_2 = 0 $ 을 부분 F검정으로 가설검정하여라.  $\alpha = 0.05,\alpha = 0.01 $<a class="anchor-link" href="#4)--%24H_0-:-%5Cbeta_2-=-0-%24-%EC%9D%84-%EB%B6%80%EB%B6%84-F%EA%B2%80%EC%A0%95%EC%9C%BC%EB%A1%9C-%EA%B0%80%EC%84%A4%EA%B2%80%EC%A0%95%ED%95%98%EC%97%AC%EB%9D%BC.--%24%5Calpha-=-0.05,%5Calpha-=-0.01-%24"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm815a</span><span class="p">,</span><span class="n">lm815</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A anova: 2 × 6</caption>
+<thead>
+	<tr>
+<th></th>
+<th scope="col">Res.Df</th>
+<th scope="col">RSS</th>
+<th scope="col">Df</th>
+<th scope="col">Sum of Sq</th>
+<th scope="col">F</th>
+<th scope="col">Pr(&gt;F)</th>
+</tr>
+	<tr>
+<th></th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+<th scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+	<tr>
+<th scope="row">1</th>
+<td>5</td>
+<td>57.834951</td>
+<td>NA</td>
+<td>      NA</td>
+<td>      NA</td>
+<td>         NA</td>
+</tr>
+	<tr>
+<th scope="row">2</th>
+<td>4</td>
+<td> 3.101281</td>
+<td> 1</td>
+<td>54.73367</td>
+<td>70.59492</td>
+<td>0.001098159</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fvalue = 70.595로 측정된다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>유의수준 0.05일때 F값 7.71 보다 F값이 크며,  유의수준 0.01일때 F값인 21.2 보다도 F값이 크다.</p>
+<p>즉, 영가설은 어느 유의수준에서도 기각되어 $\beta_2$ 가 0이 아니라는 것으로 볼 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="8.16)">
+<a class="anchor" href="#8.16)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.16)<a class="anchor-link" href="#8.16)"> </a>
+</h1>
+<blockquote>
+<p>중회귀모형 $y= X\beta + \epsilon, \epsilon ~ N(0,I)$ 에서 $X$는 $n \times (k+1)$ 이다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1)-$Q_1-=-y'[I-X(X'X)^{-1}X']y$-의-분포는?">
+<a class="anchor" href="#1)-%24Q_1-=-y'%5BI-X(X'X)%5E%7B-1%7DX'%5Dy%24-%EC%9D%98-%EB%B6%84%ED%8F%AC%EB%8A%94?" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) $Q_1 = y'[I-X(X'X)^{-1}X']y$ 의 분포는?<a class="anchor-link" href="#1)-%24Q_1-=-y'%5BI-X(X'X)%5E%7B-1%7DX'%5Dy%24-%EC%9D%98-%EB%B6%84%ED%8F%AC%EB%8A%94?"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-$Q_2-=-y'X(X'X)^{-1}X'y$-의-분포는?">
+<a class="anchor" href="#2)-%24Q_2-=-y'X(X'X)%5E%7B-1%7DX'y%24-%EC%9D%98-%EB%B6%84%ED%8F%AC%EB%8A%94?" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) $Q_2 = y'X(X'X)^{-1}X'y$ 의 분포는?<a class="anchor-link" href="#2)-%24Q_2-=-y'X(X'X)%5E%7B-1%7DX'y%24-%EC%9D%98-%EB%B6%84%ED%8F%AC%EB%8A%94?"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-$Q_1$과$Q_2$가-서로-독립임을-보여라.">
+<a class="anchor" href="#3)-%24Q_1%24%EA%B3%BC%24Q_2%24%EA%B0%80-%EC%84%9C%EB%A1%9C-%EB%8F%85%EB%A6%BD%EC%9E%84%EC%9D%84-%EB%B3%B4%EC%97%AC%EB%9D%BC." aria-hidden="true"><span class="octicon octicon-link"></span></a>3) $Q_1$과$Q_2$가 서로 독립임을 보여라.<a class="anchor-link" href="#3)-%24Q_1%24%EA%B3%BC%24Q_2%24%EA%B0%80-%EC%84%9C%EB%A1%9C-%EB%8F%85%EB%A6%BD%EC%9E%84%EC%9D%84-%EB%B3%B4%EC%97%AC%EB%9D%BC."> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-$\beta-=-0-$-이라-할-때">
+<a class="anchor" href="#4)-%24%5Cbeta-=-0-%24-%EC%9D%B4%EB%9D%BC-%ED%95%A0-%EB%95%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) $\beta = 0 $ 이라 할 때<a class="anchor-link" href="#4)-%24%5Cbeta-=-0-%24-%EC%9D%B4%EB%9D%BC-%ED%95%A0-%EB%95%8C"> </a>
+</h3>
+<p>$\frac{Q_2/(k+1)}{Q_1/(n-k-1)}$ 의 분포는?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<h2 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a>-<a class="anchor-link" href="#-"> </a>
+</h2>
+<p>-</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/r/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D/2021/11/17/%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D8%EC%9E%A5%ED%92%80%EC%9D%B4.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
