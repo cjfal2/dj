@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>혼공머 04-1 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="혼공머 04-1" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="로지스틱 회귀" />
+<meta property="og:description" content="로지스틱 회귀" />
+<link rel="canonical" href="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/24/%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/24/%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-24T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-02-24T00:00:00-06:00","url":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/24/%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.html","@type":"BlogPosting","headline":"혼공머 04-1","dateModified":"2022-02-24T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/24/%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.html"},"author":{"@type":"Person","name":"김동준"},"description":"로지스틱 회귀","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">혼공머 04-1</h1><p class="page-description">로지스틱 회귀</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-24T00:00:00-06:00" itemprop="datePublished">
+        Feb 24, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#혼공머">혼공머</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2022-02-24-혼공머4챕1장로지스틱회귀.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2022-02-24-%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2022-02-24-혼공머4챕1장로지스틱회귀.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#주로쓰는-패키지들">주로쓰는 패키지들 </a></li>
+<li class="toc-entry toc-h1"><a href="#럭키백-데이터-준비하기">럭키백 데이터 준비하기 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Species-열에서-고유값-추출">Species 열에서 고유값 추출 </a></li>
+<li class="toc-entry toc-h2"><a href="#Species-열을-타깃으로-만들고-나머지-5개-열은-입력데이터로-사용">Species 열을 타깃으로 만들고 나머지 5개 열은 입력데이터로 사용 </a></li>
+<li class="toc-entry toc-h2"><a href="#타깃데이터-생성">타깃데이터 생성 </a></li>
+<li class="toc-entry toc-h2"><a href="#훈련세트와-테스트세트-생성">훈련세트와 테스트세트 생성 </a></li>
+<li class="toc-entry toc-h2"><a href="#표준화-처리">표준화 처리 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#k-최근접-이웃-분류기의-확률-예측-(-다중-분류-)">k-최근접 이웃 분류기의 확률 예측 ( 다중 분류 ) </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#7종류의-생선의-의미">7종류의 생선의 의미 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#로지스틱-회귀">로지스틱 회귀 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#시그모이드-함수-:-$\phi-=-\frac{1}{1+e^{-z}}$--=-로지스틱함수">시그모이드 함수 : $\phi = \frac{1}{1+e^{-z}}$  = 로지스틱함수 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#로지스틱-회귀로-이진-분류-해보기">로지스틱 회귀로 이진 분류 해보기 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#불리언-인덱싱-예제">불리언 인덱싱 예제 </a></li>
+<li class="toc-entry toc-h2"><a href="#생선에-적용-(빙어만-골라내기)">생선에 적용 (빙어만 골라내기) </a></li>
+<li class="toc-entry toc-h2"><a href="#z값-출력">z값 출력 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#로지스틱-회귀로-다중-분류-수행">로지스틱 회귀로 다중 분류 수행 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#소프트-맥스-함수-(임포트-필요)">소프트 맥스 함수 (임포트 필요) </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-24-혼공머4챕1장로지스틱회귀.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="주로쓰는-패키지들">
+<a class="anchor" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>주로쓰는 패키지들<a class="anchor-link" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#넘파이</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#판다스</span>
+<span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1">#플롯나인</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#맷플랏립</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span> <span class="c1">#플랏리 상호작용 그래프</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span> <span class="c1">#블로그에 html로 올리려고 변환하는 패키지</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># 씨본, 히스토그램 깔끔하게 그리는 패키지</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="c1"># k 최근접이웃</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>  <span class="c1"># 결정계수 </span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="c1"># 타깃과 예측의 절댓값 오차 평균을 반환</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="c1"># 선형 회귀</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span> <span class="c1">#다중회귀로의 변환기</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span> <span class="c1">#규제</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span> <span class="c1">#릿지</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span> <span class="c1">#라쏘</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="c1"># 로지스틱회귀</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span> <span class="c1">#시그모이드함수</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">softmax</span> <span class="c1">#소프트맥스함수</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="럭키백-데이터-준비하기">
+<a class="anchor" href="#%EB%9F%AD%ED%82%A4%EB%B0%B1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>럭키백 데이터 준비하기<a class="anchor-link" href="#%EB%9F%AD%ED%82%A4%EB%B0%B1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0"> </a>
+</h1>
+<blockquote>
+<p>판다스를 이용해여 df로 저장하기</p>
+<p><a href="https://bit.ly/fish_csv_data">https://bit.ly/fish_csv_data</a></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fish</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://bit.ly/fish_csv_data'</span><span class="p">)</span>
+<span class="n">fish</span><span class="o">.</span><span class="n">head</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;bound method NDFrame.head of     Species  Weight  Length  Diagonal   Height   Width
+0     Bream   242.0    25.4      30.0  11.5200  4.0200
+1     Bream   290.0    26.3      31.2  12.4800  4.3056
+2     Bream   340.0    26.5      31.1  12.3778  4.6961
+3     Bream   363.0    29.0      33.5  12.7300  4.4555
+4     Bream   430.0    29.0      34.0  12.4440  5.1340
+..      ...     ...     ...       ...      ...     ...
+154   Smelt    12.2    12.2      13.4   2.0904  1.3936
+155   Smelt    13.4    12.4      13.5   2.4300  1.2690
+156   Smelt    12.2    13.0      13.8   2.2770  1.2558
+157   Smelt    19.7    14.3      15.2   2.8728  2.0672
+158   Smelt    19.9    15.0      16.2   2.9322  1.8792
+
+[159 rows x 6 columns]&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Species-열에서-고유값-추출">
+<a class="anchor" href="#Species-%EC%97%B4%EC%97%90%EC%84%9C-%EA%B3%A0%EC%9C%A0%EA%B0%92-%EC%B6%94%EC%B6%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Species 열에서 고유값 추출<a class="anchor-link" href="#Species-%EC%97%B4%EC%97%90%EC%84%9C-%EA%B3%A0%EC%9C%A0%EA%B0%92-%EC%B6%94%EC%B6%9C"> </a>
+</h2>
+<blockquote>
+<p>pd.unique()</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">fish</span><span class="p">[</span><span class="s1">'Species'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Bream' 'Roach' 'Whitefish' 'Parkki' 'Perch' 'Pike' 'Smelt']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Species-열을-타깃으로-만들고-나머지-5개-열은-입력데이터로-사용">
+<a class="anchor" href="#Species-%EC%97%B4%EC%9D%84-%ED%83%80%EA%B9%83%EC%9C%BC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EB%82%98%EB%A8%B8%EC%A7%80-5%EA%B0%9C-%EC%97%B4%EC%9D%80-%EC%9E%85%EB%A0%A5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A1%9C-%EC%82%AC%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>Species 열을 타깃으로 만들고 나머지 5개 열은 입력데이터로 사용<a class="anchor-link" href="#Species-%EC%97%B4%EC%9D%84-%ED%83%80%EA%B9%83%EC%9C%BC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EB%82%98%EB%A8%B8%EC%A7%80-5%EA%B0%9C-%EC%97%B4%EC%9D%80-%EC%9E%85%EB%A0%A5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A1%9C-%EC%82%AC%EC%9A%A9"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fish_input</span> <span class="o">=</span> <span class="n">fish</span><span class="p">[[</span><span class="s1">'Weight'</span> <span class="p">,</span> <span class="s1">'Length'</span><span class="p">,</span>  <span class="s1">'Diagonal'</span> <span class="p">,</span> <span class="s1">'Height'</span> <span class="p">,</span>  <span class="s1">'Width'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fish_input</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[242.      25.4     30.      11.52     4.02  ]
+ [290.      26.3     31.2     12.48     4.3056]
+ [340.      26.5     31.1     12.3778   4.6961]
+ [363.      29.      33.5     12.73     4.4555]
+ [430.      29.      34.      12.444    5.134 ]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>위 데이터 프레임의 헤드값과 같다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="타깃데이터-생성">
+<a class="anchor" href="#%ED%83%80%EA%B9%83%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>타깃데이터 생성<a class="anchor-link" href="#%ED%83%80%EA%B9%83%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fish_target</span> <span class="o">=</span> <span class="n">fish</span><span class="p">[</span><span class="s1">'Species'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="훈련세트와-테스트세트-생성">
+<a class="anchor" href="#%ED%9B%88%EB%A0%A8%EC%84%B8%ED%8A%B8%EC%99%80-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%84%B8%ED%8A%B8-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>훈련세트와 테스트세트 생성<a class="anchor-link" href="#%ED%9B%88%EB%A0%A8%EC%84%B8%ED%8A%B8%EC%99%80-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%84%B8%ED%8A%B8-%EC%83%9D%EC%84%B1"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_input</span> <span class="p">,</span> <span class="n">test_input</span> <span class="p">,</span> <span class="n">train_target</span> <span class="p">,</span> <span class="n">test_target</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">fish_input</span> <span class="p">,</span> <span class="n">fish_target</span> <span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="표준화-처리">
+<a class="anchor" href="#%ED%91%9C%EC%A4%80%ED%99%94-%EC%B2%98%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>표준화 처리<a class="anchor-link" href="#%ED%91%9C%EC%A4%80%ED%99%94-%EC%B2%98%EB%A6%AC"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">ss</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">)</span>
+<span class="n">train_scaled</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_input</span><span class="p">)</span>
+<span class="n">test_scaled</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_input</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="k-최근접-이웃-분류기의-확률-예측-(-다중-분류-)">
+<a class="anchor" href="#k-%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B6%84%EB%A5%98%EA%B8%B0%EC%9D%98-%ED%99%95%EB%A5%A0-%EC%98%88%EC%B8%A1-(-%EB%8B%A4%EC%A4%91-%EB%B6%84%EB%A5%98-)" aria-hidden="true"><span class="octicon octicon-link"></span></a>k-최근접 이웃 분류기의 확률 예측 ( 다중 분류 )<a class="anchor-link" href="#k-%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B6%84%EB%A5%98%EA%B8%B0%EC%9D%98-%ED%99%95%EB%A5%A0-%EC%98%88%EC%B8%A1-(-%EB%8B%A4%EC%A4%91-%EB%B6%84%EB%A5%98-)"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">kn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span> <span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_scaled</span> <span class="p">,</span> <span class="n">train_target</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_scaled</span> <span class="p">,</span> <span class="n">test_target</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.8907563025210085
+0.85
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>점수가 낮지만 무시 (클래스 확률 중점)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7종류의-생선의-의미">
+<a class="anchor" href="#7%EC%A2%85%EB%A5%98%EC%9D%98-%EC%83%9D%EC%84%A0%EC%9D%98-%EC%9D%98%EB%AF%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>7종류의 생선의 의미<a class="anchor-link" href="#7%EC%A2%85%EB%A5%98%EC%9D%98-%EC%83%9D%EC%84%A0%EC%9D%98-%EC%9D%98%EB%AF%B8"> </a>
+</h2>
+<blockquote>
+<p>타깃데이터에 7종류의 생선이 포함 $\to$ 2개이상의 클래스가 포함된 문제 :다중 분류</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">kn</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Bream' 'Parkki' 'Perch' 'Pike' 'Roach' 'Smelt' 'Whitefish']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">kn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Perch' 'Smelt' 'Pike' 'Perch' 'Perch']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proba</span> <span class="o">=</span> <span class="n">kn</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[0.     0.     1.     0.     0.     0.     0.    ]
+ [0.     0.     0.     0.     0.     1.     0.    ]
+ [0.     0.     0.     1.     0.     0.     0.    ]
+ [0.     0.     0.6667 0.     0.3333 0.     0.    ]
+ [0.     0.     0.6667 0.     0.3333 0.     0.    ]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distances</span><span class="p">,</span> <span class="n">indexes</span> <span class="o">=</span> <span class="n">kn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>   <span class="c1">#4번째 데이터만 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_target</span><span class="p">[</span><span class="n">indexes</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[['Roach' 'Perch' 'Perch']]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>Perch(3번째)가 나올 확률 2/3 , Roach(5번째)가 나올 확률 1/3  $\to$ 맞음</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="로지스틱-회귀">
+<a class="anchor" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>로지스틱 회귀<a class="anchor-link" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80"> </a>
+</h1>
+<blockquote>
+<p>이름은 회귀이지만 분류 모델</p>
+<p>선형회귀와 동일하게 선형 방정식을 학습</p>
+<p>0~1로 확률을 표시 가능</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="시그모이드-함수-:-$\phi-=-\frac{1}{1+e^{-z}}$--=-로지스틱함수">
+<a class="anchor" href="#%EC%8B%9C%EA%B7%B8%EB%AA%A8%EC%9D%B4%EB%93%9C-%ED%95%A8%EC%88%98-:-%24%5Cphi-=-%5Cfrac%7B1%7D%7B1+e%5E%7B-z%7D%7D%24--=-%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>시그모이드 함수 : $\phi = \frac{1}{1+e^{-z}}$  = 로지스틱함수<a class="anchor-link" href="#%EC%8B%9C%EA%B7%B8%EB%AA%A8%EC%9D%B4%EB%93%9C-%ED%95%A8%EC%88%98-:-%24%5Cphi-=-%5Cfrac%7B1%7D%7B1+e%5E%7B-z%7D%7D%24--=-%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%95%A8%EC%88%98"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span> <span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'z'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'phi'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>0~1 의 값</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="로지스틱-회귀로-이진-분류-해보기">
+<a class="anchor" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80%EB%A1%9C-%EC%9D%B4%EC%A7%84-%EB%B6%84%EB%A5%98-%ED%95%B4%EB%B3%B4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>로지스틱 회귀로 이진 분류 해보기<a class="anchor-link" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80%EB%A1%9C-%EC%9D%B4%EC%A7%84-%EB%B6%84%EB%A5%98-%ED%95%B4%EB%B3%B4%EA%B8%B0"> </a>
+</h1>
+<blockquote>
+<p>0.5 이상이면 양성 클래스 이하면 음성 클래스</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="불리언-인덱싱-예제">
+<a class="anchor" href="#%EB%B6%88%EB%A6%AC%EC%96%B8-%EC%9D%B8%EB%8D%B1%EC%8B%B1-%EC%98%88%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>불리언 인덱싱 예제<a class="anchor-link" href="#%EB%B6%88%EB%A6%AC%EC%96%B8-%EC%9D%B8%EB%8D%B1%EC%8B%B1-%EC%98%88%EC%A0%9C"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">char_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span> <span class="p">,</span> <span class="s1">'C'</span> <span class="p">,</span> <span class="s1">'D'</span> <span class="p">,</span> <span class="s1">'E'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">char_arr</span><span class="p">[[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['A' 'C']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="생선에-적용-(빙어만-골라내기)">
+<a class="anchor" href="#%EC%83%9D%EC%84%A0%EC%97%90-%EC%A0%81%EC%9A%A9-(%EB%B9%99%EC%96%B4%EB%A7%8C-%EA%B3%A8%EB%9D%BC%EB%82%B4%EA%B8%B0)" aria-hidden="true"><span class="octicon octicon-link"></span></a>생선에 적용 (빙어만 골라내기)<a class="anchor-link" href="#%EC%83%9D%EC%84%A0%EC%97%90-%EC%A0%81%EC%9A%A9-(%EB%B9%99%EC%96%B4%EB%A7%8C-%EA%B3%A8%EB%9D%BC%EB%82%B4%EA%B8%B0)"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bream_smelt_indexes</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_target</span> <span class="o">==</span> <span class="s1">'Bream'</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">train_target</span> <span class="o">==</span> <span class="s1">'Smelt'</span><span class="p">)</span>
+<span class="n">train_bream_smelt</span> <span class="o">=</span> <span class="n">train_scaled</span><span class="p">[</span><span class="n">bream_smelt_indexes</span><span class="p">]</span>
+<span class="n">target_bream_smelt</span> <span class="o">=</span> <span class="n">train_target</span><span class="p">[</span><span class="n">bream_smelt_indexes</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_bream_smelt</span> <span class="p">,</span> <span class="n">target_bream_smelt</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>LogisticRegression()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_bream_smelt</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Bream' 'Smelt' 'Bream' 'Bream' 'Bream']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>두번째 샘플 제외 모두 도미(Bream)로 예측</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train_bream_smelt</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[0.99759855 0.00240145]
+ [0.02735183 0.97264817]
+ [0.99486072 0.00513928]
+ [0.98584202 0.01415798]
+ [0.99767269 0.00232731]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Bream' 'Smelt']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>사이킷런에서는 Bream이 양성 클래스</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[-0.4037798  -0.57620209 -0.66280298 -1.01290277 -0.73168947]] [-2.16155132]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>$ z = -0.404 \times (Weight) - 0.576 \times (Length) - 0.663 \times (Diagonal) - 1.013 \times (Height) - 0.732 \times (Width) -2.161 $</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="z값-출력">
+<a class="anchor" href="#z%EA%B0%92-%EC%B6%9C%EB%A0%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>z값 출력<a class="anchor-link" href="#z%EA%B0%92-%EC%B6%9C%EB%A0%A5"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decisions</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">train_bream_smelt</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decisions</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-6.02927744  3.57123907 -5.26568906 -4.24321775 -6.0607117 ]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>이 z값을 시그모이드 함수에 통과시키면 확률을 얻을 수 있다. expit() :시그모이드 함수 임포트 필요</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">expit</span><span class="p">(</span><span class="n">decisions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.00240145 0.97264817 0.00513928 0.01415798 0.00232731]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="로지스틱-회귀로-다중-분류-수행">
+<a class="anchor" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80%EB%A1%9C-%EB%8B%A4%EC%A4%91-%EB%B6%84%EB%A5%98-%EC%88%98%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>로지스틱 회귀로 다중 분류 수행<a class="anchor-link" href="#%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1-%ED%9A%8C%EA%B7%80%EB%A1%9C-%EB%8B%A4%EC%A4%91-%EB%B6%84%EB%A5%98-%EC%88%98%ED%96%89"> </a>
+</h1>
+<blockquote>
+<p>반복적인 알고리즘 사용, max_iter 매개변수에서 반복 횟수를 지정하고 기본값은 100</p>
+<p>계수의 제곱을 규제 (L2규제) , 매개변수 C 로 규제 제어 ( 작을수록 규제가 커짐 , 기본값 1)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">20</span> <span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span> <span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_scaled</span> <span class="p">,</span> <span class="n">train_target</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_scaled</span> <span class="p">,</span> <span class="n">test_target</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9327731092436975
+0.925
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>적당한거같다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Perch' 'Smelt' 'Pike' 'Roach' 'Perch']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proba</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">proba</span> <span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[0.    0.014 0.841 0.    0.136 0.007 0.003]
+ [0.    0.003 0.044 0.    0.007 0.946 0.   ]
+ [0.    0.    0.034 0.935 0.015 0.016 0.   ]
+ [0.011 0.034 0.306 0.007 0.567 0.    0.076]
+ [0.    0.    0.904 0.002 0.089 0.002 0.001]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>5개 샘플에 대한 예측이라 5개 행 출력</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Bream' 'Parkki' 'Perch' 'Pike' 'Roach' 'Smelt' 'Whitefish']
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>첫번째 샘플은 Perch(농어) 를 가장 높은 확률로 예측</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span> <span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(7, 5) (7,)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>다중 분류는 클래스마다 z 값을 하나씩 계산</p>
+<p>소프트맥스 함수를 사용하여 7개의 z 값을 확률로 변환</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="소프트-맥스-함수-(임포트-필요)">
+<a class="anchor" href="#%EC%86%8C%ED%94%84%ED%8A%B8-%EB%A7%A5%EC%8A%A4-%ED%95%A8%EC%88%98-(%EC%9E%84%ED%8F%AC%ED%8A%B8-%ED%95%84%EC%9A%94)" aria-hidden="true"><span class="octicon octicon-link"></span></a>소프트 맥스 함수 (임포트 필요)<a class="anchor-link" href="#%EC%86%8C%ED%94%84%ED%8A%B8-%EB%A7%A5%EC%8A%A4-%ED%95%A8%EC%88%98-(%EC%9E%84%ED%8F%AC%ED%8A%B8-%ED%95%84%EC%9A%94)"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$e_{sum}$ = $ e^{z1} + e^{z2} + e^{z3}+ e^{z4}+ e^{z5}+ e^{z6}+ e^{z7} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$ s1 = \frac{e^{z1}}{e_{sum}}$ , $ s2 = \frac{e^{z2}}{e_{sum}}$ ,  $\dots$  ,  $ s7 = \frac{e^{z7}}{e_{sum}}$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decision</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decision</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ -6.5    1.03   5.16  -2.73   3.34   0.33  -0.63]
+ [-10.86   1.93   4.77  -2.4    2.98   7.84  -4.26]
+ [ -4.34  -6.23   3.17   6.49   2.36   2.42  -3.87]
+ [ -0.68   0.45   2.65  -1.19   3.26  -5.75   1.26]
+ [ -6.4   -1.99   5.82  -0.11   3.5   -0.11  -0.71]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proba</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">decision</span> <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[0.    0.014 0.841 0.    0.136 0.007 0.003]
+ [0.    0.003 0.044 0.    0.007 0.946 0.   ]
+ [0.    0.    0.034 0.935 0.015 0.016 0.   ]
+ [0.011 0.034 0.306 0.007 0.567 0.    0.076]
+ [0.    0.    0.904 0.002 0.089 0.002 0.001]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>로지스틱회귀랑 값이 같다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/24/%ED%98%BC%EA%B3%B5%EB%A8%B84%EC%B1%951%EC%9E%A5%EB%A1%9C%EC%A7%80%EC%8A%A4%ED%8B%B1%ED%9A%8C%EA%B7%80.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" target="_blank" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" target="_blank" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
