@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>혼공머 05-3 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="혼공머 05-3" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="앙상블 (랜덤포레스트 , 엑스트라 트리)" />
+<meta property="og:description" content="앙상블 (랜덤포레스트 , 엑스트라 트리)" />
+<link rel="canonical" href="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/28/%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/28/%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-02-28T00:00:00-06:00","url":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/28/%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.html","@type":"BlogPosting","headline":"혼공머 05-3","dateModified":"2022-02-28T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/28/%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.html"},"author":{"@type":"Person","name":"김동준"},"description":"앙상블 (랜덤포레스트 , 엑스트라 트리)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">혼공머 05-3</h1><p class="page-description">앙상블 (랜덤포레스트 , 엑스트라 트리)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-28T00:00:00-06:00" itemprop="datePublished">
+        Feb 28, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#혼공머">혼공머</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2022-02-28-혼공머5챕3장.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2022-02-28-%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2022-02-28-혼공머5챕3장.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#주로쓰는-패키지들">주로쓰는 패키지들 </a></li>
+<li class="toc-entry toc-h1"><a href="#정형-데이터와-비정형-데이터">정형 데이터와 비정형 데이터 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#앙상블-학습-(ensemble-learning)">앙상블 학습 (ensemble learning) </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#랜덤-포레스트">랜덤 포레스트 </a></li>
+<li class="toc-entry toc-h1"><a href="#엑스트라-트리">엑스트라 트리 </a></li>
+<li class="toc-entry toc-h1"><a href="#그레이디언트-부스팅-,-gradient-boosting">그레이디언트 부스팅 , gradient boosting </a></li>
+<li class="toc-entry toc-h1"><a href="#히스토그램-기반-그레이디언트-부스팅">히스토그램 기반 그레이디언트 부스팅 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#알고리즘을-구현한-또다른-라이브러리1">알고리즘을 구현한 또다른 라이브러리1 </a></li>
+<li class="toc-entry toc-h2"><a href="#알고리즘을-구현한-또다른-라이브러리2">알고리즘을 구현한 또다른 라이브러리2 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-28-혼공머5챕3장.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="주로쓰는-패키지들">
+<a class="anchor" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>주로쓰는 패키지들<a class="anchor-link" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#넘파이</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#판다스</span>
+<span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1">#플롯나인</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#맷플랏립</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span> <span class="c1">#플랏리 상호작용 그래프</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span> <span class="c1">#블로그에 html로 올리려고 변환하는 패키지</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># 씨본, 히스토그램 깔끔하게 그리는 패키지</span>
+<span class="c1">#___________________________________</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="c1"># k 최근접이웃</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>  <span class="c1"># 결정계수 </span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="c1"># 타깃과 예측의 절댓값 오차 평균을 반환</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="c1"># 선형 회귀</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span> <span class="c1">#다중회귀로의 변환기</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span> <span class="c1">#규제</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span> <span class="c1">#릿지</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span> <span class="c1">#라쏘</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="c1"># 로지스틱회귀</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span> <span class="c1">#시그모이드함수</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">softmax</span> <span class="c1">#소프트맥스함수</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span> <span class="c1"># 확률적 경사 하강법</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="c1"># 트리</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span> <span class="c1"># 트리 모형</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span> <span class="c1"># 교차 검증</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span> <span class="c1"># Kfold 교차 검증</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span> <span class="c1"># 그리드 서치 (하이퍼 파라미터 튜닝)</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">randint</span> <span class="c1">#랜덤 서치</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span> <span class="c1"># 랜덤 서치 클래스</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="c1"># 랜덤포레스트 앙상블</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span> <span class="c1"># 엑스트라 트리 앙상블</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span> <span class="c1"># 그레이디언트 부스팅 앙상블</span>
+
+<span class="c1"># 히스토그램 기반 그레이디언트 부스팅</span>
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_hist_gradient_boosting</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">HistGradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span> <span class="c1"># 특성중요도</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span> <span class="c1"># 알고리즘을 구현한 또다른 라이브러리1</span>
+<span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMClassifier</span> <span class="c1"># 알고리즘을 구현한 또다른 라이브러리2 , 마이크로소프트에서 구현 </span>
+
+
+<span class="c1"># ____________________</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="정형-데이터와-비정형-데이터">
+<a class="anchor" href="#%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%EB%B9%84%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>정형 데이터와 비정형 데이터<a class="anchor-link" href="#%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%EB%B9%84%EC%A0%95%ED%98%95-%EB%8D%B0%EC%9D%B4%ED%84%B0"> </a>
+</h1>
+<blockquote>
+<p>정형 데이터 :어떤 구조(주로 숫자)로 되어 있다는 뜻. CSV ,DB , EXCEL 등에 저장하기 쉽다&gt; 비정형 데이터 :텍스트 데이터 , 디카 사진 등</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="앙상블-학습-(ensemble-learning)">
+<a class="anchor" href="#%EC%95%99%EC%83%81%EB%B8%94-%ED%95%99%EC%8A%B5-(ensemble-learning)" aria-hidden="true"><span class="octicon octicon-link"></span></a>앙상블 학습 (ensemble learning)<a class="anchor-link" href="#%EC%95%99%EC%83%81%EB%B8%94-%ED%95%99%EC%8A%B5-(ensemble-learning)"> </a>
+</h2>
+<blockquote>
+<p>정형 데이터를 다루는 데 가장 뛰어나 성과를 내는 알고리즘</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="랜덤-포레스트">
+<a class="anchor" href="#%EB%9E%9C%EB%8D%A4-%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>랜덤 포레스트<a class="anchor-link" href="#%EB%9E%9C%EB%8D%A4-%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8"> </a>
+</h1>
+<blockquote>
+<p>앙상블 학습의 대표주자</p>
+<p>결정트리를 랜덤하게 만들어 결저 트리(나무)의 숲을 만듦</p>
+<p>각 트리를 훈련하기 위한 데이터를 랜덤하게 만드는데, 입력한 훈련 데이터에서 랜덤하게 샘플을 추출하여 훈련 데이터를 만든다. ( 한 샘플이 중복되어 추출 될 수 있음. / 부스트랩 샘플이라고 부름)</p>
+<p>부스트랩 샘플은 훈련 세트와 크기가 같다. ( 부스트랩 샘플에 포함되지 않고 남는 샘플 :OOB, out of bag)&gt; 부스트랩 방식 :데이터 세트에서 중복을 허용하여 데이터를 샘플링하는 방식을 의미.
+RandomForestClassifier 는 자체적으로 모델을 평가하는 정수를 얻을 수 있다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wine</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://bit.ly/wine_csv_data'</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">wine</span><span class="p">[[</span><span class="s1">'alcohol'</span><span class="p">,</span> <span class="s1">'sugar'</span><span class="p">,</span> <span class="s1">'pH'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">wine</span><span class="p">[</span><span class="s1">'class'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">train_input</span><span class="p">,</span> <span class="n">test_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">test_target</span> <span class="o">=</span> \
+<span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9973541965122431 0.8905151032797809
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.23167441 0.50039841 0.26792718]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>결정 트리에서 보다 더 골고루 중요도가 분포되었다.</p>
+<p>과대적합을 줄이고 일반화 성능을 높이는데 기여</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">oob_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">oob_score_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.8934000384837406
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>OOB 점수는 교차검증을 대신 할 수 있다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="엑스트라-트리">
+<a class="anchor" href="#%EC%97%91%EC%8A%A4%ED%8A%B8%EB%9D%BC-%ED%8A%B8%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>엑스트라 트리<a class="anchor-link" href="#%EC%97%91%EC%8A%A4%ED%8A%B8%EB%9D%BC-%ED%8A%B8%EB%A6%AC"> </a>
+</h1>
+<blockquote>
+<p>기본적으로 100개의 결정 트리를 훈련</p>
+<p>붓스트랩 샘플을 사용하지 않는다.</p>
+<p>각 결정트리를 만들 떄 전체 훈련 세트를 사용</p>
+<p>노드 분할시 무작위로 분할</p>
+<p>빠른 계산 속도</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">et</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9974503966084433 0.8887848893166506
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>랜덤포레스트와 비슷한 결과</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">et</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.20183568 0.52242907 0.27573525]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>랜덤포레스트와 비슷한 결과</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="그레이디언트-부스팅-,-gradient-boosting">
+<a class="anchor" href="#%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B6%80%EC%8A%A4%ED%8C%85-,-gradient-boosting" aria-hidden="true"><span class="octicon octicon-link"></span></a>그레이디언트 부스팅 , gradient boosting<a class="anchor-link" href="#%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B6%80%EC%8A%A4%ED%8C%85-,-gradient-boosting"> </a>
+</h1>
+<blockquote>
+<p>깊이가 얕은 결정 트리를 사용하여 이전 트리의 오차를 보완하는 방식으로 앙상블</p>
+<p>GradientBoostingClassifier은 기본적으로 깊이가 3인 결정 트리를 100개 사용</p>
+<p>과대적합에 강하고 일반적으로 높은 일반화 성능 기대</p>
+<p>경사 하강법을 사용하여 트리를 앙상블에 추가</p>
+<p>분류에서는 로지스틱 손실 함수를 사용 하고 회귀에서는 평균 제곱 오차 함수 사용</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">gb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.8881086892152563 0.8720430147331015
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>과대적합이 거의 되지 않음</p>
+<p>트리의 개수를 늘려도 과대적합에 매우 강력</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">gb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9464595437171814 0.8780082549788999
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gb</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.15872278 0.68010884 0.16116839]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="히스토그램-기반-그레이디언트-부스팅">
+<a class="anchor" href="#%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EA%B8%B0%EB%B0%98-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B6%80%EC%8A%A4%ED%8C%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>히스토그램 기반 그레이디언트 부스팅<a class="anchor-link" href="#%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EA%B8%B0%EB%B0%98-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B6%80%EC%8A%A4%ED%8C%85"> </a>
+</h1>
+<blockquote>
+<p>입력 특성을 256개의 구간으로 나눔. $\to$ 노드를 분할할 때 최적의 분할을 매우 바르게 찾을 수 있음</p>
+<p>입력에 누락된 특성이 있어도 이를 따로 전처리할 필요가 없다.</p>
+<p>아직 테스트 과정이라 추가 모듈 임포트 필요</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hgb</span> <span class="o">=</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">hgb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9321723946453317 0.8801241948619236
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">hgb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.08876275 0.23438522 0.08027708]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">hgb</span><span class="p">,</span> <span class="n">test_input</span><span class="p">,</span> <span class="n">test_target</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.05969231 0.20238462 0.049     ]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hgb</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">test_target</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8723076923076923</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="알고리즘을-구현한-또다른-라이브러리1">
+<a class="anchor" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%9C-%EB%98%90%EB%8B%A4%EB%A5%B8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC1" aria-hidden="true"><span class="octicon octicon-link"></span></a>알고리즘을 구현한 또다른 라이브러리1<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%9C-%EB%98%90%EB%8B%A4%EB%A5%B8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC1"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">tree_method</span><span class="o">=</span><span class="s1">'hist'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">xgb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9555033709953124 0.8799326275264677
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="알고리즘을-구현한-또다른-라이브러리2">
+<a class="anchor" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%9C-%EB%98%90%EB%8B%A4%EB%A5%B8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC2" aria-hidden="true"><span class="octicon octicon-link"></span></a>알고리즘을 구현한 또다른 라이브러리2<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%9C-%EB%98%90%EB%8B%A4%EB%A5%B8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC2"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lgb</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">lgb</span><span class="p">,</span> <span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'train_score'</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">'test_score'</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.935828414851749 0.8801251203079884
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/02/28/%ED%98%BC%EA%B3%B5%EB%A8%B85%EC%B1%953%EC%9E%A5.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" target="_blank" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" target="_blank" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
