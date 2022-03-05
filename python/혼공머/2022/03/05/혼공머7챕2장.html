@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>혼공머 07-2 | DJ’s portfolio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="혼공머 07-2" />
+<meta name="author" content="김동준" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="심층 신경망" />
+<meta property="og:description" content="심층 신경망" />
+<link rel="canonical" href="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/03/05/%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.html" />
+<meta property="og:url" content="https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/03/05/%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.html" />
+<meta property="og:site_name" content="DJ’s portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-05T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-03-05T00:00:00-06:00","url":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/03/05/%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.html","@type":"BlogPosting","headline":"혼공머 07-2","dateModified":"2022-03-05T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjfal.github.io/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/03/05/%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.html"},"author":{"@type":"Person","name":"김동준"},"description":"심층 신경망","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/dj/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cjfal.github.io/dj/feed.xml" title="DJ's portfolio" /><link rel="shortcut icon" type="image/x-icon" href="/dj/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/dj/">DJ&#39;s portfolio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/dj/about/">About Me</a><a class="page-link" href="/dj/search/">Search</a><a class="page-link" href="/dj/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">혼공머 07-2</h1><p class="page-description">심층 신경망</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-05T00:00:00-06:00" itemprop="datePublished">
+        Mar 5, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">김동준</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/dj/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/dj/categories/#혼공머">혼공머</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/cjfal/dj/tree/master/_notebooks/2022-03-05-혼공머7챕2장.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/dj/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/cjfal/dj/master?filepath=_notebooks%2F2022-03-05-%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/cjfal/dj/blob/master/_notebooks/2022-03-05-혼공머7챕2장.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/dj/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#주로쓰는-패키지들">주로쓰는 패키지들 </a></li>
+<li class="toc-entry toc-h1"><a href="#2개의-층">2개의 층 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#만든-인공-신경망-모형에-2개의-층-추가">만든 인공 신경망 모형에 2개의 층 추가 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#심층-신경망-만들기-(Deep-Neural-network)">심층 신경망 만들기 (Deep Neural network) </a></li>
+<li class="toc-entry toc-h1"><a href="#층을-추가하는-다른-방법">층을 추가하는 다른 방법 </a></li>
+<li class="toc-entry toc-h1"><a href="#렐루-함수--(활성화-함수)">렐루 함수  (활성화 함수) </a></li>
+<li class="toc-entry toc-h1"><a href="#옵티마이저">옵티마이저 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#가장-기본적인-옵티마이저-:-확률적-경사-하강법-SGD">가장 기본적인 옵티마이저 : 확률적 경사 하강법 SGD </a></li>
+<li class="toc-entry toc-h2"><a href="#모멘텀-최적화">모멘텀 최적화 </a></li>
+<li class="toc-entry toc-h2"><a href="#적응적-학습률">적응적 학습률 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-03-05-혼공머7챕2장.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="주로쓰는-패키지들">
+<a class="anchor" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>주로쓰는 패키지들<a class="anchor-link" href="#%EC%A3%BC%EB%A1%9C%EC%93%B0%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%93%A4"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#넘파이</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#판다스</span>
+<span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1">#플롯나인</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#맷플랏립</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span> <span class="c1">#플랏리 상호작용 그래프</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span> <span class="c1">#블로그에 html로 올리려고 변환하는 패키지</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># 씨본, 히스토그램 깔끔하게 그리는 패키지</span>
+<span class="c1">#___________________________________</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="c1"># k 최근접이웃</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>  <span class="c1"># 결정계수 </span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="c1"># 타깃과 예측의 절댓값 오차 평균을 반환</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="c1"># 선형 회귀</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span> <span class="c1">#다중회귀로의 변환기</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span> <span class="c1">#규제</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span> <span class="c1">#릿지</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span> <span class="c1">#라쏘</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="c1"># 로지스틱회귀</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span> <span class="c1">#시그모이드함수</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">softmax</span> <span class="c1">#소프트맥스함수</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span> <span class="c1"># 확률적 경사 하강법</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="c1"># 트리</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span> <span class="c1"># 트리 모형</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span> <span class="c1"># 교차 검증</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span> <span class="c1"># Kfold 교차 검증</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span> <span class="c1"># 그리드 서치 (하이퍼 파라미터 튜닝)</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">randint</span> <span class="c1">#랜덤 서치</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span> <span class="c1"># 랜덤 서치 클래스</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="c1"># 랜덤포레스트 앙상블</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span> <span class="c1"># 엑스트라 트리 앙상블</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span> <span class="c1"># 그레이디언트 부스팅 앙상블</span>
+
+<span class="c1"># 히스토그램 기반 그레이디언트 부스팅</span>
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_hist_gradient_boosting</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">HistGradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span> <span class="c1"># 특성중요도</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span> <span class="c1"># 알고리즘을 구현한 또다른 라이브러리1</span>
+<span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMClassifier</span> <span class="c1"># 알고리즘을 구현한 또다른 라이브러리2 , 마이크로소프트에서 구현 </span>
+
+
+<span class="c1"># ____________________</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span> <span class="c1"># KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span> <span class="c1"># 주성분 분석</span>
+
+<span class="c1"># 7장 딥러닝</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="c1"># 케라스 </span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span> <span class="c1"># 텐서플로</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2개의-층">
+<a class="anchor" href="#2%EA%B0%9C%EC%9D%98-%EC%B8%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>2개의 층<a class="anchor-link" href="#2%EA%B0%9C%EC%9D%98-%EC%B8%B5"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">),</span> <span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">test_target</span><span class="p">)</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fashion_mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2. 28x28 크기의 2차원 배열을 784 크기의 1차원 배열로 펼치기</span>
+<span class="c1"># 3. 훈련세트와 검증세트 나누기</span>
+
+<span class="n">train_scaled</span> <span class="o">=</span> <span class="n">train_input</span> <span class="o">/</span> <span class="mf">255.0</span>
+<span class="n">train_scaled</span> <span class="o">=</span> <span class="n">train_scaled</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">train_scaled</span><span class="p">,</span> <span class="n">val_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">val_target</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">train_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="만든-인공-신경망-모형에-2개의-층-추가">
+<a class="anchor" href="#%EB%A7%8C%EB%93%A0-%EC%9D%B8%EA%B3%B5-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%EB%AA%A8%ED%98%95%EC%97%90-2%EA%B0%9C%EC%9D%98-%EC%B8%B5-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>만든 인공 신경망 모형에 2개의 층 추가<a class="anchor-link" href="#%EB%A7%8C%EB%93%A0-%EC%9D%B8%EA%B3%B5-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%EB%AA%A8%ED%98%95%EC%97%90-2%EA%B0%9C%EC%9D%98-%EC%B8%B5-%EC%B6%94%EA%B0%80"> </a>
+</h2>
+<blockquote>
+<p>입력층과 출력층 사이에 밀집층이 추가된 것. $\to$ 은닉층 이라고 부름.</p>
+<p>은닉층에는 활성화 함수가 있음 (신경망 층의 선형 방정식의 계산 값에 적용하는 함수)</p>
+<p>소프트 맥스 함수도 활성화 함수</p>
+<p>출력층에 적용하는 활성화 함수는 종류가 제한 (이진 분류 :시그모이드 함수, 다중 분류 : 소프트맥스 함수)
+분류 문제는 클래스에 대한 확률을 출력하기 위해 활성화 함수를 사용, 회귀의 출력은 임의의 어떤 숫자라서 활성화 함수를 적용할 필요가 없음. \
+즉, 출력층의 선형 방정식의 계산을 그대로 출력</p>
+<p>은닉층에서 선형적인 산술 계산만 수행한다면 수행 역할이 없는 셈이라서 활성화 함수 사용</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dense1</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,))</span>
+<span class="n">dense2</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>dense1 이 은닉층이고 100개의 뉴런을 가진 밀집층, sigmoid로 활성화 함수 지정, 출력층의 뉴런보다는 많게 만들어야함.</p>
+<p>dense2 :출력층</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="심층-신경망-만들기-(Deep-Neural-network)">
+<a class="anchor" href="#%EC%8B%AC%EC%B8%B5-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0-(Deep-Neural-network)" aria-hidden="true"><span class="octicon octicon-link"></span></a>심층 신경망 만들기 (Deep Neural network)<a class="anchor-link" href="#%EC%8B%AC%EC%B8%B5-%EC%8B%A0%EA%B2%BD%EB%A7%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0-(Deep-Neural-network)"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">dense1</span><span class="p">,</span> <span class="n">dense2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>리스트로 전달 해야하며 , 출력층을 가장 마지막에 두어야 한다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 100)               78500     
+                                                                 
+ dense_1 (Dense)             (None, 10)                1010      
+                                                                 
+=================================================================
+Total params: 79,510
+Trainable params: 79,510
+Non-trainable params: 0
+_________________________________________________________________
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>모델의 이름이 나오며 , 그 모델에 들어 있는 층이 순서대로 나열 (은닉층에서 출력층의 순서)</p>
+<p>층마다 층 이름, 클래스 ,출력 크기 ,모델 파라미터 개수가 출력</p>
+<p>Output Shape :(샘플의 수 , 뉴런의 수)&gt; Total params :총 모델 파라미터 개수&gt; Trainable params :훈련되는 파라미터 개수</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="층을-추가하는-다른-방법">
+<a class="anchor" href="#%EC%B8%B5%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EB%8A%94-%EB%8B%A4%EB%A5%B8-%EB%B0%A9%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>층을 추가하는 다른 방법<a class="anchor-link" href="#%EC%B8%B5%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EB%8A%94-%EB%8B%A4%EB%A5%B8-%EB%B0%A9%EB%B2%95"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'hidden'</span><span class="p">),</span>
+    <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'output'</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">'패션 MNIST 모델'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>추가되는 층을 한눈에 쉽게 알아볼 수 있는 장점이 있음.</p>
+<p>층의 이름은 반드시 영문이어야 함.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: "패션 MNIST 모델"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ hidden (Dense)              (None, 100)               78500     
+                                                                 
+ output (Dense)              (None, 10)                1010      
+                                                                 
+=================================================================
+Total params: 79,510
+Trainable params: 79,510
+Non-trainable params: 0
+_________________________________________________________________
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>모델 이름과 층이름이 바뀜</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: "sequential_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_2 (Dense)             (None, 100)               78500     
+                                                                 
+ dense_3 (Dense)             (None, 10)                1010      
+                                                                 
+=================================================================
+Total params: 79,510
+Trainable params: 79,510
+Non-trainable params: 0
+_________________________________________________________________
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.5661 - accuracy: 0.8092
+Epoch 2/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.4068 - accuracy: 0.8532
+Epoch 3/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3728 - accuracy: 0.8646
+Epoch 4/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3515 - accuracy: 0.8725
+Epoch 5/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3335 - accuracy: 0.8782
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x7f1298643f10&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>추가된 층이 성능을 향상시켰다는 것을 알 수 있다.</p>
+<p>몇개의 층이 추가되어도 compile() 과 fit() 메서드의 사용법은 동일하다.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="렐루-함수--(활성화-함수)">
+<a class="anchor" href="#%EB%A0%90%EB%A3%A8-%ED%95%A8%EC%88%98--(%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98)" aria-hidden="true"><span class="octicon octicon-link"></span></a>렐루 함수  (활성화 함수)<a class="anchor-link" href="#%EB%A0%90%EB%A3%A8-%ED%95%A8%EC%88%98--(%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98)"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>시그모이드 함수는 층이 많을수록 효과가 누적되어 학습을 더 어렵게 만듬\
+$\to$ 해결 :렐루 함수\$\to$ 입력이 양수일 경우 마치 활성화 함수가 없는 것처럼 그냥 입력을 통과 시키고 음수일 경우에는 0으로 만듬</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>첫 번째 Dense 층에 있던 input_shape 매개변수를 Flatten 층으로 옮김</p>
+<p>첫 번째 Dense 층의 활성화 함수를 relu로 바꿈</p>
+<p>Flatten 클래스는 학습하는 층이 아님</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: "sequential_2"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ flatten (Flatten)           (None, 784)               0         
+                                                                 
+ dense_4 (Dense)             (None, 100)               78500     
+                                                                 
+ dense_5 (Dense)             (None, 10)                1010      
+                                                                 
+=================================================================
+Total params: 79,510
+Trainable params: 79,510
+Non-trainable params: 0
+_________________________________________________________________
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>flatten 클래스에 포함된 모델 파라미터는 0개</p>
+<p>케라스dml flatten 층을 신경망 모형에 추가하면 입력값의 차원을 짐작할 수 있다.</p>
+<p>784개의 입력이 첫 번째 은닉층에 전달되었다.</p>
+<p>입력 데이터에 대한 전처리 과정을 가능한 모델에 포함 시킨다. :케라스 API</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span> <span class="n">train_target</span><span class="p">),</span> <span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">test_target</span><span class="p">)</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fashion_mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">train_scaled</span> <span class="o">=</span> <span class="n">train_input</span> <span class="o">/</span> <span class="mf">255.0</span>
+
+<span class="n">train_scaled</span><span class="p">,</span> <span class="n">val_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">val_target</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">train_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.5315 - accuracy: 0.8127
+Epoch 2/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3930 - accuracy: 0.8584
+Epoch 3/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3572 - accuracy: 0.8723
+Epoch 4/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3345 - accuracy: 0.8813
+Epoch 5/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3215 - accuracy: 0.8850
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x7f12983d73a0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>시그모이드 함수를 사용했을 때와 비교하면 성능이 조금 향상</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">val_scaled</span><span class="p">,</span> <span class="n">val_target</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>375/375 [==============================] - 0s 897us/step - loss: 0.3641 - accuracy: 0.8789
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.36406102776527405, 0.8789166808128357]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>은닉층을 추가하지 않은 경우보다 몇 퍼센트 성능이 향상</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="옵티마이저">
+<a class="anchor" href="#%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>옵티마이저<a class="anchor-link" href="#%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80"> </a>
+</h1>
+<blockquote>
+<p>은닉층의 뉴런 개수도 하이퍼 파라미터이다.</p>
+<p>층의 종류도 하이퍼 파라미터 이다.</p>
+<p>옵티마이저 :케라스에서 제공하는 다양한 경사 하강법 알고리즘
+RMSprop의 학습률 또한 하이터 파라미터</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="가장-기본적인-옵티마이저-:-확률적-경사-하강법-SGD">
+<a class="anchor" href="#%EA%B0%80%EC%9E%A5-%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80-:-%ED%99%95%EB%A5%A0%EC%A0%81-%EA%B2%BD%EC%82%AC-%ED%95%98%EA%B0%95%EB%B2%95-SGD" aria-hidden="true"><span class="octicon octicon-link"></span></a>가장 기본적인 옵티마이저 : 확률적 경사 하강법 SGD<a class="anchor-link" href="#%EA%B0%80%EC%9E%A5-%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80-:-%ED%99%95%EB%A5%A0%EC%A0%81-%EA%B2%BD%EC%82%AC-%ED%95%98%EA%B0%95%EB%B2%95-SGD"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sgd</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">sgd</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sgd</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="모멘텀-최적화">
+<a class="anchor" href="#%EB%AA%A8%EB%A9%98%ED%85%80-%EC%B5%9C%EC%A0%81%ED%99%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>모멘텀 최적화<a class="anchor-link" href="#%EB%AA%A8%EB%A9%98%ED%85%80-%EC%B5%9C%EC%A0%81%ED%99%94"> </a>
+</h2>
+<blockquote>
+<p>그레이디언트를 가속도처럼 사용</p>
+<p>SGD 클래스의 nesterov 매개변수를 기본값 False에서 True로 바꾸면 네스테로프 모멘텀 최적화 를 사용</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sgd</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="적응적-학습률">
+<a class="anchor" href="#%EC%A0%81%EC%9D%91%EC%A0%81-%ED%95%99%EC%8A%B5%EB%A5%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>적응적 학습률<a class="anchor-link" href="#%EC%A0%81%EC%9D%91%EC%A0%81-%ED%95%99%EC%8A%B5%EB%A5%A0"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">adagrad</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adagrad</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">adagrad</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rmsprop</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">rmsprop</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="s1">'accuracy'</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span><span class="p">,</span> <span class="n">train_target</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.5299 - accuracy: 0.8139
+Epoch 2/5
+1500/1500 [==============================] - 2s 1ms/step - loss: 0.3942 - accuracy: 0.8590
+Epoch 3/5
+1500/1500 [==============================] - 1s 974us/step - loss: 0.3546 - accuracy: 0.8698
+Epoch 4/5
+1500/1500 [==============================] - 1s 990us/step - loss: 0.3245 - accuracy: 0.8810
+Epoch 5/5
+1500/1500 [==============================] - 1s 984us/step - loss: 0.3063 - accuracy: 0.8852
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x7f129cb65e80&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">val_scaled</span><span class="p">,</span> <span class="n">val_target</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>375/375 [==============================] - 0s 729us/step - loss: 0.3352 - accuracy: 0.8794
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.3352320194244385, 0.8794166445732117]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="cjfal/dj"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/dj/python/%ED%98%BC%EA%B3%B5%EB%A8%B8/2022/03/05/%ED%98%BC%EA%B3%B5%EB%A8%B87%EC%B1%952%EC%9E%A5.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/dj/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/dj/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/dj/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/%EA%B9%80%EB%8F%99%EC%A4%80" target="_blank" title="김동준"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/cjfal" target="_blank" title="cjfal"><svg class="svg-icon grey"><use xlink:href="/dj/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
