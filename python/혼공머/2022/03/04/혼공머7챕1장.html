@@ -96,7 +96,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      6 min read
     
 </span></p>
 
@@ -1050,7 +1050,7 @@ Epoch 5/5
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> <strong>결정 트리</strong> : 예 / 아니오에 대한 질문을 이어나가면서 정답을 찾아 학습하는 알고리즘입니다.비교적 예측 과정을 이해하기 쉽고 성능도 뛰어납니다. 결정 트리는 제한 없이 성장하면 훈련 세트에 과대적합되기 쉽습니다.</p>
+<p><code>-</code> <strong>인공 신경망</strong> : 생물학적 뉴런에서 영감을 받아 만든 머신러닝 알고리즘입니다. 이름이 신경망이지만 실제 우리 뇌를 모델링한 것은 아닙니다. 신경망은 기존의 머신러닝 알고리즘으로 다루기 어려웠던 이미지, 음성, 텍스트 분야에서 뛰어난 성능을 발휘하면서 크게 주목받고 있습니다. 인공 신경망 알고리즘을 종종 딥러닝이라고도 부릅니다.</p>
 
 </div>
 </div>
@@ -1058,7 +1058,7 @@ Epoch 5/5
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> <strong>불순도</strong> : 결정 트리가 최적의 질문을 찾기 위한 기준입니다. 사이킷런은 지니 불순도와 엔트로피 불순도를 제공합니다.</p>
+<p><code>-</code> <strong>텐서플로</strong> : 구글이 만든 딥러닝 라이브러리로 매우 인기가 높습니다. CPU와 GPU를 사용해 인공 신경망 모델을 효율적으로 훈련하며 모델 구축과 서비스에 필요한 다양한 도구를 제공합니다. 텐서플로 2.0부터는 신경망 모델을 빠르게 구성할 수 있는 케라스를 핵심 API로 채택하였습니다. 케라스를 사용하면 간단한 모델에서 아주 복잡한 모델까지 손쉽게 만들 수 있습니다.</p>
 
 </div>
 </div>
@@ -1066,7 +1066,7 @@ Epoch 5/5
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> <strong>정보 이득</strong> : 부모 노드와 자식 노드의 불순도 차이입니다. 결정 트리 알고리즘은 정보 이득이최대화되도록 학습합니다.</p>
+<p><code>-</code> <strong>밀집층</strong> : 가장 간단한 인공 신경망의 층입니다. 인공 신경망에는 여러 종류의 층이 있습니다. 밀집층에서는 뉴런들이 모두 연결되어 있기 때문에 완전 연결 층이라고도 부릅니다. 특별히 출력층에 밀집층을 사용할 때는 분류하려는 클래스와 동일한 개수의 뉴런을 사용합니다.</p>
 
 </div>
 </div>
@@ -1074,15 +1074,7 @@ Epoch 5/5
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> <strong>가지치기</strong> : 결정 트리의성장을 제한하는 방법입니다. 사이킷런의 결정 트리 알고리즘은 여러 가지 가치지기 매개변수를 제공합니다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> <strong>특성 중요도</strong> : 결정 트리에 사용된 특성이 불순도를 감소하는데 기여한 정도를 나타내는 값입니다. 특성 중요도를 계산할 수 있는 것이 결정 트리의 또다른 큰 장점입니다.</p>
+<p><code>-</code> <strong>원-핫 인코딩</strong> : 정숫값을 배열에서 해당 정수 위치의 원소만 1이고 나머지는 모두 0으로 변환합니다. 이런 변환이 필요한 이유는 다중 분류에서 출력층에서 만든 확률과 크로스 엔트로피손실을 계산하기 위해서 입니다. 텐서플로에서는 'sparse_categorical_entropy' 손실을 지정하면 이런 변환을 수행할 필요가 없습니다.</p>
 
 </div>
 </div>
@@ -1091,31 +1083,26 @@ Epoch 5/5
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>-</code> <strong>핵심 패키지</strong></p>
-<p><code>-</code> pandas</p>
+<p><code>-</code> TensorFlow</p>
 <blockquote>
-<p><code>1</code> info() :데이터프레임의 요약된 정보를 출력합니다.&gt; &gt;인덱스와 컬럼 타입을 출력하고 닐(null)이 아닌 값의 개수, 메모리 사용량을 제공합니다.</p>
+<p><code>1</code> Dense :신경망에서 가장 기본 층인 밀집층을 만드는 클래스입니다.&gt; &gt;이 층에 첫 번째 매개변수에는 뉴런의 개수를 지정합니다.</p>
 <blockquote>
-<p>verbose 매개변수의 기본값 True를False로 바꾸면 각 열에 대한 정보를 출력하지 않습니다.</p>
+<p>activation 매개변수에는 사용할 활성화 함수를 지정합니다. 대표적으로 sigmoid', 'softmax 함수가 있습니다. 아무것도 지정하지 않으면 활성화 함수를 사용하지 않습니다.</p>
+<p>케라스의 Sequential 클래스에 맨 처음 추가되는 층에는 input shape 매개변수로 입력의 크기를 지정해야 합니다.</p>
 </blockquote>
-<p><code>2</code> describe() :데이터프레임 열의 통계 값을 제공합니다. 수치형일 경우 최소, 최대, 평균, 표준편차와 사분위값 등이 출력됩니다.&gt; &gt;문자열 같은 객체 타입의 열은 가장 자주 등장하는 값과 횟수 등이 출력됩니다.\</p>
+<p><code>2</code> Sequential :케라스에서 신경망 모델을 만드는 클래스입니다.&gt; &gt;이 클래스의 객체를 생성할 때 신경망 모델에 추가할 층을 지정할 수 있습니다. 추가할 층이 1개 이상일 경우 파이썬 리스트로 전달합니다.</p>
+<p><code>3</code> compile() :모델 객체를 만든 후 훈련하기 전에 사용할 손실 함수와 측정 지표 등을 지정하는 메서드입니다.&gt; &gt;loss 매개변수에 손실 함수를 지정합니다. 이진 분류일 경우 'binary_crossentropy', 다중 분류일 경우 categorical_crossentropy'를 지정합니다. 클래스 레이블이 정수일 경우 'sparse_categorical_crossentropy'로 지정합니다. 회귀 모델일 경우 mean_square_error' 등으로 지정할 수 있습니다.</p>
 <blockquote>
-<p>percentiles 매개변수에서 백분위수를 지정합니다. 기본값은 [0.25, 0.5, 0.75]입니다.</p>
+<p>metrics 매개변수에 훈련 과정에서 측정하고 싶은 지표를 지정할 수 있습니다. 측정 지표가 1개 이상일 경우 리스트로 전달합니다.</p>
 </blockquote>
+<p><code>4</code> fit() :모델을 훈련하는 메서드입니다.&gt; &gt;첫 번째와 두 번째 매개변수에 입력과 타깃 데이터를 전달합니다.</p>
+<blockquote>
+<p>epochs 매개변수에 전체 데이터에 대해 반복할 에포크 횟수를 지정합니다.</p>
 </blockquote>
-<p><code>-</code> scikit-learn</p>
+<p><code>5</code> evaluate() :모델 성능을 평가하는 메서드입니다.</p>
 <blockquote>
-<p><code>1</code> DecisionTreeClassifier :결정 트리 분류 클래스입니다.&gt; &gt;Criterion 매개변수는 불순도를 지정하며 기본값은 지니 불순도를 의미하는 'gini'이고 entropy'를 선택하여 엔트로피 불순도를 사용할 수 있습니다.</p>
-<blockquote>
-<p>Splitter 매개변수는 노드를 분할하는 전략을 선택합니다. 기본값은 'Dest'로 정보 이득이 최대가 되도록 분할합니다. random'이면 임의로 노드를 분할합니다.</p>
-<p>imax depth는 트리가 성장할 최대 깊이를 지정합니다. 기본값은 None으로 리프 노드가 순수하거나 min samples_split보다 샘플 개수가 적을 때까지 성장합니다.</p>
-<p>min_samples_split은 노드를 나누기 위한 최소 샘플 개수입니다. 기본값은 2입니다.</p>
-<p>max_features 매개변수는 최적의 분할을 위해 탐색할 특성의 개수를 지정합니다. 기본값은 None으로 모든 특성을 사용합니다.</p>
-</blockquote>
-<p><code>2</code> plot_tree() :결정 트리 모델을 시각화합니다. 첫 번째 매개변수로 결정 트리 모델 객체를 전달합니다.</p>
-<blockquote>
-<p>max_depth 매개변수로 나타낼 트리의 깊이를 지정합니다. 기본값은 None으로 모든 노드를 출력합니다.</p>
-<p>feature_names 매개변수로 특성의 이름을 지정할 수 있습니다.</p>
-<p>filled 매개변수를 True로 지정하면 타깃값에 따라 노드 안에 색을 채웁니다.</p>
+<p>첫 번째와 두 번째 매개변수에 입력과 타깃 데이터를 전달합니다.</p>
+<p>Compile() 메서드에서 loss 매개변수에 지정한 손실 함수의 값과 metrics 매개변수에서 지정한 측정 지표를 출력합니다.</p>
 </blockquote>
 </blockquote>
 
